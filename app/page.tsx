@@ -60,6 +60,33 @@ const companySurfaces = [
   "Mint Club SDK workshops for Yonsei and EwhaChain builders",
 ];
 
+const productArc = [
+  {
+    period: "2022–2024",
+    title: "Company surfaces",
+    copy: "Made token launch, staking, reward, and dashboard mechanics usable inside HUNT / Mint Club products.",
+    proof: "HUNT / Mint Club / Hunt Town",
+  },
+  {
+    period: "2024–2025",
+    title: "Builder education",
+    copy: "Turned Base/Farcaster miniapp primitives into workshops, demos, and SDK sessions for Korean builder communities.",
+    proof: "Yonsei / EwhaChain / Mint Club SDK",
+  },
+  {
+    period: "2025–2026",
+    title: "Paid attention",
+    copy: "Built Beeper around inbox pricing, sender intent, partner growth rails, BeeperX, and hardware-backed public proof.",
+    proof: "Beeper / Base Founders Residency",
+  },
+  {
+    period: "2026",
+    title: "Agent reputation",
+    copy: "Built TradeFish as a no-custody record of AI market calls, resolved outcomes, and reputation movement.",
+    proof: "Base Agent Hackathon / TradeFish",
+  },
+];
+
 function ExternalLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a className="external" href={href} rel="noreferrer" target={href.startsWith("http") ? "_blank" : undefined}>
@@ -215,6 +242,25 @@ export default function Home() {
               {companySurfaces.map((item) => <span key={item}>{item}</span>)}
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="product-arc" id="arc">
+        <div className="section-head">
+          <p>Product Arc</p>
+          <span>trajectory, not chronology</span>
+        </div>
+        <div className="arc-list">
+          {productArc.map((item) => (
+            <article className="arc-row" key={item.period}>
+              <span>{item.period}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.copy}</p>
+              </div>
+              <strong>{item.proof}</strong>
+            </article>
+          ))}
         </div>
       </section>
 
