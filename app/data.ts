@@ -67,8 +67,47 @@ export const cases: CaseStudy[] = [
     ]
   },
   {
-    slug: "tradefish",
+    slug: "hunt-mintclub",
     no: "A-02",
+    name: "HUNT / Mint Club",
+    object: "company product surfaces",
+    role: "core builder / product engineer",
+    year: "2022–2026",
+    image: "/proof/mintdrop-metrics.png",
+    desc: "Long-running company work across token launch flows, staking and reward surfaces, yield dashboards, Base/Farcaster product views, and builder education.",
+    tags: ["HUNT", "Mint Club", "Base", "Farcaster", "workshops"],
+    proof: "4 years / product surfaces / builder education",
+    href: "https://x.com/tonymfer/status/1965330528904827040",
+    live: "https://x.com/tonymfer/status/1965330528904827040",
+    primitive: "New token and community mechanics are easy to expose as raw finance UI and hard to make understandable. The work was to turn launch, staking, reward, and builder primitives into surfaces projects could actually operate.",
+    artifact: "A set of company product surfaces and ecosystem work: token-backed asset flows, bonding-curve launch UX, staking pools, reward dashboards, Base/mfer views, Farcaster miniapp experiments, and Mint Club SDK workshops.",
+    proofPoints: [
+      "Long-running company work across HUNT / Mint Club / Hunt Town / Steemhunt",
+      "Public GitHub evidence across Steemhunt repositories under Tony Park / tonymfer",
+      { text: "Mint Club SDK / Base MiniKit workshop proof", href: "https://x.com/tonymfer/status/1965330528904827040" },
+      "Supported early-stage project surfaces, token launch flows, staking/reward products, and builder education"
+    ],
+    right: [
+      "The work gave me repetition: not one launch, but many passes at making token and community mechanics easier to use.",
+      "Builder education forced the product language to become clearer. If a workshop audience could not follow the primitive, the interface was probably overcomplicated too.",
+      "Working inside a company product stack made me better at incremental shipping, not just weekend prototypes."
+    ],
+    wrong: [
+      "Some surfaces were hard to show publicly because the work was spread across company products, internal iterations, and ecosystem support.",
+      "Token and reward products can become abstract quickly if the user cannot see the concrete action they are taking.",
+      "The portfolio needs careful wording here: enough detail to show depth, without turning the homepage into a résumé timeline."
+    ],
+    next: "Turn the strongest company surfaces into a tighter artifact trail: launch flow, staking/reward dashboard, Base/Farcaster education, and what each taught me about simplifying new rails.",
+    fieldNotes: [
+      { title: "Problem", body: "Company product work is harder to show than a clean side project. The output is spread across product surfaces, support work, workshops, and incremental improvements rather than one dramatic launch page." },
+      { title: "Constraint", body: "The useful framing is not ‘I worked at a company for four years.’ It is that I repeatedly worked on the same kind of problem: making token, reward, and community mechanics understandable enough for projects and builders to use." },
+      { title: "What changed", body: "I became faster at separating the primitive from the interface. Token mechanics, staking, dashboards, and miniapps all need the same move: hide the machinery until the user needs control or proof." },
+      { title: "What I learned", body: "A product surface earns trust through boring clarity. The more experimental the underlying rail is, the less the interface can afford to sound experimental." }
+    ]
+  },
+  {
+    slug: "tradefish",
+    no: "A-03",
     name: "TradeFish",
     object: "agent reputation rail",
     role: "builder / product system",
@@ -99,7 +138,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "far-cards",
-    no: "A-03",
+    no: "A-04",
     name: "far.cards",
     object: "IRL identity object",
     role: "prototype / growth artifact",
@@ -123,7 +162,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "taptato-base-world",
-    no: "A-04",
+    no: "A-05",
     name: "TapTato / Base World",
     object: "playable infra",
     role: "prototype / demo builder",
