@@ -106,16 +106,16 @@ export default function Home() {
         </a>
         <nav>
           <a href="#objects">/work</a>
+          <a href="#arc">/arc</a>
           <a href="#video">/video</a>
-          <a href="#about">/about</a>
           <a href="#contact">/contact</a>
         </nav>
       </header>
       <nav className="mobile-dock" aria-label="Mobile quick navigation">
         <a href="#top">Tony</a>
         <a href="#objects">Work</a>
-        <a href="#video">Video</a>
-        <a href="#about">About</a>
+        <a href="#arc">Arc</a>
+        <a href="#contact">Contact</a>
       </nav>
 
       <section className="hero" id="top">
@@ -232,11 +232,11 @@ export default function Home() {
         <div className="company-panel">
           <div>
             <p className="kicker">Long-running product work</p>
-            <h2>Four years of shipping inside real product surfaces, not only side projects.</h2>
+            <h2>Four years inside live product surfaces.</h2>
           </div>
           <div className="company-copy">
             <p>
-              At HUNT / Mint Club / Hunt Town, I worked across product engineering, front-end surfaces, ecosystem UX, and builder education. The work was less about one splashy launch and more about repeatedly making token, community, and reward mechanics usable for real projects.
+              At HUNT / Mint Club / Hunt Town, I worked across product engineering, front-end surfaces, ecosystem UX, and builder education. The throughline was making token, community, and reward mechanics understandable enough for real projects to use.
             </p>
             <div className="company-surfaces">
               {companySurfaces.map((item) => <span key={item}>{item}</span>)}
@@ -248,7 +248,7 @@ export default function Home() {
       <section className="product-arc" id="arc">
         <div className="section-head">
           <p>Product Arc</p>
-          <span>trajectory, not chronology</span>
+          <span>how the work evolved</span>
         </div>
         <div className="arc-list">
           {productArc.map((item) => (
