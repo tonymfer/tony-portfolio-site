@@ -27,9 +27,9 @@ const proofTypes = [
 
 const artifactWall = [
   ["/proof/beeper-hardware.jpg", "Beeper hardware", "paid attention"],
-  ["/proof/farcards-spread.png", "far.cards spread", "IRL identity"],
+  ["/proof/mint-cbbtc.png", "Mint Club cbBTC surface", "token UX"],
   ["/proof/tradefish-base-update.jpg", "TradeFish proof", "agent rail"],
-  ["/proof/taptato.png", "TapTato", "playable infra"],
+  ["/proof/farcards-proof.jpg", "far.cards spread", "IRL identity"],
 ];
 
 
