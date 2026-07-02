@@ -81,7 +81,7 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
             {item.tags.map((tag) => <span key={tag}>{tag}</span>)}
           </div>
         </div>
-        <motion.div className="case-image-wrap" style={{ y: imageY, scale: imageScale }}>
+        <motion.div className="case-image-wrap" style={isBeeper ? { y: imageY, scale: imageScale } : undefined}>
           <img alt={`${item.name} proof`} src={item.image} />
           <div className="case-image-caption">{item.proof}</div>
         </motion.div>

@@ -25,25 +25,25 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tony-portfolio-site
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Tony Park — Product Engineer / Prototyper",
+    default: "Tony Park — AI × Web3 Product Engineer",
     template: "%s — Tony Park",
   },
   description:
-    "Tony Park turns early product ideas into usable systems: Beeper, TradeFish, far.cards, TapTato, Base/Farcaster products, and AI-agent workflows backed by public proof.",
+    "Tony Park turns rough crypto and AI primitives into shipped product loops: HUNT / Mint Club surfaces, Beeper, TradeFish, far.cards, TapTato, and Base/Farcaster products backed by public proof.",
   keywords: ["Tony Park", "tonymfer", "Product Engineer", "Base", "Farcaster", "Beeper", "TradeFish", "AI agents", "Web3 UX"],
   authors: [{ name: "Tony Park", url: "https://x.com/tonymfer" }],
   creator: "Tony Park",
   openGraph: {
-    title: "Tony Park — Product Engineer / Prototyper",
+    title: "Tony Park — AI × Web3 Product Engineer",
     description:
-      "Selected products, demos, video clips, and postmortems from shipped Base/Farcaster, paid attention, and AI-agent product experiments.",
+      "Selected products, demos, video clips, and postmortems from shipped Base/Farcaster, paid attention, and AI-agent product loops.",
     type: "website",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "Tony Park portfolio preview" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tony Park — Product Engineer / Prototyper",
-    description: "Beeper, TradeFish, far.cards, TapTato, and public proof from shipped product experiments.",
+    title: "Tony Park — AI × Web3 Product Engineer",
+    description: "HUNT / Mint Club, Beeper, TradeFish, far.cards, TapTato, and public proof from shipped product loops.",
     creator: "@tonymfer",
     images: ["/og.png"],
   },

@@ -5,9 +5,16 @@ import { archive, cases as selected } from "./data";
 const links = [
   ["X", "@tonymfer", "https://x.com/tonymfer"],
   ["GitHub", "tonymfer", "https://github.com/tonymfer"],
-  ["Farcaster", "@to", "https://warpcast.com/tony"],
+  ["Farcaster", "@to", "https://warpcast.com/to"],
   ["ENS", "tony.base.eth", "https://etherscan.io/name-lookup-search?id=tony.base.eth"],
   ["Email", "hello@tony.works", "mailto:hello@tony.works"],
+];
+
+const heroProof = [
+  ["4+ yrs", "HUNT / Mint Club product surfaces"],
+  ["44.8K", "Beeper users in evidence bundle"],
+  ["412K+", "Base mainnet transactions"],
+  ["1st", "Base Agent Hackathon — TradeFish"],
 ];
 
 
@@ -129,11 +136,24 @@ export default function Home() {
         </div>
 
         <div className="hero-copy">
-          <p className="kicker">TONY PARK / PRODUCT ENGINEER / PROTOTYPER</p>
-          <h1>Early ideas into usable systems.</h1>
+          <p className="kicker">TONY PARK / AI × WEB3 PRODUCT ENGINEER</p>
+          <h1>Early primitives into shipped product loops.</h1>
           <p className="subcopy">
-            Beeper, TradeFish, far.cards, TapTato, and Base/Farcaster products backed by public proof.
+            I turn rough crypto and AI primitives into usable interfaces, launch loops, and public proof — across HUNT / Mint Club, Beeper, TradeFish, and Base/Farcaster products.
           </p>
+          <div className="hero-actions" aria-label="Primary actions">
+            <a href="#objects">View selected work</a>
+            <a href="/tony-resume.pdf">Download resume</a>
+            <a href="mailto:hello@tony.works">Email Tony</a>
+          </div>
+          <div className="hero-proof" aria-label="Career proof highlights">
+            {heroProof.map(([value, label]) => (
+              <div key={label}>
+                <strong>{value}</strong>
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
           <div className="archive-label">
             <span>Work Archive</span>
             <p>selected products, demos, video clips, and postmortems from shipped experiments.</p>
@@ -196,6 +216,10 @@ export default function Home() {
                 </div>
                 <h2>{work.name}</h2>
                 <p>{work.desc}</p>
+                <div className="role-proof">
+                  <div><span>Role</span><strong>{work.role}</strong></div>
+                  <div><span>Proof</span><strong>{work.proof}</strong></div>
+                </div>
                 <div className="proof-line"><span>receipt</span>{work.proof}</div>
                 <div className="chips">
                   {work.tags.map((tag) => <span key={tag}>{tag}</span>)}
