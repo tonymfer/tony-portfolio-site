@@ -154,23 +154,26 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="hero-visual" aria-label="Proof artifact preview">
           <div className="archive-label">
             <span>Work Archive</span>
             <p>selected products, demos, video clips, and postmortems from shipped experiments.</p>
+          </div>
+          <div className="artifact-wall" aria-label="Proof artifact preview">
+            {artifactWall.map(([src, label, kind], index) => (
+              <div className="artifact-tile" data-index={String(index + 1).padStart(2, "0")} key={src}>
+                <Image alt={label} src={src} width={720} height={520} />
+                <span>{kind}</span>
+              </div>
+            ))}
           </div>
           <div className="proof-types snap-rail" aria-label="Work modes">
             {proofTypes.map(([name, copy]) => (
               <div key={name}>
                 <strong>{name}</strong>
                 <span>{copy}</span>
-              </div>
-            ))}
-          </div>
-          <div className="artifact-wall" aria-label="Proof artifact preview">
-            {artifactWall.map(([src, label, kind], index) => (
-              <div className="artifact-tile" data-index={String(index + 1).padStart(2, "0")} key={src}>
-                <Image alt={label} src={src} width={520} height={360} />
-                <span>{kind}</span>
               </div>
             ))}
           </div>
