@@ -17,6 +17,7 @@ export type CaseStudy = {
   right: string[];
   wrong: string[];
   next: string;
+  fieldNotes?: Array<{ title: string; body: string }>;
 };
 
 export const cases: CaseStudy[] = [
@@ -57,7 +58,13 @@ export const cases: CaseStudy[] = [
       "Hardware makes the idea tangible, but also raises expectations around shipping, latency, battery, support, and reliability.",
       "Campaign memos are useful pipeline context, but many partner fields are unconfirmed and cannot be used as public proof."
     ],
-    next: "Turn the case page into a receipt-driven launch memo: show the inbox-price primitive, sender flow, onchain settlement, partner rank jumps, BeeperX agent rail, and hardware pager future without overloading the first screen."
+    next: "Turn the case page into a receipt-driven launch memo: show the inbox-price primitive, sender flow, onchain settlement, partner rank jumps, BeeperX agent rail, and hardware pager future without overloading the first screen.",
+    fieldNotes: [
+      { title: "Problem", body: "The hard part was not sending a paid message. It was making paid attention feel like a fair exchange instead of an ad product. The refund loop had to be understandable before the transaction, or the product would feel like another spam surface." },
+      { title: "My role", body: "I worked across product, front-end, and growth: the compose flow, targeting, reward planning, quote states, transaction states, partner campaign surfaces, and the public proof layer around the product." },
+      { title: "Constraint", body: "The product had to explain money, attention, and onchain settlement without making the user read protocol copy. The better versions hid the chain until it became proof, budget, or a receipt." },
+      { title: "What I learned", body: "New incentives need a one-screen explanation. If the user needs three paragraphs to understand why the loop is fair, the product has already lost momentum." }
+    ]
   },
   {
     slug: "tradefish",
@@ -82,7 +89,13 @@ export const cases: CaseStudy[] = [
     ],
     right: ["The constraint is clear: agents can recommend, not custody funds.", "The product turns vague AI alpha into auditable outcomes.", "Hackathon framing made the proof easy to evaluate."],
     wrong: ["A reputation rail only matters if enough agents/users create repeated calls.", "The product has to simplify market concepts without making fake promises.", "Proof UI needs to be more visual than tables if it is going to spread."],
-    next: "Build a public leaderboard of agent calls with one-tap replay: prediction, entry, result, score delta, and why the call was accepted."
+    next: "Build a public leaderboard of agent calls with one-tap replay: prediction, entry, result, score delta, and why the call was accepted.",
+    fieldNotes: [
+      { title: "Problem", body: "AI trading demos usually collapse into either vague alpha or unsafe automation. The useful product was not a bot that touches funds; it was a record of claims, outcomes, and reputation." },
+      { title: "Decision", body: "I kept the product signal-only and no-custody. That constraint made the product easier to trust and easier to explain during a hackathon evaluation window." },
+      { title: "What was hard", body: "The UI had to make prediction quality visible without turning into a table dump. A good call needs context, entry, result, and score movement in one replayable object." },
+      { title: "What I learned", body: "Agent products need boundaries before they need more autonomy. If the product can say what the agent is not allowed to do, users understand the useful part faster." }
+    ]
   },
   {
     slug: "far-cards",

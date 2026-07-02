@@ -153,6 +153,23 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
           </div>
         </section>
 
+        {item.fieldNotes && (
+          <section className="field-notes-board">
+            <div>
+              <p className="case-kicker">Field notes</p>
+              <h2>What was hard, what changed, and what I learned.</h2>
+            </div>
+            <div className="field-note-list">
+              {item.fieldNotes.map((note) => (
+                <article className="field-note" key={note.title}>
+                  <h3>{note.title}</h3>
+                  <p>{note.body}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
         {isBeeper && (
           <>
             <section className="partner-board">

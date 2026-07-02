@@ -53,6 +53,13 @@ const videoReceipts = [
   { title: "BEEP v2", copy: "paid attention launch media", href: "https://x.com/beeponbase/status/2009487314708517220", image: "/proof/beep-v2.jpg" },
 ];
 
+const companySurfaces = [
+  "token-backed asset and bonding-curve launch flows",
+  "staking pools, reward surfaces, and yield dashboards",
+  "Base/mfer product views and Farcaster miniapp experiments",
+  "Mint Club SDK workshops for Yonsei and EwhaChain builders",
+];
+
 function ExternalLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a className="external" href={href} rel="noreferrer" target={href.startsWith("http") ? "_blank" : undefined}>
@@ -187,6 +194,27 @@ export default function Home() {
               <p>{status}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="company-work" id="company">
+        <div className="section-head">
+          <p>Company Work</p>
+          <span>HUNT / Mint Club / Hunt Town / Steemhunt · 2022–2026</span>
+        </div>
+        <div className="company-panel">
+          <div>
+            <p className="kicker">Long-running product work</p>
+            <h2>Four years of shipping inside real product surfaces, not only side projects.</h2>
+          </div>
+          <div className="company-copy">
+            <p>
+              At HUNT / Mint Club / Hunt Town, I worked across product engineering, front-end surfaces, ecosystem UX, and builder education. The work was less about one splashy launch and more about repeatedly making token, community, and reward mechanics usable for real projects.
+            </p>
+            <div className="company-surfaces">
+              {companySurfaces.map((item) => <span key={item}>{item}</span>)}
+            </div>
+          </div>
         </div>
       </section>
 
