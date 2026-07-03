@@ -65,6 +65,17 @@ export const cases: CaseStudy[] = [
       { title: "My role", body: "I worked across product, front-end, and growth: the compose flow, targeting, reward planning, quote states, transaction states, partner campaign surfaces, and the public proof layer around the product." },
       { title: "Constraint", body: "The product had to explain money, attention, and onchain settlement without making the user read protocol copy. The better versions hid the chain until it became proof, budget, or a receipt." },
       { title: "What I learned", body: "New incentives need a one-screen explanation. If the user needs three paragraphs to understand why the loop is fair, the product has already lost momentum." }
+    ],
+    timeline: [
+      { date: "2025-11", title: "Beeper hardware waitlist", href: "https://x.com/tonymfer/status/1991792691198427618", note: "hardware for Farcaster, filtering noise and amplifying real signal on Base" },
+      { date: "2025-12", title: "first 1,500 beepers", href: "https://x.com/beeponbase/status/1996137950258880592", note: "early waitlist / stress-test signal" },
+      { date: "2025-12", title: "first 2,000 beepers", href: "https://x.com/beeponbase/status/1996397711621509132", note: "waitlist growth before closed beta" },
+      { date: "2026-01", title: "top 5 miniapp signal", href: "https://x.com/beeponbase/status/2013170568611402151", note: "ranked near other leading Base miniapps without a token" },
+      { date: "2026-01", title: "1,351 beepers answered stable vs degen", href: "https://x.com/beeponbase/status/2016108644400873672", note: "campaign mechanic + user response loop" },
+      { date: "2026-02", title: "Brick Side Chat #67 with Steemhunt", href: "https://x.com/beeponbase/status/2027031289904447697", note: "contacts, BeeperX, BP rewards, and product overhaul" },
+      { date: "2026-03", title: "Why Beeper", href: "https://x.com/beeponbase/status/2036694291121406201", note: "attention thesis: every app takes attention for free" },
+      { date: "2026-05", title: "Farcon Rome NFC name tags", href: "https://x.com/beeponbase/status/2051536583317483582", note: "first offline experiment for attention/social identity" },
+      { date: "2026-06", title: "Base APAC / Base Founders Residency feature", href: "https://x.com/baseapac/status/2062479675461603777", note: "external validation: hackathon wins, Base Camp support, flew from Korea to residency" }
     ]
   },
   {
@@ -115,7 +126,9 @@ export const cases: CaseStudy[] = [
       { date: "2024-10", title: "mfer vision + child/sibling token lookup", href: "https://x.com/tonymfer/status/1846169255483678765", note: "event filtering + token detail discovery" },
       { date: "2024-10", title: "BASE ERA in Mint Club", href: "https://x.com/tonymfer/status/1847218266793714078", note: "Base token featuring + child tokens backed by favorite tokens" },
       { date: "2024-11", title: "Mint Club child-token / mfer ecosystem", href: "https://x.com/tonymfer/status/1857278167649759548", note: "ecosystem product update" },
+      { date: "2025-03", title: "MT migration to Base", href: "https://x.com/tonymfer/status/1897555258370613683", note: "platform token migration from BNB Chain to Base" },
       { date: "2025-05", title: "Mintdrop metrics", href: "https://x.com/tonymfer/status/1927199768100384856", note: "$8K child coins / 3,000 users / ~80K Base microtransactions" },
+      { date: "2025-07", title: "Mint Club featured in the Base app", href: "https://x.com/tonymfer/status/1950819973213171808", note: "token family model surfaced through Base app distribution" },
       { date: "2025-07 → 2025-09", title: "hunt-mint-swap commits", href: "https://github.com/Steemhunt/hunt-mint-swap/commits?author=tonymfer", note: "chain switching / miniapp fixes" },
       { date: "2025-08", title: "Mint Club staking pools + early projects", href: "https://x.com/tonymfer/status/1952262233846931909", note: "stake NFTs/tokens, earn yield, support 10 early projects" }
     ]
@@ -161,6 +174,12 @@ export const cases: CaseStudy[] = [
     ],
     timeline: [
       { date: "2023-09", title: "Hunt Town Ideathon", href: "https://x.com/tonymfer/status/1702607526666359007", note: "builder/community event" },
+      { date: "2023-09", title: "Hunt Town reached 3,000+ members", href: "https://x.com/tonymfer/status/1706641820351103415", note: "early community scale signal" },
+      { date: "2023-10", title: "Made By Apes #00261", href: "https://x.com/tonymfer/status/1714194449520320772", note: "BAYC ecosystem recognition for Hunt Town" },
+      { date: "2023-12", title: "BUILD Points launch", href: "https://x.com/tonymfer/status/1738036401684570461", note: "virtual token / contribution mechanic for builders" },
+      { date: "2024-01", title: "Hunt Town near 5,000 members", href: "https://x.com/tonymfer/status/1749722230970617955", note: "community growth milestone" },
+      { date: "2024-01", title: "Builder tools: URL shortener + QR generator", href: "https://x.com/tonymfer/status/1743090052165718060", note: "utility tooling for Web3 builders" },
+      { date: "2024-02", title: "Building NFT / HUNT token mechanics", href: "https://x.com/tonymfer/status/1760874243707814382", note: "1,000 HUNT lock-up mechanics and community participation" },
       { date: "2024-09", title: "Warpcast Tools showcase in Hunt Town Discord", note: "community demo / Farcaster utility loop" },
       { date: "2024-10", title: "Base Around The World regional builder surface", href: "https://x.com/tonymfer/status/1842653058658156561", note: "Base buildathon/community discovery" },
       { date: "2025-08", title: "10 early projects backed with rewards + setup support", href: "https://x.com/tonymfer/status/1952262233846931909", note: "launch support + reward mechanics" },
