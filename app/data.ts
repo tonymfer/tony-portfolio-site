@@ -67,47 +67,88 @@ export const cases: CaseStudy[] = [
     ]
   },
   {
-    slug: "hunt-mintclub",
+    slug: "mint-club",
     no: "A-02",
-    name: "HUNT / Mint Club",
-    object: "company product surfaces",
-    role: "core builder / product engineer",
+    name: "Mint Club",
+    object: "token product surfaces",
+    role: "product + front-end / SDK + ecosystem UX",
     year: "2022–2026",
     image: "/proof/mint-cbbtc.png",
-    desc: "Long-running company work across token launch flows, staking and reward surfaces, yield dashboards, Base/Farcaster product views, and builder education.",
-    tags: ["HUNT", "Mint Club", "Base", "Farcaster", "workshops"],
-    proof: "4 years / product surfaces / builder education",
-    href: "https://x.com/tonymfer/status/1965330528904827040",
-    live: "https://x.com/tonymfer/status/1965330528904827040",
-    primitive: "New token and community mechanics are easy to expose as raw finance UI and hard to make understandable. The work was to turn launch, staking, reward, and builder primitives into surfaces projects could actually operate.",
-    artifact: "A set of company product surfaces and ecosystem work: token-backed asset flows, bonding-curve launch UX, staking pools, reward dashboards, Base/mfer views, Farcaster miniapp experiments, and Mint Club SDK workshops.",
+    desc: "Token-backed asset and bonding-curve product work: launch flows, child-token discovery, staking/reward surfaces, cross-chain swap UX, Base/mfer views, and SDK demos.",
+    tags: ["Mint Club", "Base", "bonding curves", "SDK", "token UX"],
+    proof: "SDK / swap / child tokens / Base era",
+    href: "https://x.com/tonymfer/status/1847218266793714078",
+    live: "https://mint.club/cbbtc",
+    primitive: "Mint Club’s hard problem was making token-backed markets and bonding curves feel like usable product surfaces instead of raw crypto mechanics. My work sat where primitives became interfaces: launch, swap, discover, stake, reward, and teach.",
+    artifact: "Product/front-end surfaces and demos across Mint Club: token-backed asset pages, child/sibling token discovery, mfer/Base views, cross-chain swap UX, staking/reward pools, Mint Club SDK examples, and Base/Farcaster workshop apps.",
     proofPoints: [
-      "Long-running company work across HUNT / Mint Club / Hunt Town / Steemhunt",
-      "Public GitHub evidence across Steemhunt repositories under Tony Park / tonymfer",
-      { text: "Mint Club SDK / Base MiniKit workshop proof", href: "https://x.com/tonymfer/status/1965330528904827040" },
-      "Supported early-stage project surfaces, token launch flows, staking/reward products, and builder education"
+      { text: "BASE ERA in Mint Club — Base token featuring and child tokens backed by favorite Base tokens", href: "https://x.com/tonymfer/status/1847218266793714078" },
+      { text: "Mint Club product update: mfer vision, event filtering, token detail sibling/child lookup", href: "https://x.com/tonymfer/status/1846169255483678765" },
+      { text: "Mint Club child-token / mfer ecosystem update", href: "https://x.com/tonymfer/status/1857278167649759548" },
+      { text: "Mintdrop metrics: $8K worth of child coins, 3,000 unique users, nearly 80,000 Base microtransactions", href: "https://x.com/tonymfer/status/1927199768100384856" },
+      { text: "mint.club-v2-sdk commits by tonymfer", href: "https://github.com/Steemhunt/mint.club-v2-sdk/commits?author=tonymfer" },
+      { text: "hunt-mint-swap commits by tonymfer", href: "https://github.com/Steemhunt/hunt-mint-swap/commits?author=tonymfer" }
     ],
     right: [
-      "The work gave me repetition: not one launch, but many passes at making token and community mechanics easier to use.",
-      "Builder education forced the product language to become clearer. If a workshop audience could not follow the primitive, the interface was probably overcomplicated too.",
-      "Working inside a company product stack made me better at incremental shipping, not just weekend prototypes."
+      "The same product muscle repeated for years: turn bonding curves, token backing, swaps, staking, and reward mechanics into screens people could actually operate.",
+      "Mint Club forced product clarity because the primitive is abstract; the interface had to show action, value, risk, and proof without protocol lectures.",
+      "The Base/Farcaster push created a bridge from token infrastructure into social distribution and miniapp education."
     ],
     wrong: [
-      "Some surfaces were hard to show publicly because the work was spread across company products, internal iterations, and ecosystem support.",
-      "Token and reward products can become abstract quickly if the user cannot see the concrete action they are taking.",
-      "The portfolio needs careful wording here: enough detail to show depth, without turning the homepage into a résumé timeline."
+      "A lot of the work is distributed across many surfaces and commits, so it needs an evidence trail rather than one clean launch page.",
+      "Token dashboards can look like DeFi noise if the portfolio does not explain the user action and product intent.",
+      "Some public posts prove launches and features, but exact ownership boundaries still need careful wording."
     ],
-    next: "Turn the strongest company surfaces into a tighter artifact trail: launch flow, staking/reward dashboard, Base/Farcaster education, and what each taught me about simplifying new rails.",
+    next: "Turn Mint Club into a real case study with three artifact strips: product surface, SDK/workshop app, and growth metrics. The page should show years of accumulated product work, not one screenshot.",
     fieldNotes: [
-      { title: "Problem", body: "Company product work is harder to show than a clean side project. The output is spread across product surfaces, support work, workshops, and incremental improvements rather than one dramatic launch page." },
-      { title: "Constraint", body: "The useful framing is not ‘I worked at a company for four years.’ It is that I repeatedly worked on the same kind of problem: making token, reward, and community mechanics understandable enough for projects and builders to use." },
-      { title: "What changed", body: "I became faster at separating the primitive from the interface. Token mechanics, staking, dashboards, and miniapps all need the same move: hide the machinery until the user needs control or proof." },
-      { title: "What I learned", body: "A product surface earns trust through boring clarity. The more experimental the underlying rail is, the less the interface can afford to sound experimental." }
+      { title: "My lane", body: "Product and front-end/app-layer work: surfaces, flows, demos, SDK examples, and the public language around making token mechanics usable." },
+      { title: "Repeated problem", body: "Every feature had the same job: make an abstract onchain mechanic legible enough for projects, holders, and builders to use without needing protocol context first." },
+      { title: "Proof shape", body: "The strongest evidence is not one metric. It is the combination of GitHub commits, product screenshots, Mint Club posts, Base-era updates, and workshop demos across multiple years." }
+    ]
+  },
+  {
+    slug: "hunt-town",
+    no: "A-03",
+    name: "Hunt Town",
+    object: "builder community OS",
+    role: "community product + launch loops",
+    year: "2022–2026",
+    image: "/proof/yonsei-workshop.jpg",
+    desc: "Builder-community work around Hunt Town: ideathons, Discord showcases, early project support, rewards setup, Base/Farcaster education, and Korea/global Web3 activation loops.",
+    tags: ["Hunt Town", "builder education", "Korea", "Base", "Farcaster"],
+    proof: "ideathons / workshops / early project support",
+    href: "https://x.com/tonymfer/status/1702607526666359007",
+    live: "https://x.com/tonymfer/status/1965330528904827040",
+    primitive: "Hunt Town was the community/product layer around shipping: helping builders understand the primitives, launch small projects, get feedback, and move from Discord/Farcaster attention into actual product usage.",
+    artifact: "A long-running set of builder activations: Hunt Town ideathons, Warpcast Tools showcases, early project support, Mint Club rewards setup, Base/MiniKit workshops, university sessions, and community launch loops.",
+    proofPoints: [
+      { text: "Hunt Town Ideathon builder/community event", href: "https://x.com/tonymfer/status/1702607526666359007" },
+      { text: "Hunt Town pushing Base + Farcaster", href: "https://x.com/tonymfer/status/1965330537369010555" },
+      { text: "Mint Club staking pools / backing 10 early projects with rewards + setup support", href: "https://x.com/tonymfer/status/1952262233846931909" },
+      { text: "Dreamplus Gangnam / EwhaChain session building Zora-style social dApps with Mint Club SDK", href: "https://x.com/tonymfer/status/1965330540338577440" },
+      { text: "Blockchain at Yonsei / Base MiniKit + Mint Club SDK workshop", href: "https://x.com/tonymfer/status/1965330528904827040" },
+      "Birdclaw archive found 439 Mint Club / Hunt Town related tweets from 2023–2026"
+    ],
+    right: [
+      "The work connected product to people: workshops, showcases, launch help, rewards, and feedback loops made abstract Web3 primitives usable for builders.",
+      "Hunt Town is strong career evidence because it shows repeated community-product execution, not just isolated coding tasks.",
+      "Korea builder activations made the product language sharper: if people could not build with it live, the interface or docs were not clear enough."
+    ],
+    wrong: [
+      "Community/product work is easy to undersell because the artifact is distributed across posts, sessions, Discord, demos, and support work.",
+      "A university/workshop photo proves activity, but the page needs more screenshots/receipts to show product depth.",
+      "Need better official Hunt Town visual assets if this becomes a flagship case."
+    ],
+    next: "Build Hunt Town as the community-product case: ideathon → project setup → reward mechanics → workshop → Base/Farcaster distribution. It should prove that I did launch loops, not just frontend screens.",
+    fieldNotes: [
+      { title: "My lane", body: "Community product, builder education, launch support, and product translation: helping projects and builders understand what to build with Mint Club/Hunt Town primitives." },
+      { title: "What changed", body: "I learned that product adoption often happens outside the product UI: workshops, demos, Discord help, and launch narratives can decide whether a primitive becomes used or ignored." },
+      { title: "Proof shape", body: "The evidence is a timeline: ideathons, Warpcast/Farcaster showcases, early project support, Base/MiniKit workshops, and public posts around pushing Hunt Town into new ecosystems." }
     ]
   },
   {
     slug: "tradefish",
-    no: "A-03",
+    no: "A-04",
     name: "TradeFish",
     object: "agent reputation rail",
     role: "builder / product system",
@@ -138,7 +179,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "far-cards",
-    no: "A-04",
+    no: "A-05",
     name: "far.cards",
     object: "IRL identity object",
     role: "prototype / growth artifact",
@@ -162,7 +203,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "taptato-base-world",
-    no: "A-05",
+    no: "A-06",
     name: "TapTato / Base World",
     object: "playable infra",
     role: "prototype / demo builder",
@@ -192,7 +233,8 @@ export const archive = [
   ["014", "TapTato", "game / wallet", "2025", "public post"],
   ["013", "Base World", "community map", "2025", "public repo"],
   ["012", "far.cards", "physical social", "2025", "public post"],
-  ["010", "Mintdrop", "growth loop", "2024", "career proof"],
-  ["009", "Ewhagram", "miniapp education", "2024", "workshop proof"],
+  ["011", "Mint Club Base era", "token UX", "2024–2025", "public posts"],
+  ["010", "Mintdrop", "growth loop", "2025", "metric proof"],
+  ["009", "Hunt Town / Ewhagram", "builder education", "2023–2025", "workshop proof"],
   ["005", "Beeper v1", "paid inbox", "2024", "public product"],
 ];

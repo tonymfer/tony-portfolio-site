@@ -28,8 +28,8 @@ const proofTypes = [
 const artifactWall = [
   ["/proof/beeper-hardware.jpg", "Beeper hardware", "paid attention"],
   ["/proof/mint-cbbtc.png", "Mint Club cbBTC surface", "token UX"],
+  ["/proof/yonsei-workshop.jpg", "Hunt Town builder workshop", "builder loops"],
   ["/proof/tradefish-base-update.jpg", "TradeFish proof", "agent rail"],
-  ["/proof/farcards-proof.jpg", "far.cards spread", "IRL identity"],
 ];
 
 
@@ -61,24 +61,24 @@ const videoReceipts = [
 ];
 
 const companySurfaces = [
-  "token-backed asset and bonding-curve launch flows",
-  "staking pools, reward surfaces, and yield dashboards",
-  "Base/mfer product views and Farcaster miniapp experiments",
-  "Mint Club SDK workshops for Yonsei and EwhaChain builders",
+  "Mint Club token-backed assets, bonding curves, swaps, child-token discovery, and SDK demos",
+  "Hunt Town ideathons, builder support, reward setup, Discord/Farcaster showcases, and workshops",
+  "Steemhunt/Mint Club GitHub trail: 55 public commits across 6 repos under Tony Park / tonymfer",
+  "Base/Farcaster expansion through MiniKit demos, Yonsei/EwhaChain sessions, and mfer/Base product views",
 ];
 
 const productArc = [
   {
     period: "2022–2024",
-    title: "Company surfaces",
-    copy: "Made token launch, staking, reward, and dashboard mechanics usable inside HUNT / Mint Club products.",
-    proof: "HUNT / Mint Club / Hunt Town",
+    title: "Company foundation",
+    copy: "Spent the early company years turning token-backed assets, bonding curves, staking, and reward mechanics into product surfaces.",
+    proof: "Mint Club / Steemhunt",
   },
   {
     period: "2024–2025",
-    title: "Builder education",
-    copy: "Turned Base/Farcaster miniapp primitives into workshops, demos, and SDK sessions for Korean builder communities.",
-    proof: "Yonsei / EwhaChain / Mint Club SDK",
+    title: "Base + builder loops",
+    copy: "Separated Mint Club product work from Hunt Town community/product work: SDK demos, early-project support, and live builder sessions.",
+    proof: "Mint Club / Hunt Town / Yonsei / EwhaChain",
   },
   {
     period: "2025–2026",
