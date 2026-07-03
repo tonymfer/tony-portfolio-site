@@ -170,6 +170,26 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
           </section>
         )}
 
+        {item.timeline && (
+          <section className="timeline-board">
+            <div>
+              <p className="case-kicker">Receipt timeline</p>
+              <h2>Company years, visible in public receipts.</h2>
+            </div>
+            <div className="timeline-list">
+              {item.timeline.map((entry) => (
+                <article className="timeline-row" key={`${entry.date}-${entry.title}`}>
+                  <span>{entry.date}</span>
+                  <div>
+                    {entry.href ? <a href={entry.href} target="_blank" rel="noreferrer">{entry.title} ↗</a> : <strong>{entry.title}</strong>}
+                    {entry.note && <p>{entry.note}</p>}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
         {isBeeper && (
           <>
             <section className="partner-board">

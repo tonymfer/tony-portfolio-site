@@ -18,6 +18,7 @@ export type CaseStudy = {
   wrong: string[];
   next: string;
   fieldNotes?: Array<{ title: string; body: string }>;
+  timeline?: Array<{ date: string; title: string; href?: string; note?: string }>;
 };
 
 export const cases: CaseStudy[] = [
@@ -104,6 +105,19 @@ export const cases: CaseStudy[] = [
       { title: "My lane", body: "Product and front-end/app-layer work: surfaces, flows, demos, SDK examples, and the public language around making token mechanics usable." },
       { title: "Repeated problem", body: "Every feature had the same job: make an abstract onchain mechanic legible enough for projects, holders, and builders to use without needing protocol context first." },
       { title: "Proof shape", body: "The strongest evidence is not one metric. It is the combination of GitHub commits, product screenshots, Mint Club posts, Base-era updates, and workshop demos across multiple years." }
+    ],
+    timeline: [
+      { date: "2023", title: "Dixel / early Steemhunt repo work", href: "https://github.com/Steemhunt/dixel-v2-contract/commits?author=tonymfer", note: "early public GitHub trail" },
+      { date: "2024-05 → 2025-08", title: "mint.club-v2-sdk commits", href: "https://github.com/Steemhunt/mint.club-v2-sdk/commits?author=tonymfer", note: "SDK / chain support / examples" },
+      { date: "2024-07", title: "web3kaist-mintclub hook updates", href: "https://github.com/Steemhunt/web3kaist-mintclub/commits?author=tonymfer", note: "education/demo surface" },
+      { date: "2024-08", title: "Cross-chain swap UX on Mint Club", note: "Base/mainnet/BNB/Arbitrum/Optimism/Degen/Blast/Zora bridge/swap/buy support" },
+      { date: "2024-10", title: "mfer-backed token launch flow", href: "https://x.com/tonymfer/status/1843847067837575181", note: "instant launch of mfercoin-backed tokens" },
+      { date: "2024-10", title: "mfer vision + child/sibling token lookup", href: "https://x.com/tonymfer/status/1846169255483678765", note: "event filtering + token detail discovery" },
+      { date: "2024-10", title: "BASE ERA in Mint Club", href: "https://x.com/tonymfer/status/1847218266793714078", note: "Base token featuring + child tokens backed by favorite tokens" },
+      { date: "2024-11", title: "Mint Club child-token / mfer ecosystem", href: "https://x.com/tonymfer/status/1857278167649759548", note: "ecosystem product update" },
+      { date: "2025-05", title: "Mintdrop metrics", href: "https://x.com/tonymfer/status/1927199768100384856", note: "$8K child coins / 3,000 users / ~80K Base microtransactions" },
+      { date: "2025-07 → 2025-09", title: "hunt-mint-swap commits", href: "https://github.com/Steemhunt/hunt-mint-swap/commits?author=tonymfer", note: "chain switching / miniapp fixes" },
+      { date: "2025-08", title: "Mint Club staking pools + early projects", href: "https://x.com/tonymfer/status/1952262233846931909", note: "stake NFTs/tokens, earn yield, support 10 early projects" }
     ]
   },
   {
@@ -144,6 +158,18 @@ export const cases: CaseStudy[] = [
       { title: "My lane", body: "Community product, builder education, launch support, and product translation: helping projects and builders understand what to build with Mint Club/Hunt Town primitives." },
       { title: "What changed", body: "I learned that product adoption often happens outside the product UI: workshops, demos, Discord help, and launch narratives can decide whether a primitive becomes used or ignored." },
       { title: "Proof shape", body: "The evidence is a timeline: ideathons, Warpcast/Farcaster showcases, early project support, Base/MiniKit workshops, and public posts around pushing Hunt Town into new ecosystems." }
+    ],
+    timeline: [
+      { date: "2023-09", title: "Hunt Town Ideathon", href: "https://x.com/tonymfer/status/1702607526666359007", note: "builder/community event" },
+      { date: "2024-09", title: "Warpcast Tools showcase in Hunt Town Discord", note: "community demo / Farcaster utility loop" },
+      { date: "2024-10", title: "Base Around The World regional builder surface", href: "https://x.com/tonymfer/status/1842653058658156561", note: "Base buildathon/community discovery" },
+      { date: "2025-08", title: "10 early projects backed with rewards + setup support", href: "https://x.com/tonymfer/status/1952262233846931909", note: "launch support + reward mechanics" },
+      { date: "2025-08", title: "yeonstagram Base/social miniapp prototype", href: "https://github.com/Steemhunt/yeonstagram/commits?author=tonymfer", note: "Base/social workshop prototype" },
+      { date: "2025-09", title: "ewhagram workshop project", href: "https://github.com/Steemhunt/ewhagram/commits?author=tonymfer", note: "Base MiniKit + Mint Club SDK social dApp" },
+      { date: "2025-09", title: "Blockchain at Yonsei MiniKit session", href: "https://x.com/tonymfer/status/1965330528904827040", note: "cloned Zora-style Instagram using Base app MiniKit" },
+      { date: "2025-09", title: "Hunt Town pushing Base + Farcaster", href: "https://x.com/tonymfer/status/1965330537369010555", note: "ecosystem direction public signal" },
+      { date: "2025-09", title: "Dreamplus Gangnam / EwhaChain Mint Club SDK session", href: "https://x.com/tonymfer/status/1965330540338577440", note: "live builder education" },
+      { date: "2026-01", title: "Hunt Town live event promoted through Beeper", note: "Beeper sent event to 768 users who set Signal Token to $HUNT" }
     ]
   },
   {
