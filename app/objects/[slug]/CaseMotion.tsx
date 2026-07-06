@@ -3,76 +3,10 @@
 import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import type { CaseStudy } from "../../data";
-
-const beeperMetrics = [
-  ["44.8K", "total users"],
-  ["39.1%", "read rate"],
-  ["50.6%", "repeat senders"],
-  ["106K+", "check-ins"],
-  ["412K+", "Base txs"],
-];
-
-const beeperMechanic = [
-  [
-    "Sender pays",
-    "Signal starts with a real cost instead of another free notification.",
-  ],
-  [
-    "Receiver prices",
-    "Humans set the inbox price that makes interruption worthwhile.",
-  ],
-  [
-    "Engage → earn",
-    "Attention becomes a reward event, not a platform-captured leak.",
-  ],
-  [
-    "Ignore → refund",
-    "Unread messages can return value instead of becoming spam residue.",
-  ],
-];
-
-const beeperFlow = [
-  "Compose",
-  "Targets",
-  "Missions",
-  "Plan",
-  "Confirm",
-  "Final tx",
-];
-
-const beeperPartners = [
-  ["Signet", "#120", "#6"],
-  ["ReviewMe", "#34", "#6"],
-  ["imagineclub", "#219", "#36"],
-  ["TYSM", "#23", "#5"],
-];
-
-const beeperVideos = [
-  {
-    title: "Base APAC cold plunge",
-    copy: "founder story / residency signal",
-    href: "https://x.com/baseapac/status/2062479675461603777",
-    image: "/proof/baseapac-cold-plunge.jpg",
-  },
-  {
-    title: "Base APAC day-in-life",
-    copy: "Beeper in the residency field",
-    href: "https://x.com/baseapac/status/2062896272944845048",
-    image: "/proof/baseapac-residency.jpg",
-  },
-  {
-    title: "Beeper hardware proof",
-    copy: "mini app moving toward a real pager",
-    href: "https://x.com/tonymfer/status/1991792691198427618",
-    image: "/proof/beeper-hardware.jpg",
-  },
-  {
-    title: "BEEP v2 launch",
-    copy: "paid-attention media artifact",
-    href: "https://x.com/beeponbase/status/2009487314708517220",
-    image: "/proof/beep-v2.jpg",
-  },
-];
+import { OwnershipBoard } from "./OwnershipBoard";
+import { ProofDetailBoard } from "./ProofDetailBoard";
+import { SubProjectsBoard } from "./SubProjectsBoard";
+import { BeeperExtras } from "./BeeperExtras";
 
 export function CaseMotion({ item }: { item: CaseStudy }) {
   const rootRef = useRef<HTMLElement>(null);
@@ -141,19 +75,7 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
           </p>
           <h1 className="case-title">{item.name}</h1>
           <p className="case-subcopy">{item.desc}</p>
-          {isBeeper && (
-            <div
-              className="case-metric-strip"
-              aria-label="Beeper traction metrics"
-            >
-              {beeperMetrics.map(([value, label]) => (
-                <div className="metric-chip" key={label}>
-                  <strong>{value}</strong>
-                  <span>{label}</span>
-                </div>
-              ))}
-            </div>
-          )}
+          <BeeperExtras item={item} slot="metrics" />
           {item.metricSource && (
             <p className="metric-source">{item.metricSource}</p>
           )}
@@ -194,81 +116,8 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
       </div>
 
       <div className="case-body">
-        {item.ownership && (
-          <section
-            className="ownership-board"
-            id="ownership"
-            aria-label="Ownership and role boundaries"
-          >
-            <div>
-              <p className="case-kicker">Ownership</p>
-              <h2>What I owned, and where the line was.</h2>
-            </div>
-            <div className="ownership-grid">
-              <div className="ownership-cell">
-                <span>My role</span>
-                <strong>{item.ownership.role}</strong>
-              </div>
-              <div className="ownership-cell">
-                <span>Team context</span>
-                <p>{item.ownership.team}</p>
-              </div>
-              <div className="ownership-cell wide">
-                <span>What I directly owned</span>
-                <ul>
-                  {item.ownership.owned.map((o) => (
-                    <li key={o}>{o}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="ownership-cell">
-                <span>What I influenced</span>
-                <ul>
-                  {item.ownership.influenced.map((o) => (
-                    <li key={o}>{o}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="ownership-cell">
-                <span>Proof</span>
-                <p>{item.ownership.proof}</p>
-              </div>
-            </div>
-          </section>
-        )}
-        {isBeeper && (
-          <>
-            <section className="mechanic-board" id="primitive">
-              <div>
-                <p className="case-kicker">Mechanic</p>
-                <h2>Money changes the message.</h2>
-              </div>
-              <div className="mechanic-grid">
-                {beeperMechanic.map(([title, copy]) => (
-                  <div className="mechanic-card" key={title}>
-                    <h3>{title}</h3>
-                    <p>{copy}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section className="flow-board">
-              <div>
-                <p className="case-kicker">Sender flow</p>
-                <h2>From intent to onchain receipt.</h2>
-              </div>
-              <div className="flow-rail" aria-label="Beeper sender flow">
-                {beeperFlow.map((step, index) => (
-                  <div className="flow-step" key={step}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <strong>{step}</strong>
-                  </div>
-                ))}
-              </div>
-            </section>
-          </>
-        )}
+        <OwnershipBoard ownership={item.ownership} />
+        <BeeperExtras item={item} slot="mechanic" />
 
         {!isBeeper && (
           <motion.article
@@ -330,55 +179,9 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
           </div>
         </section>
 
-        {item.proofDetail && (
-          <section className="proof-detail-board">
-            <div>
-              <p className="case-kicker">Proof, up close</p>
-              <h2>What the screenshots actually prove.</h2>
-            </div>
-            <div className="proof-detail-strip">
-              {item.proofDetail.map((detail) => (
-                <figure className="proof-detail" key={detail.image}>
-                  <img alt={detail.caption} src={detail.image} />
-                  <figcaption>{detail.caption}</figcaption>
-                </figure>
-              ))}
-            </div>
-          </section>
-        )}
+        <ProofDetailBoard detail={item.proofDetail} />
 
-        {item.subProjects && (
-          <section className="subprojects-board">
-            <div>
-              <p className="case-kicker">Surfaces in this orbit</p>
-              <h2>Related product surfaces I built.</h2>
-            </div>
-            <div className="subproject-grid">
-              {item.subProjects.map((sub) => (
-                <a
-                  className="subproject"
-                  href={sub.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  key={sub.name}
-                >
-                  {sub.image && (
-                    <img alt={`${sub.name} preview`} src={sub.image} />
-                  )}
-                  <h3>{sub.name} ↗</h3>
-                  <p>{sub.blurb}</p>
-                  {sub.tags && (
-                    <div className="chips">
-                      {sub.tags.map((tag) => (
-                        <span key={tag}>{tag}</span>
-                      ))}
-                    </div>
-                  )}
-                </a>
-              ))}
-            </div>
-          </section>
-        )}
+        <SubProjectsBoard subProjects={item.subProjects} />
 
         {item.fieldNotes && (
           <section className="field-notes-board">
@@ -426,52 +229,7 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
           </section>
         )}
 
-        {isBeeper && (
-          <>
-            <section className="partner-board">
-              <div>
-                <p className="case-kicker">Partner rail</p>
-                <h2>Campaigns should move rank, not just impressions.</h2>
-              </div>
-              <div className="partner-grid">
-                {beeperPartners.map(([name, from, to]) => (
-                  <div className="partner-card" key={name}>
-                    <span>{name}</span>
-                    <strong>
-                      {from} → {to}
-                    </strong>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section className="video-board">
-              <div>
-                <p className="case-kicker">Video receipts</p>
-                <h2>
-                  Use X videos as public proof; host clips only after
-                  rights/file cleanup.
-                </h2>
-              </div>
-              <div className="video-grid">
-                {beeperVideos.map((video) => (
-                  <a
-                    className="video-card"
-                    href={video.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    key={video.href}
-                  >
-                    <img alt={`${video.title} video still`} src={video.image} />
-                    <span>Watch on X ↗</span>
-                    <h3>{video.title}</h3>
-                    <p>{video.copy}</p>
-                  </a>
-                ))}
-              </div>
-            </section>
-          </>
-        )}
+        <BeeperExtras item={item} slot="media" />
 
         <div className="case-columns" id="scars">
           <motion.section
