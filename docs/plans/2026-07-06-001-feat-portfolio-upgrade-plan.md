@@ -1,7 +1,7 @@
 ---
 title: "feat: Portfolio upgrade — product-judgment positioning, equal case grid, ownership proof"
 type: feat
-status: active
+status: completed
 date: 2026-07-06
 origin: Feedback/portfolio-qa-question-list-2026-07-04.md + Feedback/portfolio-tony-answers-2026-07-04.md (rsynced to /Users/tomo/portfolio-source/Feedback)
 ---
