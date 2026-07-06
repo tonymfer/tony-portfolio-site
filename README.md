@@ -2,7 +2,7 @@
 
 Public portfolio for Tony Park (`@tonymfer`) — product engineering work across Beeper, TradeFish, far.cards, TapTato/Base World, and public video proof.
 
-Live site: https://tony-portfolio-site-zeta.vercel.app
+Live site: https://tonypark.xyz
 
 ## Stack
 

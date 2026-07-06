@@ -20,9 +20,7 @@ const displayFont = Space_Grotesk({
   display: "swap",
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://tony-portfolio-site-zeta.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tonypark.xyz";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
