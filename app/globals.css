@@ -1538,12 +1538,21 @@ a {
     grid-template-columns: 1fr;
   }
   .hero {
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "copy" "visual" "links";
     align-items: start;
     min-height: auto;
     padding: 34px 28px 76px;
     overflow: visible;
     gap: 30px;
+  }
+  .hero-copy,
+  .hero-visual,
+  .link-matrix {
+    min-width: 0;
+  }
+  .hero-copy h1 {
+    overflow-wrap: anywhere;
   }
   .hero-visual {
     width: 100%;

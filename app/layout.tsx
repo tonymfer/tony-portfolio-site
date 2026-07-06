@@ -27,7 +27,7 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Tony Park — AI × Web3 Product Engineer",
+    default: "Tony Park — Product Engineer",
     template: "%s — Tony Park",
   },
   description:
