@@ -25,3 +25,9 @@ artifacts/
 # temporary
 *.tmp
 tmp-*
+
+# review / preview / QA scratch artifacts
+.context/
+.playwright-mcp/
+home-*.png
+case-*.png

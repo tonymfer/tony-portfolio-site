@@ -305,15 +305,16 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
             {item.proofPoints.map((point, index) => {
               const text = typeof point === "string" ? point : point.text;
               const href = typeof point === "string" ? undefined : point.href;
-              const pending = typeof point === "object" && point.sourceNeeded;
+              const pending =
+                typeof point === "object" && Boolean(point.sourceNeeded);
               return (
                 <motion.div
                   className="receipt-row"
-                  key={text}
+                  key={`${index}-${text.slice(0, 24)}`}
                   whileHover={{ x: 6 }}
                 >
                   <span>{String(index + 1).padStart(2, "0")}</span>
-                  {href ? (
+                  {href && !pending ? (
                     <a href={href} target="_blank" rel="noreferrer">
                       {text} ↗
                     </a>
@@ -338,7 +339,7 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
             <div className="proof-detail-strip">
               {item.proofDetail.map((detail) => (
                 <figure className="proof-detail" key={detail.image}>
-                  <img alt="" src={detail.image} />
+                  <img alt={detail.caption} src={detail.image} />
                   <figcaption>{detail.caption}</figcaption>
                 </figure>
               ))}
@@ -361,7 +362,9 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
                   rel="noreferrer"
                   key={sub.name}
                 >
-                  {sub.image && <img alt="" src={sub.image} />}
+                  {sub.image && (
+                    <img alt={`${sub.name} preview`} src={sub.image} />
+                  )}
                   <h3>{sub.name} ↗</h3>
                   <p>{sub.blurb}</p>
                   {sub.tags && (
