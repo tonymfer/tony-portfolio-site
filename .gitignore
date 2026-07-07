@@ -31,3 +31,5 @@ tmp-*
 .playwright-mcp/
 home-*.png
 case-*.png
+.gstack/
+tsconfig.tsbuildinfo

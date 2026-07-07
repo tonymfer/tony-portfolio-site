@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
+import { Archivo, Doto, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,8 +14,15 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const displayFont = Space_Grotesk({
+const displayFont = Archivo({
   variable: "--font-display",
+  subsets: ["latin"],
+  display: "swap",
+  axes: ["wdth"],
+});
+
+const lcdFont = Doto({
+  variable: "--font-lcd",
   subsets: ["latin"],
   display: "swap",
 });
@@ -73,7 +80,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${displayFont.variable}`}
+        className={`${geistSans.variable} ${geistMono.variable} ${displayFont.variable} ${lcdFont.variable}`}
       >
         {children}
       </body>

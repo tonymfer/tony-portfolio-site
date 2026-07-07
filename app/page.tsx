@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { archive, cases as selected } from "./data";
+import { HeroPager } from "./HeroPager";
 
 const links = [
   ["X", "@tonymfer", "https://x.com/tonymfer"],
@@ -12,27 +13,6 @@ const links = [
     "https://etherscan.io/name-lookup-search?id=tony.base.eth",
   ],
   ["Email", "hello@tony.works", "mailto:hello@tony.works"],
-];
-
-const heroProof = [
-  ["4+ yrs", "HUNT / Mint Club product surfaces"],
-  ["44.8K", "Beeper users in evidence bundle"],
-  ["412K+", "Base mainnet transactions"],
-  ["1st", "Base Agent Hackathon — TradeFish"],
-];
-
-const proofTypes = [
-  ["Prototype", "test the product shape early"],
-  ["Build", "ship an interface, repo, demo, or launch"],
-  ["Grow", "get it into builders’ hands"],
-  ["Clarify", "constraints, proof, QA, postmortem"],
-];
-
-const artifactWall = [
-  ["/proof/beeper-hardware.jpg", "Beeper hardware", "paid attention"],
-  ["/proof/mint-cbbtc.png", "Mint Club cbBTC surface", "token UX"],
-  ["/proof/yonsei-workshop.jpg", "Hunt Town builder workshop", "builder loops"],
-  ["/proof/tradefish-base-update.jpg", "TradeFish proof", "agent rail"],
 ];
 
 const notes = [
@@ -200,72 +180,40 @@ export default function Home() {
       </nav>
 
       <section className="hero" id="top">
-        <div className="link-matrix" aria-label="Contact and public links">
-          {links.map(([label, value, href]) => (
-            <ExternalLink href={href} key={label}>
-              <span>{label}</span>
-              <strong>{value}</strong>
-            </ExternalLink>
-          ))}
+        <div className="hero-head">
+          <p className="kicker">
+            PAID ATTENTION · TOKEN UX · AGENT RAILS — BASE / FARCASTER
+          </p>
+          <h1>
+            <span>I read markets early.</span>
+            <span>I ship the proof.</span>
+          </h1>
         </div>
 
         <div className="hero-copy">
-          <p className="kicker">
-            TONY PARK / PRODUCT ENGINEER — MARKET · PRODUCT · DESIGN · SHIP
-          </p>
-          <h1>
-            I read markets early, shape the product and brand, design the
-            interface, and ship the proof.
-          </h1>
           <p className="subcopy">
-            Product engineer for early markets. I sense where the trend and the
-            need are going, set the product direction and brand, design the
-            interface people actually use, and leave public proof — across Mint
-            Club, Hunt Town, Beeper, TradeFish, and Base/Farcaster.
+            Product engineer for markets that don’t have a playbook yet. I shape
+            the product and brand, design the interface people actually use, and
+            leave public receipts — Beeper, Mint Club, Hunt Town, TradeFish,
+            across Base and Farcaster.
           </p>
           <div className="hero-actions" aria-label="Primary actions">
             <a href="#objects">View selected work</a>
             <a href="/tony-resume.pdf">Download resume</a>
             <a href="mailto:hello@tony.works">Email Tony</a>
           </div>
-          <div className="hero-proof" aria-label="Career proof highlights">
-            {heroProof.map(([value, label]) => (
-              <div key={label}>
-                <strong>{value}</strong>
+          <div className="link-matrix" aria-label="Contact and public links">
+            {links.map(([label, value, href]) => (
+              <ExternalLink href={href} key={label}>
                 <span>{label}</span>
-              </div>
+                <strong>{value}</strong>
+              </ExternalLink>
             ))}
           </div>
         </div>
 
-        <div className="hero-visual" aria-label="Proof artifact preview">
-          <div className="archive-label">
-            <span>Work Archive</span>
-            <p>
-              selected products, demos, video clips, and postmortems from
-              shipped experiments.
-            </p>
-          </div>
-          <div className="artifact-wall" aria-label="Proof artifact preview">
-            {artifactWall.map(([src, label, kind], index) => (
-              <div
-                className="artifact-tile"
-                data-index={String(index + 1).padStart(2, "0")}
-                key={src}
-              >
-                <Image alt={label} src={src} width={720} height={520} />
-                <span>{kind}</span>
-              </div>
-            ))}
-          </div>
-          <div className="proof-types snap-rail" aria-label="Work modes">
-            {proofTypes.map(([name, copy]) => (
-              <div key={name}>
-                <strong>{name}</strong>
-                <span>{copy}</span>
-              </div>
-            ))}
-          </div>
+        <div className="hero-visual">
+          <HeroPager />
         </div>
       </section>
 
@@ -302,16 +250,6 @@ export default function Home() {
                 </div>
                 <h2>{work.name}</h2>
                 <p>{work.desc}</p>
-                <div className="role-proof">
-                  <div>
-                    <span>Role</span>
-                    <strong>{work.role}</strong>
-                  </div>
-                  <div>
-                    <span>Proof</span>
-                    <strong>{work.proof}</strong>
-                  </div>
-                </div>
                 <div className="proof-line">
                   <span>receipt</span>
                   {work.proof}
@@ -368,8 +306,8 @@ export default function Home() {
           ))}
         </div>
         <p className="how-note">
-          I run research, QA, and build loops with agents to move faster and
-          leave a cleaner proof trail — shipping velocity, not lore.
+          Research, QA, and build loops run with agents to move faster — every
+          claim above still ships with a public receipt.
         </p>
       </section>
 
@@ -506,12 +444,11 @@ export default function Home() {
         </div>
         <div className="about-copy">
           <p className="kicker">About Tony</p>
-          <h2>Product engineering for new rails and early markets.</h2>
+          <h2>I work where the interface is still unclear.</h2>
           <p>
-            I work where the interface is still unclear: Base/Farcaster mini
-            apps, paid attention, agent reputation, wallet UX, and
-            builder-facing demos. My job is to make the behavior understandable,
-            ship a usable surface, and prove what happened.
+            Base/Farcaster mini apps, paid attention, agent reputation, wallet
+            UX, builder-facing demos. My job is to make new behavior
+            understandable, ship a usable surface, and prove what happened.
           </p>
           <div className="about-grid">
             <div>
