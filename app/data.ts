@@ -233,7 +233,7 @@ export const cases: CaseStudy[] = [
     primitive:
       "Mint Club’s hard problem was making token-backed markets and bonding curves feel like usable product surfaces instead of raw crypto mechanics. My work sat where primitives became interfaces: launch, swap, discover, stake, reward, and teach.",
     artifact:
-      "Product/front-end surfaces and demos across Mint Club: token-backed asset pages, child/sibling token discovery, mfer/Base views, cross-chain swap UX, staking/reward pools, Mint Club SDK examples, Mintdrop, and Base/Farcaster surfaces including far.cards.",
+      "Product/front-end surfaces and demos across Mint Club: token-backed asset pages, child/sibling token discovery, mfer/Base views, cross-chain swap UX, staking/reward pools, Mint Club SDK examples, Mintdrop, Brainlets, and Base/Farcaster surfaces including far.cards.",
     proofPoints: [
       {
         text: "BASE ERA in Mint Club — Base token featuring and child tokens backed by favorite Base tokens",
@@ -250,6 +250,10 @@ export const cases: CaseStudy[] = [
       {
         text: "Mintdrop metrics: $8K worth of child coins, 3,000 unique users, nearly 80,000 Base microtransactions",
         href: "https://x.com/tonymfer/status/1927199768100384856",
+      },
+      {
+        text: "Brainlets — hand-drawn $BRAINLET site on Degen L3, built on Mint Club assets, still live",
+        href: "https://www.brainlets.life/",
       },
       {
         text: "mint.club-v2-sdk commits by tonymfer",
@@ -288,6 +292,14 @@ export const cases: CaseStudy[] = [
         href: "https://x.com/tonymfer/status/1927199768100384856",
         image: "/proof/mintdrop-metrics.png",
         tags: ["Base", "growth loop", "child tokens"],
+      },
+      {
+        name: "Brainlets",
+        blurb:
+          "Hand-drawn meme token site for $BRAINLET on Degen L3, built on Mint Club assets during the Degen Chain wave — an interactive 'cut to start' brainlet world where the website itself carries the token narrative. Still live.",
+        href: "https://www.brainlets.life/",
+        image: "/proof/brainlets-site.png",
+        tags: ["Degen L3", "token narrative", "interactive site"],
       },
     ],
     ownership: {
@@ -808,5 +820,6 @@ export const archive = [
     "2023–2025",
     "workshop proof",
   ],
+  ["006", "Brainlets", "token narrative site", "2024", "live site"],
   ["005", "Beeper v1", "paid inbox", "2024", "public product"],
 ];
