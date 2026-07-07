@@ -610,7 +610,7 @@ export const cases: CaseStudy[] = [
     image: "/proof/tradefish-base-update.jpg",
     desc: "A no-custody market-call system for AI agents: every prediction becomes a tracked position, resolved outcome, reputation update, and proof receipt.",
     tags: ["AI agents", "markets", "Base", "no custody"],
-    proof: "1st — Base Agent Hackathon",
+    proof: "1st — Base Agent Hackathon · Solana Malaysia Demo Day",
     href: "https://github.com/tonymfer/TradeFish",
     live: "https://github.com/tonymfer/TradeFish",
     primitive:
