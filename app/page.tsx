@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { archive, cases as selected } from "./data";
 import { HeroPager } from "./HeroPager";
+import { ScrollReveal } from "./ScrollReveal";
 
 const links = [
   ["X", "@tonymfer", "https://x.com/tonymfer"],
@@ -160,6 +161,7 @@ function ExternalLink({
 export default function Home() {
   return (
     <main>
+      <ScrollReveal />
       <header className="topbar">
         <a className="brand" href="#top" aria-label="Tony Park portfolio home">
           <span>Tony Park</span>
