@@ -124,6 +124,8 @@ a {
 .topbar nav a {
   color: var(--muted);
   font-size: 12px;
+  padding: 13px 8px;
+  margin: -13px -8px;
   transition: color 150ms ease;
 }
 .topbar nav a:hover {
@@ -213,6 +215,8 @@ a {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.25;
+  padding: 12px 6px;
+  margin: -12px -6px;
   transition:
     color 150ms ease,
     transform 150ms ease;
