@@ -1986,37 +1986,42 @@ a {
   letter-spacing: -0.01em;
 }
 
-/* How I work */
+/* How I work — editorial process ladder */
 .how-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: 1fr;
   border-top: 1px solid var(--line-strong);
-  padding-top: 30px;
 }
 .how-step {
-  min-height: 150px;
-  padding: 18px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.22);
+  display: grid;
+  grid-template-columns: 64px minmax(0, 0.85fr) minmax(0, 1.45fr);
+  gap: clamp(14px, 3vw, 40px);
+  align-items: baseline;
+  padding: clamp(18px, 2.4vw, 26px) 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding-left 180ms ease;
+}
+.how-step:hover {
+  padding-left: 10px;
 }
 .how-step span {
   color: var(--accent);
   font-family: var(--font-geist-mono), monospace;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
 }
 .how-step h3 {
-  margin: 10px 0 0;
+  margin: 0;
   font-family:
     var(--font-display), var(--font-geist-sans), ui-sans-serif, system-ui,
     sans-serif;
-  font-size: clamp(1.5rem, 2.4vw, 2.5rem);
+  font-size: clamp(1.6rem, 2.6vw, 2.7rem);
   line-height: 0.98;
   letter-spacing: -0.045em;
+  font-weight: 720;
 }
 .how-step p {
-  margin: 10px 0 0;
+  margin: 0;
   color: var(--muted);
   font-size: 15px;
   line-height: 1.45;
@@ -2252,6 +2257,16 @@ a {
   .ownership-grid,
   .subproject-grid {
     grid-template-columns: 1fr;
+  }
+  .how-step {
+    grid-template-columns: 40px minmax(0, 1fr);
+    row-gap: 6px;
+  }
+  .how-step p {
+    grid-column: 2;
+  }
+  .how-step:hover {
+    padding-left: 0;
   }
   .proof-detail {
     grid-template-columns: 1fr;
