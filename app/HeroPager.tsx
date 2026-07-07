@@ -23,12 +23,23 @@ export function HeroPager() {
   const [typed, setTyped] = useState("");
   const nextIndex = useRef(VISIBLE);
   const charIndex = useRef(0);
+  const advanceRef = useRef<() => void>(() => {});
 
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+
+    const commit = () => {
+      const incoming = RECEIPTS[nextIndex.current % RECEIPTS.length];
+      setLines((prev) => [...prev.slice(1), incoming]);
+      setTyped("");
+      charIndex.current = 0;
+      nextIndex.current += 1;
+    };
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      advanceRef.current = commit;
       return;
     }
-    let timer: ReturnType<typeof setTimeout>;
 
     const tick = () => {
       const incoming = RECEIPTS[nextIndex.current % RECEIPTS.length];
@@ -38,13 +49,16 @@ export function HeroPager() {
         timer = setTimeout(tick, TYPE_MS);
       } else {
         timer = setTimeout(() => {
-          setLines((prev) => [...prev.slice(1), incoming]);
-          setTyped("");
-          charIndex.current = 0;
-          nextIndex.current += 1;
+          commit();
           timer = setTimeout(tick, TYPE_MS);
         }, HOLD_MS);
       }
+    };
+
+    advanceRef.current = () => {
+      clearTimeout(timer);
+      commit();
+      timer = setTimeout(tick, TYPE_MS);
     };
 
     timer = setTimeout(tick, 1400);
@@ -55,7 +69,16 @@ export function HeroPager() {
     <div className="pager-unit">
       <div
         className="pager"
-        aria-label="Career proof feed — shipped-work receipts"
+        role="button"
+        tabIndex={0}
+        aria-label="Career proof feed — shipped-work receipts. Activate to show the next receipt."
+        onClick={() => advanceRef.current()}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            advanceRef.current();
+          }
+        }}
       >
         <div className="pager-top">
           <span className="pager-led" aria-hidden="true" />
@@ -93,7 +116,7 @@ export function HeroPager() {
         </div>
       </div>
       <p className="pager-caption">
-        live receipts from shipped work —{" "}
+        live receipts from shipped work — tap to page ·{" "}
         <a href="#ledger">full public ledger</a>
       </p>
     </div>

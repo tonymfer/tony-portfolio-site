@@ -295,8 +295,20 @@ a {
   color: white;
 }
 .pager {
+  cursor: pointer;
+  user-select: none;
   position: relative;
   transform: rotate(-1.4deg);
+  transition: transform 130ms ease;
+}
+.pager:active {
+  transform: rotate(-1.4deg) translateY(2px) scale(0.995);
+}
+.pager:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.pager {
   border-radius: 22px;
   padding: 14px 16px;
   background: linear-gradient(
