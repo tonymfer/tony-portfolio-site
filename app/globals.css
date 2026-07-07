@@ -779,6 +779,24 @@ a {
   transform: translateY(-3px);
   background: rgba(255, 255, 255, 0.36);
 }
+.video-home-card::before {
+  content: "▶ PLAY";
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  z-index: 2;
+  padding: 4px 8px;
+  background: rgba(17, 17, 15, 0.78);
+  color: var(--lcd-lit);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  transition: background 160ms ease;
+}
+.video-home-card:hover::before {
+  background: var(--accent);
+  color: #fff;
+}
 .video-home-card img {
   width: 100%;
   aspect-ratio: 1.45;
@@ -786,6 +804,10 @@ a {
   border: 1px solid var(--line);
   filter: saturate(0.86) contrast(1.03);
   margin-bottom: 14px;
+  transition: filter 160ms ease;
+}
+.video-home-card:hover img {
+  filter: saturate(1) contrast(1.05);
 }
 .video-home-card span {
   color: var(--green);
