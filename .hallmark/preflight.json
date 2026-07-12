@@ -1,0 +1,11 @@
+{
+  "scanned_at": "2026-07-11",
+  "framework": "Next.js 16 App Router",
+  "font_stack": ["Bricolage Grotesque", "Instrument Sans", "IBM Plex Mono"],
+  "palette": "cool mineral paper, ink, forest green, Base blue accent",
+  "motion": ["motion/react"],
+  "spacing": "fluid clamp-based editorial scale",
+  "design_system": "DESIGN.md",
+  "preserve": ["person-first identity", "proof-led content", "asymmetric editorial composition", "mobile snap rails"],
+  "introduced": ["Hallmark motion discipline", "focus visibility", "root overflow clipping", "single-line affordances"]
+}

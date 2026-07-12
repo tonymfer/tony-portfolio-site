@@ -12,7 +12,6 @@
     "@phosphor-icons/react": "latest",
     "@radix-ui/react-slot": "latest",
     "clsx": "latest",
-    "gsap": "^3.15.0",
     "motion": "latest",
     "next": "latest",
     "react": "latest",
