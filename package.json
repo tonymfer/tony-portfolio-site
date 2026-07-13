@@ -6,7 +6,10 @@
     "dev": "next dev --hostname 127.0.0.1 --port 3210",
     "build": "next build",
     "start": "next start --hostname 127.0.0.1 --port 3210",
-    "lint": "next lint"
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit --incremental false",
+    "test": "playwright test",
+    "check": "npm run typecheck && npm run lint && npm test && npm run build"
   },
   "dependencies": {
     "@phosphor-icons/react": "latest",
@@ -19,10 +22,13 @@
     "tailwind-merge": "latest"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.2.10",
     "tailwindcss": "latest",
     "typescript": "latest"
   }
