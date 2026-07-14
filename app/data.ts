@@ -47,7 +47,8 @@ export const cases: CaseStudy[] = [
       "BeeperX SDK/API with 2,400+ API keys issued",
       { text: "Live Beep Works website — retro CRT/pixel product surface", href: "https://beep.works/" },
       { text: "BEEP v2 paid-attention launch media", href: "https://x.com/beeponbase/status/2009487314708517220" },
-      { text: "Base APAC founder/residency feature", href: "https://x.com/baseapac/status/2062479675461603777" }
+      { text: "Base APAC founder/residency feature", href: "https://x.com/baseapac/status/2062479675461603777" },
+      { text: "Base APAC Based Builders feature — paid attention onchain, TradeFish win, Base Camp 2025, Residency Batch 001, Base Batches 003", href: "https://x.com/baseapac/status/2076637652107882803" }
     ],
     right: [
       "The incentive is clear: senders pay for signal, receivers get paid for attention, and unread messages can refund.",
@@ -78,7 +79,8 @@ export const cases: CaseStudy[] = [
       { date: "2026-02", title: "Brick Side Chat #67 with Steemhunt", href: "https://x.com/beeponbase/status/2027031289904447697", note: "contacts, BeeperX, BP rewards, and product overhaul" },
       { date: "2026-03", title: "Why Beeper", href: "https://x.com/beeponbase/status/2036694291121406201", note: "attention thesis: every app takes attention for free" },
       { date: "2026-05", title: "Farcon Rome NFC name tags", href: "https://x.com/beeponbase/status/2051536583317483582", note: "first offline experiment for attention/social identity" },
-      { date: "2026-06", title: "Base APAC / Base Founders Residency feature", href: "https://x.com/baseapac/status/2062479675461603777", note: "external validation: hackathon wins, Base Camp support, flew from Korea to residency" }
+      { date: "2026-06", title: "Base APAC / Base Founders Residency feature", href: "https://x.com/baseapac/status/2062479675461603777", note: "external validation: hackathon wins, Base Camp support, flew from Korea to residency" },
+      { date: "2026-07", title: "Base APAC / Celebrating Based Builders in APAC", href: "https://x.com/baseapac/status/2076637652107882803", note: "external builder profile: Beeper, TradeFish win, Base Camp 2025, Residency Batch 001, and Base Batches 003" }
     ]
   },
   {

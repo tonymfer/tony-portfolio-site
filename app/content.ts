@@ -154,6 +154,13 @@ export const fieldEntries: FieldEntry[] = [
     href: "https://x.com/baseapac/status/2062479675461603777",
     image: "/proof/baseapac-cold-plunge.jpg",
   },
+  {
+    date: "Jul 2026",
+    title: "Base APAC Based Builders Feature",
+    body: "Featured as the Korea-based builder behind Beeper, with public recognition for TradeFish, Base Camp 2025, Founders Residency Batch 001, and Base Batches 003.",
+    href: "https://x.com/baseapac/status/2076637652107882803",
+    image: "/proof/baseapac-builder-feature.jpg",
+  },
 ];
 
 // Resolved views. Building these at module load also asserts every slug and primitive id
