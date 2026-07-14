@@ -10,37 +10,7 @@ import {
   useTransform,
 } from "motion/react";
 import { useState, type PointerEvent, type ReactNode } from "react";
-
-const proofDeck = [
-  {
-    src: "/proof/beepworks-home-desktop.png",
-    label: "Beep Works",
-    kind: "paid attention",
-    proof: "44.8K users",
-    href: "/objects/beeper",
-  },
-  {
-    src: "/proof/mint-cbbtc.png",
-    label: "Mint Club",
-    kind: "token UX",
-    proof: "4+ company years",
-    href: "/objects/mint-club",
-  },
-  {
-    src: "/proof/ewhachain-session-portrait.jpg",
-    label: "EWHA-CHAIN",
-    kind: "builder education",
-    proof: "MiniKit workshop",
-    href: "/objects/hunt-town",
-  },
-  {
-    src: "/proof/tradefish-base-update.jpg",
-    label: "TradeFish",
-    kind: "agent reputation",
-    proof: "1st place",
-    href: "/objects/tradefish",
-  },
-];
+import { resolvedProofDeck as proofDeck } from "./content";
 
 const cardTransforms = [
   { x: -34, y: 18, rotate: -4.8 },
@@ -87,7 +57,7 @@ export function ProofDeck() {
               className="proof-card"
               data-index={String(index + 1).padStart(2, "0")}
               href={card.href}
-              key={card.src}
+              key={card.caseSlug}
               onFocus={() => setActive(index)}
               onPointerEnter={() => setActive(index)}
               initial={false}
@@ -100,7 +70,7 @@ export function ProofDeck() {
               }}
               transition={{ type: "spring", stiffness: 260, damping: 25, mass: 0.65 }}
             >
-              <Image alt={`${card.label} proof`} src={card.src} width={760} height={560} priority sizes="(max-width: 880px) 78vw, 32vw" />
+              <Image alt={`${card.label} proof`} src={card.image} width={760} height={560} priority sizes="(max-width: 880px) 78vw, 32vw" />
               <span>{card.kind}</span>
             </motion.a>
           );
@@ -125,8 +95,8 @@ export function ProofDeck() {
 
       <div className="proof-deck-mobile" aria-label="Swipeable proof deck">
         {proofDeck.map((card, index) => (
-          <a href={card.href} className="proof-mobile-card" key={`mobile-${card.src}`}>
-            <Image alt={`${card.label} proof`} src={card.src} width={760} height={560} sizes="78vw" />
+          <a href={card.href} className="proof-mobile-card" key={`mobile-${card.caseSlug}`}>
+            <Image alt={`${card.label} proof`} src={card.image} width={760} height={560} sizes="78vw" />
             <span>{String(index + 1).padStart(2, "0")} / {card.kind}</span>
             <strong>{card.label}</strong>
             <p>{card.proof}</p>

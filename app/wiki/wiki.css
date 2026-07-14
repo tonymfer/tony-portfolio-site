@@ -161,7 +161,9 @@ body:has(.wiki-page) { background: var(--wiki-paper); color: var(--wiki-ink); }
   .wiki-masthead { min-height: 78px; padding: var(--wiki-space-sm) var(--wiki-space-md); }
   .wiki-wordmark { font-size: 1.55rem; }
   .wiki-masthead > nav { gap: var(--wiki-space-sm); }
-  .wiki-masthead > nav a:first-child { display: none; }
+  /* Narrow masthead keeps the view switch and drops the résumé link, which the
+     contact section and footer still carry. */
+  .wiki-masthead > nav a[href$=".pdf"] { display: none; }
   .wiki-masthead > nav a { font-size: .75rem; }
   .wiki-sidebar { top: 4.85rem; padding-inline: var(--wiki-space-xs); }
   .wiki-sidebar > div:first-child > p { display: none; }
@@ -195,7 +197,7 @@ body:has(.wiki-page) { background: var(--wiki-paper); color: var(--wiki-ink); }
 }
 
 @media (max-width: 360px) {
-  .wiki-masthead > nav a:nth-child(2) { display: none; }
+  .wiki-masthead > nav a[href^="mailto:"] { display: none; }
   .wiki-infobox img { max-height: 360px; }
   .wiki-entry-main > div:first-child { display: block; }
   .wiki-entry-main > div > span { display: block; margin-top: var(--wiki-space-xs); }

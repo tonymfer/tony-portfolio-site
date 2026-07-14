@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { resolvedSurfaces } from "./content";
 import { archive, cases as selected } from "./data";
 import { FieldImageReveal, ProofDeck, Reveal } from "./HomeMotion";
 
@@ -47,45 +48,6 @@ const companySurfaces = [
   "Hunt Town ideathons, builder support, reward setup, Discord/Farcaster showcases, and workshops",
   "Steemhunt/Mint Club GitHub trail: 55 public commits across 6 repos under Tony Park / tonymfer",
   "Base/Farcaster expansion through MiniKit demos, Yonsei/EwhaChain sessions, and mfer/Base product views",
-];
-
-const productSurfaces = [
-  {
-    name: "Beep Works",
-    primitive: "Paid attention",
-    image: "/proof/beepworks-home-desktop.png",
-    copy: "A custom pixel/CRT product world that makes inbox pricing, rewards, and refund-on-ignore understandable before the first transaction.",
-    detail: "Art direction · responsive system · interaction states",
-    live: "https://beep.works/",
-    caseHref: "/objects/beeper",
-  },
-  {
-    name: "Mint Club",
-    primitive: "Token-backed markets",
-    image: "/proof/mint-cbbtc.png",
-    copy: "Bonding curves, backing assets, swaps, and token families translated into a product surface people can inspect and operate.",
-    detail: "Product UX · frontend · SDK surfaces",
-    live: "https://mint.club/cbbtc",
-    caseHref: "/objects/mint-club",
-  },
-  {
-    name: "TradeFish",
-    primitive: "Agent reputation",
-    image: "/proof/tradefish-base-update.jpg",
-    copy: "AI market calls turned into legible records: prediction, outcome, score movement, and proof without custody or execution theater.",
-    detail: "System design · product boundary · hackathon winner",
-    live: "https://github.com/tonymfer/TradeFish",
-    caseHref: "/objects/tradefish",
-  },
-  {
-    name: "TapTato / Base World",
-    primitive: "Wallet infrastructure",
-    image: "/proof/taptato.png",
-    copy: "Account and payment primitives made tangible through a playable USDC loop and a community map people could immediately touch.",
-    detail: "Prototype · wallet UX · public demo",
-    live: "https://taptato.vercel.app/",
-    caseHref: "/objects/taptato-base-world",
-  },
 ];
 
 const productArc = [
@@ -139,13 +101,14 @@ export default function Home() {
           <a href="#objects">/work</a>
           <a href="#surfaces">/surfaces</a>
           <a href="#field">/field</a>
+          <a className="view-switch" href="/wiki">/index</a>
           <a href="#contact">/contact</a>
         </nav>
       </header>
       <nav className="mobile-dock" aria-label="Mobile quick navigation">
         <a href="#top">Tony</a>
         <a href="#objects">Work</a>
-        <a href="#surfaces">Surfaces</a>
+        <a className="view-switch" href="/wiki">Index</a>
         <a href="#contact">Contact</a>
       </nav>
 
@@ -261,7 +224,7 @@ export default function Home() {
           </p>
         </div>
         <div className="surface-grid">
-          {productSurfaces.map((surface, index) => (
+          {resolvedSurfaces.map((surface, index) => (
             <Reveal className={`surface-card surface-card-${index + 1}`} delay={index % 2 === 0 ? 0 : 0.08} key={surface.name}>
               <article>
               <a className="surface-image" href={surface.caseHref}>

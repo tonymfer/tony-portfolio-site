@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Newsreader } from "next/font/google";
+import { fieldEntries, resolvedPrimitives } from "../content";
 import { archive, cases } from "../data";
 import "./wiki.css";
 
@@ -26,35 +27,6 @@ const sections = [
   ["contact", "Contact"],
 ];
 
-const primitives = [
-  ["Paid attention", "A receiver prices interruption; a sender pays for signal; ignored value can return instead of becoming notification residue.", "Beeper"],
-  ["Token-backed markets", "Bonding curves, backing assets, swaps, and token families expressed as inspectable product behavior.", "Mint Club"],
-  ["Builder community OS", "Support, rewards, education, and public demo loops that help early builders move from idea to artifact.", "Hunt Town"],
-  ["Agent reputation", "AI market calls become timestamped records with outcomes and score movement, without custody or trade execution.", "TradeFish"],
-  ["Wallet infrastructure", "Accounts and payments become understandable when the interface turns them into playable or social actions.", "TapTato / Base World"],
-];
-
-const fieldEntries = [
-  {
-    date: "Sep 2025",
-    title: "EWHA-CHAIN First Session",
-    body: "Led a hands-on Base MiniKit and Mint Club SDK workshop for builders creating Zora-style SocialFi services.",
-    href: "https://x.com/ewhachain/status/1966407486166139390",
-  },
-  {
-    date: "Sep 2025",
-    title: "Blockchain at Yonsei",
-    body: "Ran a MiniKit product session translating wallet and social primitives into a buildable miniapp flow.",
-    href: "https://x.com/tonymfer/status/1965330528904827040",
-  },
-  {
-    date: "2026",
-    title: "Base APAC Founders Residency",
-    body: "Developed and demonstrated Beeper's paid-attention product loop with external ecosystem proof.",
-    href: "https://x.com/baseapac/status/2062479675461603777",
-  },
-];
-
 function Citation({ children, href }: { children: React.ReactNode; href: string }) {
   return <a className="wiki-citation" href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined}>[{children}]</a>;
 }
@@ -63,14 +35,14 @@ export default function WikiPortfolio() {
   return (
     <main className={`wiki-page ${wikiSerif.variable}`}>
       <header className="wiki-masthead">
-        <a className="wiki-wordmark" href="/wiki">TONY PARK INDEX</a>
+        <a className="wiki-wordmark" href="/wiki" aria-current="page">TONY PARK INDEX</a>
         <div className="wiki-issue">
           <span>Personal reference work</span>
           <span>AI × Web3 Product Engineer</span>
           <span>2021—2026</span>
         </div>
         <nav aria-label="Wiki utility navigation">
-          <a href="/">Visual portfolio</a>
+          <a className="wiki-view-switch" href="/">Visual portfolio</a>
           <a href="/tony-resume.pdf">Résumé PDF</a>
           <a href="mailto:hello@tony.works">Contact</a>
         </nav>
@@ -149,11 +121,11 @@ export default function WikiPortfolio() {
           <section className="wiki-section" id="primitives">
             <div className="wiki-section-title"><span>02</span><div><p>Primitive glossary</p><h2>What the interfaces had to explain</h2></div></div>
             <div className="wiki-glossary">
-              {primitives.map(([term, definition, example]) => (
-                <div key={term}>
-                  <dt>{term}</dt>
-                  <dd>{definition}</dd>
-                  <span>Example: {example}</span>
+              {resolvedPrimitives.map((primitive) => (
+                <div key={primitive.id}>
+                  <dt>{primitive.name}</dt>
+                  <dd>{primitive.definition}</dd>
+                  <span>Example: {primitive.example}</span>
                 </div>
               ))}
             </div>

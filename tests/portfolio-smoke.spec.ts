@@ -1,7 +1,19 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { expect, test } from "@playwright/test";
+import {
+  fieldEntries,
+  primitives,
+  productSurfaces,
+  proofDeck,
+  resolvedPrimitives,
+  resolvedSurfaces,
+} from "../app/content";
+import { cases } from "../app/data";
 
 const caseRoutes = ["/objects/beeper", "/objects/mint-club", "/objects/hunt-town"];
 const widths = [320, 375, 414, 768, 1440];
+const caseSlugs = new Set(cases.map((item) => item.slug));
 
 test("home returns successfully and exposes selected work", async ({ page }) => {
   const response = await page.goto("/");
@@ -47,6 +59,86 @@ for (const route of ["/", "/wiki"]) {
     });
   }
 }
+
+test.describe("shared portfolio content", () => {
+  test("every shared case slug and primitive id resolves", () => {
+    const primitiveIds = new Set(primitives.map((item) => item.id));
+
+    for (const primitive of primitives) {
+      expect(caseSlugs, primitive.id).toContain(primitive.exampleCaseSlug);
+    }
+    for (const surface of productSurfaces) {
+      expect(caseSlugs, surface.caseSlug).toContain(surface.caseSlug);
+      expect(primitiveIds, surface.primitiveId).toContain(surface.primitiveId);
+    }
+    for (const card of proofDeck) {
+      expect(caseSlugs, card.caseSlug).toContain(card.caseSlug);
+    }
+    expect(resolvedPrimitives.every((item) => item.example.length > 0)).toBe(true);
+  });
+
+  test("internal case links resolve", async ({ request }) => {
+    const hrefs = new Set([
+      ...cases.map((item) => `/objects/${item.slug}`),
+      ...resolvedSurfaces.map((surface) => surface.caseHref),
+    ]);
+    for (const href of hrefs) {
+      const response = await request.get(href);
+      expect(response.status(), href).toBe(200);
+    }
+  });
+
+  test("no field entry is missing a source URL", () => {
+    for (const entry of fieldEntries) {
+      expect(entry.href, entry.title).toMatch(/^https?:\/\//);
+    }
+  });
+
+  test("both views expose the same selected case names", async ({ page }) => {
+    for (const route of ["/", "/wiki"]) {
+      await page.goto(route);
+      for (const item of cases) {
+        await expect(
+          page.getByText(item.name, { exact: true }).filter({ visible: true }).first(),
+          `${item.name} on ${route}`,
+        ).toBeVisible();
+      }
+    }
+  });
+
+  test("no route file re-declares shared content arrays", () => {
+    const routeFiles = ["app/page.tsx", "app/wiki/page.tsx", "app/HomeMotion.tsx"];
+    for (const file of routeFiles) {
+      const source = readFileSync(resolve(process.cwd(), file), "utf8");
+      expect(source, file).not.toMatch(/^const (primitives|fieldEntries|productSurfaces|proofDeck)\b/m);
+    }
+  });
+});
+
+test("view switch is reciprocal at 320px", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 900 });
+
+  await page.goto("/");
+  const toIndex = page.locator('.mobile-dock a[href="/wiki"]');
+  await expect(toIndex).toBeVisible();
+  await toIndex.click();
+  await page.waitForURL("**/wiki");
+
+  const toVisual = page.locator('.wiki-masthead a[href="/"]');
+  await expect(toVisual).toBeVisible();
+  await toVisual.click();
+  await page.waitForURL((url) => url.pathname === "/");
+
+  for (const route of ["/", "/wiki"]) {
+    const response = await page.goto(route);
+    expect(response?.status(), route).toBe(200);
+    const dimensions = await page.evaluate(() => ({
+      scrollWidth: document.documentElement.scrollWidth,
+      innerWidth: window.innerWidth,
+    }));
+    expect(dimensions.scrollWidth, route).toBe(dimensions.innerWidth);
+  }
+});
 
 test("wiki has semantic section order and no broken local images", async ({ page }) => {
   await page.goto("/wiki");
