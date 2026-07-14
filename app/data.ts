@@ -1,21 +1,3 @@
-export type Ownership = {
-  role: string;
-  team: string;
-  owned: string[];
-  influenced: string[];
-  proof: string;
-};
-
-export type ProofDetail = { image: string; caption: string };
-
-export type SubProject = {
-  name: string;
-  blurb: string;
-  href?: string;
-  image?: string;
-  tags?: string[];
-};
-
 export type CaseStudy = {
   slug: string;
   no: string;
@@ -37,10 +19,7 @@ export type CaseStudy = {
   next: string;
   fieldNotes?: Array<{ title: string; body: string }>;
   timeline?: Array<{ date: string; title: string; href?: string; note?: string }>;
-  ownership?: Ownership;
   metricSource?: string;
-  proofDetail?: ProofDetail[];
-  subProjects?: SubProject[];
 };
 
 export const cases: CaseStudy[] = [

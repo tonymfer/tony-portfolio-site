@@ -13,13 +13,10 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "latest",
-    "@radix-ui/react-slot": "latest",
-    "clsx": "latest",
     "motion": "latest",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest",
-    "tailwind-merge": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1",
