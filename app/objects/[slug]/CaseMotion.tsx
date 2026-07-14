@@ -1,8 +1,13 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
 import type { CaseStudy } from "../../data";
+
+// Hero assets differ per case, so these are the 4:3 box the stylesheet crops every
+// hero into (`.case-image-wrap img`), not the intrinsic size of any one file.
+const HERO_BOX = { width: 1200, height: 900 };
 
 const beeperMetrics = [
   ["44.8K", "total users"],
@@ -29,10 +34,10 @@ const beeperPartners = [
 ];
 
 const beeperVideos = [
-  { title: "Base APAC cold plunge", copy: "founder story / residency signal", href: "https://x.com/baseapac/status/2062479675461603777", image: "/proof/baseapac-cold-plunge.jpg" },
-  { title: "Base APAC day-in-life", copy: "Beeper in the residency field", href: "https://x.com/baseapac/status/2062896272944845048", image: "/proof/baseapac-residency.jpg" },
-  { title: "Beeper hardware proof", copy: "mini app moving toward a real pager", href: "https://x.com/tonymfer/status/1991792691198427618", image: "/proof/beeper-hardware.jpg" },
-  { title: "BEEP v2 launch", copy: "paid-attention media artifact", href: "https://x.com/beeponbase/status/2009487314708517220", image: "/proof/beep-v2.jpg" },
+  { title: "Base APAC cold plunge", copy: "founder story / residency signal", href: "https://x.com/baseapac/status/2062479675461603777", image: "/proof/baseapac-cold-plunge.jpg", width: 675, height: 1200 },
+  { title: "Base APAC day-in-life", copy: "Beeper in the residency field", href: "https://x.com/baseapac/status/2062896272944845048", image: "/proof/baseapac-residency.jpg", width: 675, height: 1200 },
+  { title: "Beeper hardware proof", copy: "mini app moving toward a real pager", href: "https://x.com/tonymfer/status/1991792691198427618", image: "/proof/beeper-hardware.jpg", width: 1024, height: 1024 },
+  { title: "BEEP v2 launch", copy: "paid-attention media artifact", href: "https://x.com/beeponbase/status/2009487314708517220", image: "/proof/beep-v2.jpg", width: 1200, height: 799 },
 ];
 
 const beeperFrontendProof = [
@@ -83,7 +88,14 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
           </div>
         </div>
         <motion.div className="case-image-wrap" style={isBeeper ? { y: imageY, scale: imageScale } : undefined}>
-          <img alt={`${item.name} proof`} src={item.image} />
+          <Image
+            alt={`${item.name} proof`}
+            src={item.image}
+            width={HERO_BOX.width}
+            height={HERO_BOX.height}
+            sizes="(max-width: 880px) 100vw, 52vw"
+            priority
+          />
           <div className="case-image-caption">{item.proof}</div>
         </motion.div>
       </div>
@@ -201,11 +213,23 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
               </div>
               <div className="frontend-proof-grid">
                 <a className="frontend-shot desktop-shot" href="https://beep.works/" target="_blank" rel="noreferrer">
-                  <img alt="Beep Works desktop homepage screenshot" src="/proof/beepworks-home-desktop.png" />
+                  <Image
+                    alt="Beep Works desktop homepage screenshot"
+                    src="/proof/beepworks-home-desktop.png"
+                    width={1440}
+                    height={1200}
+                    sizes="(max-width: 880px) 100vw, 60vw"
+                  />
                   <span>desktop homepage / live site ↗</span>
                 </a>
                 <a className="frontend-shot mobile-shot" href="https://beep.works/" target="_blank" rel="noreferrer">
-                  <img alt="Beep Works mobile homepage screenshot" src="/proof/beepworks-home-mobile.png" />
+                  <Image
+                    alt="Beep Works mobile homepage screenshot"
+                    src="/proof/beepworks-home-mobile.png"
+                    width={390}
+                    height={1200}
+                    sizes="(max-width: 880px) 250px, 25vw"
+                  />
                   <span>mobile responsive proof ↗</span>
                 </a>
                 <div className="frontend-craft-list">
@@ -230,7 +254,20 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
                 <h2>Use X videos as public proof; host clips only after rights/file cleanup.</h2>
               </div>
               <div className="video-grid">
-                {beeperVideos.map((video) => <a className="video-card" href={video.href} target="_blank" rel="noreferrer" key={video.href}><img alt={`${video.title} video still`} src={video.image} /><span>Watch on X ↗</span><h3>{video.title}</h3><p>{video.copy}</p></a>)}
+                {beeperVideos.map((video) => (
+                  <a className="video-card" href={video.href} target="_blank" rel="noreferrer" key={video.href}>
+                    <Image
+                      alt={`${video.title} video still`}
+                      src={video.image}
+                      width={video.width}
+                      height={video.height}
+                      sizes="(max-width: 880px) 100vw, 44vw"
+                    />
+                    <span>Watch on X ↗</span>
+                    <h3>{video.title}</h3>
+                    <p>{video.copy}</p>
+                  </a>
+                ))}
               </div>
             </section>
           </>

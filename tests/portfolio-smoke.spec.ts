@@ -140,6 +140,82 @@ test("view switch is reciprocal at 320px", async ({ page }) => {
   }
 });
 
+test.describe("case page images", () => {
+  test("CaseMotion renders no raw img elements", () => {
+    const source = readFileSync(resolve(process.cwd(), "app/objects/[slug]/CaseMotion.tsx"), "utf8");
+    expect(source).not.toMatch(/<img\b/);
+  });
+
+  test("case hero is a prioritized responsive image with stable dimensions", async ({ page }) => {
+    await page.goto("/objects/beeper");
+    const hero = page.locator(".case-image-wrap img");
+    await expect(hero).toHaveAttribute("srcset", /\/_next\/image/);
+    // The hero is above the fold, so it must not be deferred behind lazy loading.
+    await expect(hero).not.toHaveAttribute("loading", "lazy");
+
+    const box = await hero.boundingBox();
+    expect(box?.width).toBeGreaterThan(0);
+    expect(box?.height).toBeGreaterThan(0);
+    await expect(async () => {
+      const natural = await hero.evaluate((image) => (image as HTMLImageElement).naturalWidth);
+      expect(natural).toBeGreaterThan(0);
+    }).toPass({ timeout: 15_000 });
+  });
+
+  test("Beep Works frontend proof stays legible and loads at every width", async ({ page }) => {
+    for (const width of [390, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto("/objects/beeper");
+
+      for (const shot of [".desktop-shot img", ".mobile-shot img"]) {
+        const image = page.locator(shot);
+        await image.scrollIntoViewIfNeeded();
+        await expect(image, `${shot} at ${width}px`).toHaveCSS("object-fit", "contain");
+        await expect(async () => {
+          const natural = await image.evaluate((node) => (node as HTMLImageElement).naturalWidth);
+          expect(natural, `${shot} at ${width}px`).toBeGreaterThan(0);
+        }).toPass({ timeout: 15_000 });
+      }
+    }
+  });
+
+  test("video receipts keep their external links and load their stills", async ({ page }) => {
+    await page.goto("/objects/beeper");
+    const cards = page.locator(".video-card");
+    await expect(cards).toHaveCount(4);
+
+    for (const href of [
+      "https://x.com/baseapac/status/2062479675461603777",
+      "https://x.com/baseapac/status/2062896272944845048",
+      "https://x.com/tonymfer/status/1991792691198427618",
+      "https://x.com/beeponbase/status/2009487314708517220",
+    ]) {
+      await expect(page.locator(`.video-card[href="${href}"]`)).toHaveAttribute("rel", "noreferrer");
+    }
+
+    const stills = cards.locator("img");
+    await stills.first().scrollIntoViewIfNeeded();
+    await expect(async () => {
+      const broken = await stills.evaluateAll((images) =>
+        images.filter((image) => (image as HTMLImageElement).naturalWidth === 0).map((image) => (image as HTMLImageElement).src),
+      );
+      expect(broken).toEqual([]);
+    }).toPass({ timeout: 15_000 });
+  });
+
+  for (const width of [390, 1440]) {
+    test(`/objects/beeper has no horizontal overflow at ${width}px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto("/objects/beeper");
+      const dimensions = await page.evaluate(() => ({
+        scrollWidth: document.documentElement.scrollWidth,
+        innerWidth: window.innerWidth,
+      }));
+      expect(dimensions.scrollWidth).toBe(dimensions.innerWidth);
+    });
+  }
+});
+
 test("wiki has semantic section order and no broken local images", async ({ page }) => {
   await page.goto("/wiki");
   await expect(page.locator("h1")).toHaveCount(1);
