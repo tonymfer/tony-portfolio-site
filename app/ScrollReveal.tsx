@@ -6,6 +6,8 @@ const TARGETS = [
   ".section-head",
   ".object-row",
   ".best-fit-panel",
+  ".orbit-era",
+  ".orbit-note",
   ".how-step",
   ".how-note",
   ".ledger-row",

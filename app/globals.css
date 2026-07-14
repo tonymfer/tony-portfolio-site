@@ -2024,6 +2024,155 @@ a {
   letter-spacing: -0.01em;
 }
 
+/* Orbit map — provenance tree rendered as a ledger */
+.orbit-map {
+  padding: clamp(58px, 8vw, 116px) clamp(20px, 4vw, 56px);
+}
+.orbit-body {
+  border-top: 1px solid var(--line-strong);
+}
+.orbit-era-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: clamp(30px, 4vw, 46px) 0 6px;
+  color: var(--faint);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.orbit-node {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px minmax(200px, 0.75fr) minmax(0, 1.55fr) auto;
+  gap: clamp(12px, 2.4vw, 32px);
+  align-items: baseline;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+}
+.orbit-node strong {
+  font-family:
+    var(--font-display), var(--font-geist-sans), ui-sans-serif, system-ui,
+    sans-serif;
+  font-variation-settings: "wdth" 110;
+  letter-spacing: -0.03em;
+  transition: color 140ms ease;
+}
+.orbit-anchor strong {
+  font-size: clamp(1.4rem, 2.2vw, 2.1rem);
+  font-weight: 740;
+}
+.orbit-sat strong {
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-weight: 640;
+}
+.orbit-node em {
+  color: var(--muted);
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.orbit-node i {
+  color: var(--faint);
+  font-style: normal;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  transition: color 140ms ease;
+}
+.orbit-rail {
+  position: relative;
+  align-self: stretch;
+}
+.orbit-anchor .orbit-rail::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  transform: translateY(-50%);
+  background: var(--ink);
+  transition: background 140ms ease;
+}
+.orbit-sat .orbit-rail::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: -16px;
+  bottom: -16px;
+  border-left: 1px solid var(--line-strong);
+  transition: border-color 140ms ease;
+}
+.orbit-sat[data-last="true"] .orbit-rail::before {
+  bottom: 50%;
+}
+.orbit-sat .orbit-rail::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  width: 20px;
+  border-top: 1px solid var(--line-strong);
+  transition: border-color 140ms ease;
+}
+.orbit-node:hover strong,
+.orbit-node:hover i {
+  color: var(--accent);
+}
+.orbit-group:hover .orbit-sat .orbit-rail::before,
+.orbit-group:hover .orbit-sat .orbit-rail::after {
+  border-color: var(--accent);
+}
+.orbit-group:hover .orbit-anchor .orbit-rail::before {
+  background: var(--accent);
+}
+.orbit-group:has(.orbit-sat:hover) .orbit-anchor strong {
+  color: var(--accent);
+}
+.orbit-note {
+  margin: 22px 0 0;
+  max-width: 70ch;
+  color: var(--faint);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.thread-tag {
+  color: var(--accent);
+}
+.case-thread {
+  margin-left: 14px;
+  color: var(--accent);
+  transition: opacity 140ms ease;
+}
+.case-thread:hover {
+  opacity: 0.7;
+}
+@media (max-width: 880px) {
+  .orbit-node {
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+    row-gap: 4px;
+    padding: 13px 0;
+  }
+  .orbit-node strong {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .orbit-node i {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .orbit-node em {
+    grid-column: 2 / 4;
+    grid-row: 2;
+    font-size: 13px;
+  }
+  .orbit-sat .orbit-rail::after {
+    width: 14px;
+  }
+}
+
 /* Scroll reveal (class added by JS — no-JS renders everything visible) */
 .will-reveal {
   opacity: 0;

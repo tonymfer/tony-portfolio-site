@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { archive, cases as selected } from "./data";
 import { HeroPager } from "./HeroPager";
+import { OrbitMap } from "./OrbitMap";
 import { ScrollReveal } from "./ScrollReveal";
 
 const links = [
@@ -249,6 +250,9 @@ export default function Home() {
                   <span>{work.object}</span>
                   <span>{work.role}</span>
                   <span>{work.year}</span>
+                  {work.thread && (
+                    <span className="thread-tag">↳ {work.thread.label}</span>
+                  )}
                 </div>
                 <h2>{work.name}</h2>
                 <p>{work.desc}</p>
@@ -266,6 +270,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <OrbitMap />
 
       <section className="best-fit" id="hire">
         <div className="section-head">

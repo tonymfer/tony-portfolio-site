@@ -72,6 +72,11 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
         <div className="case-copy">
           <p className="case-kicker">
             {item.no} / {item.object} / {item.year}
+            {item.thread && (
+              <a className="case-thread" href={`/objects/${item.thread.slug}`}>
+                ↳ {item.thread.label}
+              </a>
+            )}
           </p>
           <h1 className="case-title">{item.name}</h1>
           <p className="case-subcopy">{item.desc}</p>

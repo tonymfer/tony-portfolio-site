@@ -19,6 +19,15 @@ export type SubProject = {
   tags?: string[];
 };
 
+export type OrbitNode = {
+  name: string;
+  note: string;
+  href: string;
+  external?: boolean;
+};
+export type OrbitGroup = { anchor: OrbitNode; satellites: OrbitNode[] };
+export type OrbitEra = { era: string; span: string; groups: OrbitGroup[] };
+
 export type CaseStudy = {
   slug: string;
   no: string;
@@ -26,6 +35,7 @@ export type CaseStudy = {
   object: string;
   role: string;
   year: string;
+  thread?: { label: string; slug: string };
   image: string;
   desc: string;
   tags: string[];
@@ -288,7 +298,7 @@ export const cases: CaseStudy[] = [
       {
         name: "Mintdrop",
         blurb:
-          "Company-era growth product for launching child coins on Base. Front-end fully mine; the project has since shut down, but the receipts stand: $8K child coins, 3,000 users, ~80K microtransactions.",
+          "Growth product built for Mint Club: a launcher for child coins on Base. Front-end fully mine; the project has since shut down, but the receipts stand: $8K child coins, 3,000 users, ~80K microtransactions.",
         href: "https://x.com/tonymfer/status/1927199768100384856",
         image: "/proof/mintdrop-metrics.png",
         tags: ["Base", "growth loop", "child tokens"],
@@ -695,8 +705,9 @@ export const cases: CaseStudy[] = [
     object: "community map",
     role: "prototype / demo builder",
     year: "2025",
+    thread: { label: "built for Hunt Town", slug: "hunt-town" },
     image: "/proof/base-world-launch.jpg",
-    desc: "A living map of the Base ecosystem — membership and community turned into a visual, explorable surface people can point to and belong to.",
+    desc: "A living map of the Base ecosystem, built for the Hunt Town community — membership turned into a visual, explorable surface people can point to and belong to.",
     tags: ["Base", "community map", "grant", "ecosystem"],
     proof: "Base grant / Jesse Pollak shoutout",
     href: "https://x.com/tonymfer/status/1808470847469785334",
@@ -822,4 +833,84 @@ export const archive = [
   ],
   ["006", "Brainlets", "token narrative site", "2024", "live site"],
   ["005", "Beeper v1", "paid inbox", "2024", "public product"],
+];
+
+export const orbit: OrbitEra[] = [
+  {
+    era: "Company era — HUNT / Steemhunt",
+    span: "2022–2026",
+    groups: [
+      {
+        anchor: {
+          name: "Mint Club",
+          note: "token UX anchor — bonding curves turned into product surfaces",
+          href: "/objects/mint-club",
+        },
+        satellites: [
+          {
+            name: "Mintdrop",
+            note: "growth loop built for Mint Club — child coins on Base",
+            href: "https://x.com/tonymfer/status/1927199768100384856",
+            external: true,
+          },
+          {
+            name: "far.cards",
+            note: "IRL Farcaster surface grown out of the Mint Club orbit",
+            href: "https://x.com/tonymfer/status/2042628827059536214",
+            external: true,
+          },
+          {
+            name: "Brainlets",
+            note: "token narrative site on Mint Club assets — Degen L3 wave",
+            href: "https://www.brainlets.life/",
+            external: true,
+          },
+        ],
+      },
+      {
+        anchor: {
+          name: "Hunt Town",
+          note: "builder community anchor — education, ops, activation",
+          href: "/objects/hunt-town",
+        },
+        satellites: [
+          {
+            name: "Base World",
+            note: "community map built for Hunt Town — Base grant",
+            href: "/objects/base-world",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    era: "Independent era — built on the company years",
+    span: "2025–2026",
+    groups: [
+      {
+        anchor: {
+          name: "Beeper",
+          note: "paid attention — co-founded, hardware-backed proof",
+          href: "/objects/beeper",
+        },
+        satellites: [],
+      },
+      {
+        anchor: {
+          name: "TradeFish",
+          note: "agent reputation — 1st, Base Agent Hackathon",
+          href: "/objects/tradefish",
+        },
+        satellites: [],
+      },
+      {
+        anchor: {
+          name: "TapTato",
+          note: "wallet infra translated into a playable loop",
+          href: "/objects/taptato",
+        },
+        satellites: [],
+      },
+    ],
+  },
 ];
