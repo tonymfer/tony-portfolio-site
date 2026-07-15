@@ -4,90 +4,78 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
 import type { CaseStudy } from "../../data";
+import { OwnershipBoard } from "./OwnershipBoard";
+import { ProofDetailBoard } from "./ProofDetailBoard";
+import { SubProjectsBoard } from "./SubProjectsBoard";
+import { BeeperExtras } from "./BeeperExtras";
+import { NarrativeArc } from "./NarrativeArc";
+import { isNarrativeArc } from "./narrative";
 
 // Hero assets differ per case, so these are the 4:3 box the stylesheet crops every
 // hero into (`.case-image-wrap img`), not the intrinsic size of any one file.
 const HERO_BOX = { width: 1200, height: 900 };
 
-const beeperMetrics = [
-  ["44.8K", "total users"],
-  ["39.1%", "read rate"],
-  ["50.6%", "repeat senders"],
-  ["106K+", "check-ins"],
-  ["412K+", "Base txs"],
-];
-
-const beeperMechanic = [
-  ["Sender pays", "Signal starts with a real cost instead of another free notification."],
-  ["Receiver prices", "Humans set the inbox price that makes interruption worthwhile."],
-  ["Engage → earn", "Attention becomes a reward event, not a platform-captured leak."],
-  ["Ignore → refund", "Unread messages can return value instead of becoming spam residue."],
-];
-
-const beeperFlow = ["Compose", "Targets", "Missions", "Plan", "Confirm", "Final tx"];
-
-const beeperPartners = [
-  ["Signet", "#120", "#6"],
-  ["ReviewMe", "#34", "#6"],
-  ["imagineclub", "#219", "#36"],
-  ["TYSM", "#23", "#5"],
-];
-
-const beeperVideos = [
-  { title: "Base APAC cold plunge", copy: "founder story / residency signal", href: "https://x.com/baseapac/status/2062479675461603777", image: "/proof/baseapac-cold-plunge.jpg", width: 675, height: 1200 },
-  { title: "Base APAC day-in-life", copy: "Beeper in the residency field", href: "https://x.com/baseapac/status/2062896272944845048", image: "/proof/baseapac-residency.jpg", width: 675, height: 1200 },
-  { title: "Beeper hardware proof", copy: "mini app moving toward a real pager", href: "https://x.com/tonymfer/status/1991792691198427618", image: "/proof/beeper-hardware.jpg", width: 1024, height: 1024 },
-  { title: "BEEP v2 launch", copy: "paid-attention media artifact", href: "https://x.com/beeponbase/status/2009487314708517220", image: "/proof/beep-v2.jpg", width: 1200, height: 799 },
-];
-
-const beeperFrontendProof = [
-  ["Art direction", "Custom pixel/CRT system, green-on-black signal language, dithered hardware object, and a coherent product world instead of a template."],
-  ["Responsive craft", "Desktop splits the value prop and hardware artifact; mobile keeps brand, CTA, metrics, proof tags, and the device visual readable in one narrow flow."],
-  ["Product clarity", "The page explains the core behavior in one sentence: attach money, set your price, unread messages auto-refund."],
-  ["Interaction surface", "Clear app/video CTAs, marquee protocol cues, metric strip, and stateful beeper screens turn the frontend into product proof."],
-];
-
 export function CaseMotion({ item }: { item: CaseStudy }) {
   const rootRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: rootRef, offset: ["start start", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: rootRef,
+    offset: ["start start", "end start"],
+  });
   const imageY = useTransform(scrollYProgress, [0, 1], [0, 120]);
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
   const isBeeper = item.slug === "beeper";
+  const showArc = isNarrativeArc(item.fieldNotes);
 
   return (
     <section className="case-page" ref={rootRef}>
       <nav className="case-progress" aria-label="Case reading progress">
-        <div className="case-progress-track"><motion.span style={{ scaleY: scrollYProgress }} /></div>
+        <div className="case-progress-track">
+          <motion.span style={{ scaleY: scrollYProgress }} />
+        </div>
         <a href="#primitive">Mechanic</a>
         <a href="#proof">Proof</a>
         {isBeeper && <a href="#frontend">Frontend</a>}
         <a href="#scars">Scars</a>
         <a href="#next">Next</a>
       </nav>
-      <a className="back-link" href="/#objects">← Primitive Archive</a>
+      <a className="back-link" href="/#objects">
+        ← Primitive Archive
+      </a>
       <nav className="case-mobile-dock" aria-label="Case sections">
-        <a href={isBeeper ? "#frontend" : "#primitive"}>{isBeeper ? "Front" : "Prim"}</a>
+        <a href={isBeeper ? "#frontend" : "#primitive"}>
+          {isBeeper ? "Front" : "Prim"}
+        </a>
         <a href="#proof">Proof</a>
         <a href="#scars">Scars</a>
         <a href="#next">Next</a>
       </nav>
+
       <div className="case-hero">
         <div className="case-copy">
-          <p className="case-kicker">{item.no} / {item.object} / {item.year}</p>
+          <p className="case-kicker">
+            {item.no} / {item.object} / {item.year}
+            {item.thread && (
+              <a className="case-thread" href={`/objects/${item.thread.slug}`}>
+                ↳ {item.thread.label}
+              </a>
+            )}
+          </p>
           <h1 className="case-title">{item.name}</h1>
           <p className="case-subcopy">{item.desc}</p>
-          {isBeeper && (
-            <div className="case-metric-strip" aria-label="Beeper traction metrics">
-              {beeperMetrics.map(([value, label]) => (
-                <div className="metric-chip" key={label}><strong>{value}</strong><span>{label}</span></div>
-              ))}
-            </div>
+          <BeeperExtras item={item} slot="metrics" />
+          {item.metricSource && (
+            <p className="metric-source">{item.metricSource}</p>
           )}
           <div className="case-tags">
-            {item.tags.map((tag) => <span key={tag}>{tag}</span>)}
+            {item.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
           </div>
         </div>
-        <motion.div className="case-image-wrap" style={isBeeper ? { y: imageY, scale: imageScale } : undefined}>
+        <motion.div
+          className="case-image-wrap"
+          style={isBeeper ? { y: imageY, scale: imageScale } : undefined}
+        >
           <Image
             alt={`${item.name} proof`}
             src={item.image}
@@ -101,47 +89,51 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
       </div>
 
       <div className="case-meta-grid">
-        <div className="case-meta-card"><span>role</span><strong>{item.role}</strong></div>
-        <div className="case-meta-card"><span>object</span><strong>{item.object}</strong></div>
-        <div className="case-meta-card"><span>receipt</span><strong>{item.proof}</strong></div>
-        <div className="case-meta-card"><span>external</span><a href={item.live || item.href} target="_blank" rel="noreferrer">open proof ↗</a></div>
+        <div className="case-meta-card">
+          <span>role</span>
+          <strong>{item.role}</strong>
+        </div>
+        <div className="case-meta-card">
+          <span>object</span>
+          <strong>{item.object}</strong>
+        </div>
+        <div className="case-meta-card">
+          <span>receipt</span>
+          <strong>{item.proof}</strong>
+        </div>
+        <div className="case-meta-card">
+          <span>external</span>
+          <a href={item.live || item.href} target="_blank" rel="noreferrer">
+            open proof ↗
+          </a>
+        </div>
       </div>
 
       <div className="case-body">
-        {isBeeper && (
-          <>
-            <section className="mechanic-board" id="primitive">
-              <div>
-                <p className="case-kicker">Mechanic</p>
-                <h2>Money changes the message.</h2>
-              </div>
-              <div className="mechanic-grid">
-                {beeperMechanic.map(([title, copy]) => (
-                  <div className="mechanic-card" key={title}><h3>{title}</h3><p>{copy}</p></div>
-                ))}
-              </div>
-            </section>
-
-            <section className="flow-board">
-              <div>
-                <p className="case-kicker">Sender flow</p>
-                <h2>From intent to onchain receipt.</h2>
-              </div>
-              <div className="flow-rail" aria-label="Beeper sender flow">
-                {beeperFlow.map((step, index) => <div className="flow-step" key={step}><span>{String(index + 1).padStart(2, "0")}</span><strong>{step}</strong></div>)}
-              </div>
-            </section>
-          </>
-        )}
+        <OwnershipBoard ownership={item.ownership} />
+        <BeeperExtras item={item} slot="mechanic" />
 
         {!isBeeper && (
-          <motion.article className="case-section" id="primitive" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: .55 }}>
+          <motion.article
+            className="case-section"
+            id="primitive"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.55 }}
+          >
             <span>01</span>
             <h2>Primitive</h2>
             <p>{item.primitive}</p>
           </motion.article>
         )}
-        <motion.article className="case-section" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: .55 }}>
+        <motion.article
+          className="case-section"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.55 }}
+        >
           <span>{isBeeper ? "03" : "02"}</span>
           <h2>Artifact</h2>
           <p>{item.artifact}</p>
@@ -156,32 +148,54 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
             {item.proofPoints.map((point, index) => {
               const text = typeof point === "string" ? point : point.text;
               const href = typeof point === "string" ? undefined : point.href;
+              const pending =
+                typeof point === "object" && Boolean(point.sourceNeeded);
               return (
-                <motion.div className="receipt-row" key={text} whileHover={{ x: 6 }}>
+                <motion.div
+                  className="receipt-row"
+                  key={`${index}-${text.slice(0, 24)}`}
+                  whileHover={{ x: 6 }}
+                >
                   <span>{String(index + 1).padStart(2, "0")}</span>
-                  {href ? <a href={href} target="_blank" rel="noreferrer">{text} ↗</a> : <p>{text}</p>}
+                  {href && !pending ? (
+                    <a href={href} target="_blank" rel="noreferrer">
+                      {text} ↗
+                    </a>
+                  ) : (
+                    <p>
+                      {text}
+                      {pending && <em className="pending">source pending</em>}
+                    </p>
+                  )}
                 </motion.div>
               );
             })}
           </div>
         </section>
 
-        {item.fieldNotes && (
-          <section className="field-notes-board">
-            <div>
-              <p className="case-kicker">Field notes</p>
-              <h2>What was hard, what changed, and what I learned.</h2>
-            </div>
-            <div className="field-note-list">
-              {item.fieldNotes.map((note) => (
-                <article className="field-note" key={note.title}>
-                  <h3>{note.title}</h3>
-                  <p>{note.body}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-        )}
+        <ProofDetailBoard detail={item.proofDetail} />
+
+        <SubProjectsBoard subProjects={item.subProjects} />
+
+        {item.fieldNotes &&
+          (showArc ? (
+            <NarrativeArc notes={item.fieldNotes} />
+          ) : (
+            <section className="field-notes-board">
+              <div>
+                <p className="case-kicker">Field notes</p>
+                <h2>What was hard, what changed, and what I learned.</h2>
+              </div>
+              <div className="field-note-list">
+                {item.fieldNotes.map((note) => (
+                  <article className="field-note" key={note.title}>
+                    <h3>{note.title}</h3>
+                    <p>{note.body}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ))}
 
         {item.timeline && (
           <section className="timeline-board">
@@ -191,10 +205,19 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
             </div>
             <div className="timeline-list">
               {item.timeline.map((entry) => (
-                <article className="timeline-row" key={`${entry.date}-${entry.title}`}>
+                <article
+                  className="timeline-row"
+                  key={`${entry.date}-${entry.title}`}
+                >
                   <span>{entry.date}</span>
                   <div>
-                    {entry.href ? <a href={entry.href} target="_blank" rel="noreferrer">{entry.title} ↗</a> : <strong>{entry.title}</strong>}
+                    {entry.href ? (
+                      <a href={entry.href} target="_blank" rel="noreferrer">
+                        {entry.title} ↗
+                      </a>
+                    ) : (
+                      <strong>{entry.title}</strong>
+                    )}
                     {entry.note && <p>{entry.note}</p>}
                   </div>
                 </article>
@@ -203,88 +226,45 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
           </section>
         )}
 
-        {isBeeper && (
-          <>
-            <section className="frontend-proof-board" id="frontend">
-              <div>
-                <p className="case-kicker">Frontend proof</p>
-                <h2>The website is part of the product, not a wrapper around it.</h2>
-                <p className="frontend-proof-copy">I designed and built the Beep Works surface as a full product artifact: pixel typography, CRT scanlines, responsive layout, live CTAs, metrics, protocol tags, and a hardware-like visual system that makes paid attention feel tangible.</p>
-              </div>
-              <div className="frontend-proof-grid">
-                <a className="frontend-shot desktop-shot" href="https://beep.works/" target="_blank" rel="noreferrer">
-                  <Image
-                    alt="Beep Works desktop homepage screenshot"
-                    src="/proof/beepworks-home-desktop.png"
-                    width={1440}
-                    height={1200}
-                    sizes="(max-width: 880px) 100vw, 60vw"
-                  />
-                  <span>desktop homepage / live site ↗</span>
-                </a>
-                <a className="frontend-shot mobile-shot" href="https://beep.works/" target="_blank" rel="noreferrer">
-                  <Image
-                    alt="Beep Works mobile homepage screenshot"
-                    src="/proof/beepworks-home-mobile.png"
-                    width={390}
-                    height={1200}
-                    sizes="(max-width: 880px) 250px, 25vw"
-                  />
-                  <span>mobile responsive proof ↗</span>
-                </a>
-                <div className="frontend-craft-list">
-                  {beeperFrontendProof.map(([title, copy]) => <div key={title}><strong>{title}</strong><p>{copy}</p></div>)}
-                </div>
-              </div>
-            </section>
-
-            <section className="partner-board">
-              <div>
-                <p className="case-kicker">Partner rail</p>
-                <h2>Campaigns should move rank, not just impressions.</h2>
-              </div>
-              <div className="partner-grid">
-                {beeperPartners.map(([name, from, to]) => <div className="partner-card" key={name}><span>{name}</span><strong>{from} → {to}</strong></div>)}
-              </div>
-            </section>
-
-            <section className="video-board">
-              <div>
-                <p className="case-kicker">Video receipts</p>
-                <h2>Use X videos as public proof; host clips only after rights/file cleanup.</h2>
-              </div>
-              <div className="video-grid">
-                {beeperVideos.map((video) => (
-                  <a className="video-card" href={video.href} target="_blank" rel="noreferrer" key={video.href}>
-                    <Image
-                      alt={`${video.title} video still`}
-                      src={video.image}
-                      width={video.width}
-                      height={video.height}
-                      sizes="(max-width: 880px) 100vw, 44vw"
-                    />
-                    <span>Watch on X ↗</span>
-                    <h3>{video.title}</h3>
-                    <p>{video.copy}</p>
-                  </a>
-                ))}
-              </div>
-            </section>
-          </>
-        )}
+        <BeeperExtras item={item} slot="media" />
 
         <div className="case-columns" id="scars">
-          <motion.section initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .55 }}>
+          <motion.section
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+          >
             <p className="case-kicker">What went right</p>
-            <ul>{item.right.map((line) => <li key={line}>{line}</li>)}</ul>
+            <ul>
+              {item.right.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
           </motion.section>
-          <motion.section initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .55, delay: .05 }}>
+          <motion.section
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.05 }}
+          >
             <p className="case-kicker">What went wrong</p>
-            <ul>{item.wrong.map((line) => <li key={line}>{line}</li>)}</ul>
+            <ul>
+              {item.wrong.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
           </motion.section>
         </div>
 
-        <motion.section className="next-bet" id="next" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .55 }}>
+        <motion.section
+          className="next-bet"
+          id="next"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55 }}
+        >
           <p className="case-kicker">Next bet</p>
           <h2>{item.next}</h2>
         </motion.section>

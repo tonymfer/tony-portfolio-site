@@ -158,22 +158,25 @@ export const cases: CaseStudy[] = [
       "Campaign memos are useful pipeline context, but many partner fields are unconfirmed and cannot be used as public proof.",
     ],
     next: "Turn the case page into a receipt-driven launch memo: show the inbox-price primitive, sender flow, onchain settlement, partner rank jumps, BeeperX agent rail, and hardware pager future without overloading the first screen.",
+    // Canonical narrative-arc titles (Wall/Fork/Resolution/Impact) — the reference
+    // arc that validates the template. Authored from already-sourced proofPoints
+    // only; Tony signs off at the U8 checkpoint before ship. See narrative.ts.
     fieldNotes: [
       {
-        title: "Problem",
-        body: "The hard part was not sending a paid message. It was making paid attention feel like a fair exchange instead of an ad product. The refund loop had to be understandable before the transaction, or the product would feel like another spam surface.",
+        title: "Wall",
+        body: "Attention is captured by platforms and spammed by senders. The hard part of Beeper was never sending a paid message — it was making paid attention feel like a fair exchange instead of an ad product. If a receiver could not see why the loop was fair before the transaction, the whole thing read as one more spam surface.",
       },
       {
-        title: "My role",
-        body: "I worked across product, front-end, and growth: the compose flow, targeting, reward planning, quote states, transaction states, partner campaign surfaces, and the public proof layer around the product.",
+        title: "Fork",
+        body: "I worked across product, front-end, and growth, and the recurring call was the same: hide the chain until it becomes proof. Compose, targeting, reward planning, quote and transaction states — every screen had to explain money, attention, and onchain settlement without making anyone read protocol copy. The better versions surfaced the chain only as a budget, a receipt, or a refund.",
       },
       {
-        title: "Constraint",
-        body: "The product had to explain money, attention, and onchain settlement without making the user read protocol copy. The better versions hid the chain until it became proof, budget, or a receipt.",
+        title: "Resolution",
+        body: "The sender flow shipped as a real product system, not a landing page: compose, targets, missions, plan, confirm, and an onchain receipt, with a refund path for ignored messages. BeeperX extended the same attention rail to agents that need permissioned access to humans, and the Beep Works site became frontend proof — a custom pixel/CRT world that makes inbox pricing legible in one screen.",
       },
       {
-        title: "What I learned",
-        body: "New incentives need a one-screen explanation. If the user needs three paragraphs to understand why the loop is fair, the product has already lost momentum.",
+        title: "Impact",
+        body: "44,850 total users and 106K+ battery check-ins, a 39.1% read rate — nearly 2x email — and 412K+ transactions across 60+ Base mainnet contracts. 2,400 paid-message senders held 50.6% repeat retention, BeeperX issued 2,400+ API keys, and the work drew external validation from the Base APAC Founders Residency and Base Batches 003.",
       },
     ],
     timeline: [

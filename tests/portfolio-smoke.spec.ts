@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { expect, test } from "@playwright/test";
 import {
@@ -194,12 +194,19 @@ test("view switch is reciprocal at 320px", async ({ page }) => {
 });
 
 test.describe("case page images", () => {
-  test("CaseMotion renders no raw img elements", () => {
-    const source = readFileSync(
-      resolve(process.cwd(), "app/objects/[slug]/CaseMotion.tsx"),
-      "utf8",
-    );
-    expect(source).not.toMatch(/<img\b/);
+  test("no case-page component renders a raw img element", () => {
+    // Boards were extracted out of CaseMotion, so scanning that file alone would
+    // let ported <img> tags escape enforcement. Scan every .tsx under the route dir.
+    const dir = resolve(process.cwd(), "app/objects/[slug]");
+    const tsxFiles = readdirSync(dir).filter((file) => file.endsWith(".tsx"));
+    expect(
+      tsxFiles.length,
+      "case-page tsx scan is not vacuous",
+    ).toBeGreaterThan(1);
+    for (const file of tsxFiles) {
+      const source = readFileSync(resolve(dir, file), "utf8");
+      expect(source, file).not.toMatch(/<img\b/);
+    }
   });
 
   test("case hero is a prioritized responsive image with stable dimensions", async ({
