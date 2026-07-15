@@ -31,3 +31,8 @@ tmp-*
 .playwright-mcp/
 home-*.png
 case-*.png
+
+# test / build / tooling artifacts
+test-results/
+tsconfig.tsbuildinfo
+.gstack/
