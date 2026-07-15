@@ -32,14 +32,6 @@ export type ProductSurface = {
   live: string;
 };
 
-export type ProofDeckCard = {
-  caseSlug: string;
-  label: string;
-  kind: string;
-  proof: string;
-  image?: string;
-};
-
 export function caseBySlug(slug: string): CaseStudy {
   const found = cases.find((item) => item.slug === slug);
   if (!found) throw new Error(`Unknown case slug: ${slug}`);
@@ -122,34 +114,6 @@ export const productSurfaces: ProductSurface[] = [
   },
 ];
 
-export const proofDeck: ProofDeckCard[] = [
-  {
-    caseSlug: "beeper",
-    label: "Beep Works",
-    kind: "paid attention",
-    proof: "44.8K users",
-  },
-  {
-    caseSlug: "mint-club",
-    label: "Mint Club",
-    kind: "token UX",
-    proof: "4+ company years",
-  },
-  {
-    caseSlug: "hunt-town",
-    label: "EWHA-CHAIN",
-    kind: "builder education",
-    proof: "MiniKit workshop",
-    image: "/proof/ewhachain-session-portrait.jpg",
-  },
-  {
-    caseSlug: "tradefish",
-    label: "TradeFish",
-    kind: "agent reputation",
-    proof: "1st place",
-  },
-];
-
 // The public field log: sourced rooms and residencies. The home page's video receipts are a
 // separate, deliberately media-first presentation and keep their own wording.
 export const fieldEntries: FieldEntry[] = [
@@ -193,15 +157,6 @@ export const resolvedSurfaces = productSurfaces.map((surface) => {
     image: surface.image ?? study.image,
     primitive: primitiveById(surface.primitiveId).name,
     caseHref: `/objects/${study.slug}`,
-  };
-});
-
-export const resolvedProofDeck = proofDeck.map((card) => {
-  const study = caseBySlug(card.caseSlug);
-  return {
-    ...card,
-    image: card.image ?? study.image,
-    href: `/objects/${study.slug}`,
   };
 });
 

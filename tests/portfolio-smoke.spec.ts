@@ -5,7 +5,6 @@ import {
   fieldEntries,
   primitives,
   productSurfaces,
-  proofDeck,
   resolvedPrimitives,
   resolvedSurfaces,
 } from "../app/content";
@@ -113,9 +112,6 @@ test.describe("shared portfolio content", () => {
       expect(caseSlugs, surface.caseSlug).toContain(surface.caseSlug);
       expect(primitiveIds, surface.primitiveId).toContain(surface.primitiveId);
     }
-    for (const card of proofDeck) {
-      expect(caseSlugs, card.caseSlug).toContain(card.caseSlug);
-    }
     expect(resolvedPrimitives.every((item) => item.example.length > 0)).toBe(
       true,
     );
@@ -162,7 +158,7 @@ test.describe("shared portfolio content", () => {
     for (const file of routeFiles) {
       const source = readFileSync(resolve(process.cwd(), file), "utf8");
       expect(source, file).not.toMatch(
-        /^const (primitives|fieldEntries|productSurfaces|proofDeck)\b/m,
+        /^const (primitives|fieldEntries|productSurfaces)\b/m,
       );
     }
   });
@@ -191,6 +187,44 @@ test("view switch is reciprocal at 320px", async ({ page }) => {
     }));
     expect(dimensions.scrollWidth, route).toBe(dimensions.innerWidth);
   }
+});
+
+test.describe("home sections", () => {
+  test("hero pager renders as an interactive proof feed", async ({ page }) => {
+    await page.goto("/");
+    const pager = page.locator(".pager");
+    await expect(pager).toBeVisible();
+    await expect(pager).toHaveAttribute("role", "button");
+    await expect(pager).toHaveAttribute("tabindex", "0");
+    await expect(page.locator(".pager-screen li").first()).toBeVisible();
+    await expect(
+      page.locator(".pager-caption a[href='#ledger']"),
+    ).toBeVisible();
+  });
+
+  test("equal object grid lists every case with no crowned flagship", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    await expect(page.locator(".object-grid .object-row")).toHaveCount(
+      cases.length,
+    );
+    await expect(page.locator(".flagship-object")).toHaveCount(0);
+    await expect(page.locator(".object-row[data-current='true']")).toHaveCount(
+      1,
+    );
+  });
+
+  test("orbit, how-i-work, and hire modules render", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.locator("#orbit .orbit-node").first()).toBeVisible();
+    await expect(page.locator("#how .how-step")).toHaveCount(6);
+    const hire = page.locator("#hire");
+    await expect(
+      hire.locator("a[href='mailto:hello@tony.works']"),
+    ).toBeVisible();
+    await expect(hire.locator("a[href='/tony-resume.pdf']")).toBeVisible();
+  });
 });
 
 test.describe("case page images", () => {
