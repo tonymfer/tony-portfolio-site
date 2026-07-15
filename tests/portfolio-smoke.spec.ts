@@ -14,6 +14,9 @@ const caseRoutes = [
   "/objects/beeper",
   "/objects/mint-club",
   "/objects/hunt-town",
+  "/objects/tradefish",
+  "/objects/base-world",
+  "/objects/taptato",
 ];
 const widths = [320, 375, 414, 768, 1440];
 const caseSlugs = new Set(cases.map((item) => item.slug));
@@ -270,6 +273,41 @@ test.describe("home sections", () => {
     ).toBeVisible();
     await expect(hire.locator("a[href='/tony-resume.pdf']")).toBeVisible();
   });
+
+  test("pager advances receipts on keyboard activation", async ({ page }) => {
+    // Under reduced motion the auto-cycle timer is disabled, so the only thing
+    // that moves the sliding window is the Enter/Space handler — a deterministic
+    // read of the F-006 keyboard affordance.
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/");
+    const lines = page.locator(".pager-screen ul li:not(.pager-typing)");
+    await expect(lines.first()).toBeVisible();
+    const before = await lines.allInnerTexts();
+    expect(before.length).toBeGreaterThan(1);
+    await page.locator(".pager").focus();
+    await page.keyboard.press("Enter");
+    const after = await lines.allInnerTexts();
+    expect(after, "window advanced by one").not.toEqual(before);
+    expect(after[0], "first line is the old second line").toBe(before[1]);
+  });
+
+  test("every orbit map link resolves", async ({ page, request }) => {
+    await page.goto("/");
+    const hrefs = await page
+      .locator("#orbit .orbit-node")
+      .evaluateAll((nodes) =>
+        nodes.map((node) => node.getAttribute("href")).filter(Boolean),
+      );
+    expect(hrefs.length, "orbit exposes navigable nodes").toBeGreaterThan(0);
+    for (const href of hrefs) {
+      if (href && href.startsWith("/")) {
+        const response = await request.get(href);
+        expect(response.status(), `orbit link ${href}`).toBe(200);
+      } else {
+        expect(href, `orbit link ${href}`).toMatch(/^https?:\/\//);
+      }
+    }
+  });
 });
 
 test.describe("case page images", () => {
@@ -285,6 +323,21 @@ test.describe("case page images", () => {
     for (const file of tsxFiles) {
       const source = readFileSync(resolve(dir, file), "utf8");
       expect(source, file).not.toMatch(/<img\b/);
+    }
+  });
+
+  test("a conforming case renders the full Wall/Fork/Resolution/Impact arc", async ({
+    page,
+  }) => {
+    // Beeper is authored with all four canonical narrative keys, so it must render
+    // the arc (not the field-notes fallback). The all-or-nothing conformance is
+    // guarded by asserting each canonical step is present exactly once.
+    await page.goto("/objects/beeper");
+    const arc = page.locator(".narrative-arc");
+    await expect(arc).toBeVisible();
+    await expect(arc.locator(".narrative-step")).toHaveCount(4);
+    for (const key of ["wall", "fork", "resolution", "impact"]) {
+      await expect(arc.locator(`.step-${key}`), key).toHaveCount(1);
     }
   });
 
