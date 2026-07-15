@@ -11,22 +11,36 @@ import {
 } from "../app/content";
 import { cases } from "../app/data";
 
-const caseRoutes = ["/objects/beeper", "/objects/mint-club", "/objects/hunt-town"];
+const caseRoutes = [
+  "/objects/beeper",
+  "/objects/mint-club",
+  "/objects/hunt-town",
+];
 const widths = [320, 375, 414, 768, 1440];
 const caseSlugs = new Set(cases.map((item) => item.slug));
 
-test("home returns successfully and exposes selected work", async ({ page }) => {
+test("home returns successfully and exposes selected work", async ({
+  page,
+}) => {
   const response = await page.goto("/");
   expect(response?.status()).toBe(200);
-  await expect(page.getByText("Tony Park", { exact: true }).first()).toBeVisible();
-  await expect(page.getByRole("link", { name: "View selected work" })).toHaveAttribute("href", "#objects");
+  await expect(
+    page.getByText("Tony Park", { exact: true }).first(),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "View selected work" }),
+  ).toHaveAttribute("href", "#objects");
 });
 
 test("wiki returns successfully and links home", async ({ page }) => {
   const response = await page.goto("/wiki");
   expect(response?.status()).toBe(200);
-  await expect(page.getByRole("link", { name: "TONY PARK INDEX", exact: true })).toBeVisible();
-  await expect(page.getByText("Primitive glossary", { exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "TONY PARK INDEX", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Primitive glossary", { exact: true }),
+  ).toBeVisible();
   await expect(page.locator('a[href="/"]').first()).toBeVisible();
 });
 
@@ -37,7 +51,9 @@ test("case routes return successfully", async ({ request }) => {
   }
 });
 
-test("robots and sitemap return successfully and sitemap includes wiki", async ({ request }) => {
+test("robots and sitemap return successfully and sitemap includes wiki", async ({
+  request,
+}) => {
   const robots = await request.get("/robots.txt");
   expect(robots.status()).toBe(200);
 
@@ -46,9 +62,35 @@ test("robots and sitemap return successfully and sitemap includes wiki", async (
   expect(await sitemap.text()).toContain("/wiki");
 });
 
+test("retired case slugs redirect (308) to their new targets", async ({
+  request,
+}) => {
+  const redirects: Array<[string, string]> = [
+    ["/objects/far-cards", "/objects/mint-club"],
+    ["/objects/taptato-base-world", "/objects/taptato"],
+  ];
+  for (const [from, to] of redirects) {
+    const response = await request.get(from, { maxRedirects: 0 });
+    expect(response.status(), from).toBe(308);
+    expect(response.headers()["location"], from).toBe(to);
+  }
+});
+
+test("sitemap lists the split-case URLs and drops the retired slugs", async ({
+  request,
+}) => {
+  const sitemap = await (await request.get("/sitemap.xml")).text();
+  expect(sitemap).toContain("/objects/base-world");
+  expect(sitemap).toContain("/objects/taptato");
+  expect(sitemap).not.toContain("/objects/far-cards");
+  expect(sitemap).not.toContain("/objects/taptato-base-world");
+});
+
 for (const route of ["/", "/wiki"]) {
   for (const width of widths) {
-    test(`${route} has no horizontal overflow at ${width}px`, async ({ page }) => {
+    test(`${route} has no horizontal overflow at ${width}px`, async ({
+      page,
+    }) => {
       await page.setViewportSize({ width, height: 900 });
       await page.goto(route);
       const dimensions = await page.evaluate(() => ({
@@ -74,7 +116,9 @@ test.describe("shared portfolio content", () => {
     for (const card of proofDeck) {
       expect(caseSlugs, card.caseSlug).toContain(card.caseSlug);
     }
-    expect(resolvedPrimitives.every((item) => item.example.length > 0)).toBe(true);
+    expect(resolvedPrimitives.every((item) => item.example.length > 0)).toBe(
+      true,
+    );
   });
 
   test("internal case links resolve", async ({ request }) => {
@@ -99,7 +143,10 @@ test.describe("shared portfolio content", () => {
       await page.goto(route);
       for (const item of cases) {
         await expect(
-          page.getByText(item.name, { exact: true }).filter({ visible: true }).first(),
+          page
+            .getByText(item.name, { exact: true })
+            .filter({ visible: true })
+            .first(),
           `${item.name} on ${route}`,
         ).toBeVisible();
       }
@@ -107,10 +154,16 @@ test.describe("shared portfolio content", () => {
   });
 
   test("no route file re-declares shared content arrays", () => {
-    const routeFiles = ["app/page.tsx", "app/wiki/page.tsx", "app/HomeMotion.tsx"];
+    const routeFiles = [
+      "app/page.tsx",
+      "app/wiki/page.tsx",
+      "app/HomeMotion.tsx",
+    ];
     for (const file of routeFiles) {
       const source = readFileSync(resolve(process.cwd(), file), "utf8");
-      expect(source, file).not.toMatch(/^const (primitives|fieldEntries|productSurfaces|proofDeck)\b/m);
+      expect(source, file).not.toMatch(
+        /^const (primitives|fieldEntries|productSurfaces|proofDeck)\b/m,
+      );
     }
   });
 });
@@ -142,11 +195,16 @@ test("view switch is reciprocal at 320px", async ({ page }) => {
 
 test.describe("case page images", () => {
   test("CaseMotion renders no raw img elements", () => {
-    const source = readFileSync(resolve(process.cwd(), "app/objects/[slug]/CaseMotion.tsx"), "utf8");
+    const source = readFileSync(
+      resolve(process.cwd(), "app/objects/[slug]/CaseMotion.tsx"),
+      "utf8",
+    );
     expect(source).not.toMatch(/<img\b/);
   });
 
-  test("case hero is a prioritized responsive image with stable dimensions", async ({ page }) => {
+  test("case hero is a prioritized responsive image with stable dimensions", async ({
+    page,
+  }) => {
     await page.goto("/objects/beeper");
     const hero = page.locator(".case-image-wrap img");
     await expect(hero).toHaveAttribute("srcset", /\/_next\/image/);
@@ -157,12 +215,16 @@ test.describe("case page images", () => {
     expect(box?.width).toBeGreaterThan(0);
     expect(box?.height).toBeGreaterThan(0);
     await expect(async () => {
-      const natural = await hero.evaluate((image) => (image as HTMLImageElement).naturalWidth);
+      const natural = await hero.evaluate(
+        (image) => (image as HTMLImageElement).naturalWidth,
+      );
       expect(natural).toBeGreaterThan(0);
     }).toPass({ timeout: 15_000 });
   });
 
-  test("Beep Works frontend proof stays legible and loads at every width", async ({ page }) => {
+  test("Beep Works frontend proof stays legible and loads at every width", async ({
+    page,
+  }) => {
     for (const width of [390, 1440]) {
       await page.setViewportSize({ width, height: 900 });
       await page.goto("/objects/beeper");
@@ -170,16 +232,23 @@ test.describe("case page images", () => {
       for (const shot of [".desktop-shot img", ".mobile-shot img"]) {
         const image = page.locator(shot);
         await image.scrollIntoViewIfNeeded();
-        await expect(image, `${shot} at ${width}px`).toHaveCSS("object-fit", "contain");
+        await expect(image, `${shot} at ${width}px`).toHaveCSS(
+          "object-fit",
+          "contain",
+        );
         await expect(async () => {
-          const natural = await image.evaluate((node) => (node as HTMLImageElement).naturalWidth);
+          const natural = await image.evaluate(
+            (node) => (node as HTMLImageElement).naturalWidth,
+          );
           expect(natural, `${shot} at ${width}px`).toBeGreaterThan(0);
         }).toPass({ timeout: 15_000 });
       }
     }
   });
 
-  test("video receipts keep their external links and load their stills", async ({ page }) => {
+  test("video receipts keep their external links and load their stills", async ({
+    page,
+  }) => {
     await page.goto("/objects/beeper");
     const cards = page.locator(".video-card");
     await expect(cards).toHaveCount(4);
@@ -190,21 +259,28 @@ test.describe("case page images", () => {
       "https://x.com/tonymfer/status/1991792691198427618",
       "https://x.com/beeponbase/status/2009487314708517220",
     ]) {
-      await expect(page.locator(`.video-card[href="${href}"]`)).toHaveAttribute("rel", "noreferrer");
+      await expect(page.locator(`.video-card[href="${href}"]`)).toHaveAttribute(
+        "rel",
+        "noreferrer",
+      );
     }
 
     const stills = cards.locator("img");
     await stills.first().scrollIntoViewIfNeeded();
     await expect(async () => {
       const broken = await stills.evaluateAll((images) =>
-        images.filter((image) => (image as HTMLImageElement).naturalWidth === 0).map((image) => (image as HTMLImageElement).src),
+        images
+          .filter((image) => (image as HTMLImageElement).naturalWidth === 0)
+          .map((image) => (image as HTMLImageElement).src),
       );
       expect(broken).toEqual([]);
     }).toPass({ timeout: 15_000 });
   });
 
   for (const width of [390, 1440]) {
-    test(`/objects/beeper has no horizontal overflow at ${width}px`, async ({ page }) => {
+    test(`/objects/beeper has no horizontal overflow at ${width}px`, async ({
+      page,
+    }) => {
       await page.setViewportSize({ width, height: 900 });
       await page.goto("/objects/beeper");
       const dimensions = await page.evaluate(() => ({
@@ -216,7 +292,9 @@ test.describe("case page images", () => {
   }
 });
 
-test("wiki has semantic section order and no broken local images", async ({ page }) => {
+test("wiki has semantic section order and no broken local images", async ({
+  page,
+}) => {
   await page.goto("/wiki");
   await expect(page.locator("h1")).toHaveCount(1);
   await expect(page.locator("h2")).toHaveText([
@@ -235,7 +313,9 @@ test("wiki has semantic section order and no broken local images", async ({ page
   await page.locator('img[src^="/"]').evaluateAll(async (images) => {
     for (const image of images) {
       image.scrollIntoView({ behavior: "instant", block: "center" });
-      await new Promise((resolve) => requestAnimationFrame(() => resolve(null)));
+      await new Promise((resolve) =>
+        requestAnimationFrame(() => resolve(null)),
+      );
     }
     window.scrollTo({ top: 0, behavior: "instant" });
   });
@@ -243,15 +323,19 @@ test("wiki has semantic section order and no broken local images", async ({ page
   await expect(async () => {
     const settled = await page
       .locator('img[src^="/"]')
-      .evaluateAll((images) => images.every((image) => (image as HTMLImageElement).complete));
+      .evaluateAll((images) =>
+        images.every((image) => (image as HTMLImageElement).complete),
+      );
     expect(settled).toBe(true);
   }).toPass({ timeout: 15_000 });
 
   // A loaded-but-zero-width image is one that actually failed to decode or 404'd.
-  const brokenLocalImages = await page.locator('img[src^="/"]').evaluateAll((images) =>
-    images
-      .filter((image) => (image as HTMLImageElement).naturalWidth === 0)
-      .map((image) => (image as HTMLImageElement).src),
-  );
+  const brokenLocalImages = await page
+    .locator('img[src^="/"]')
+    .evaluateAll((images) =>
+      images
+        .filter((image) => (image as HTMLImageElement).naturalWidth === 0)
+        .map((image) => (image as HTMLImageElement).src),
+    );
   expect(brokenLocalImages).toEqual([]);
 });
