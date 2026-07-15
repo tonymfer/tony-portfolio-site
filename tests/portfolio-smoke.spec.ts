@@ -162,6 +162,51 @@ test.describe("shared portfolio content", () => {
       );
     }
   });
+
+  // Positioning guard (Tony's QA answers, highest authority): the public title is
+  // "Product Engineer" — never "AI × Web3 Product Engineer" in a title/role — and
+  // proof discipline forbids the "55 commits across 6 repos" claim. The banned-title
+  // regex intentionally requires a capitalized "Product Engineer" suffix so the
+  // legitimate lowercase best-fit domain chip ("AI x Web3 product") stays allowed.
+  const bannedIdentityTitle = /AI\s*[×x]\s*Web3\s+Product Engineer/i;
+  const bannedCommitClaim = /55\s+(public\s+)?commits/i;
+
+  test("shipped copy keeps the Product Engineer identity and no banned claims", () => {
+    const shippedFiles = [
+      "app/layout.tsx",
+      "app/page.tsx",
+      "app/wiki/page.tsx",
+    ];
+    for (const file of shippedFiles) {
+      const source = readFileSync(resolve(process.cwd(), file), "utf8");
+      expect(
+        source,
+        `${file} must not use the "AI × Web3 Product Engineer" title (public title is "Product Engineer")`,
+      ).not.toMatch(bannedIdentityTitle);
+      expect(
+        source,
+        `${file} must not claim "55 commits" (evidence discipline)`,
+      ).not.toMatch(bannedCommitClaim);
+    }
+  });
+
+  test("home and wiki render the Product Engineer identity, not the regressed title", async ({
+    page,
+  }) => {
+    for (const route of ["/", "/wiki"]) {
+      await page.goto(route);
+      const title = await page.title();
+      expect(title, `${route} <title>`).not.toMatch(bannedIdentityTitle);
+      const body = (await page.locator("body").innerText()).replace(
+        /\s+/g,
+        " ",
+      );
+      expect(body, `${route} body`).not.toMatch(bannedIdentityTitle);
+      expect(body, `${route} body`).not.toMatch(bannedCommitClaim);
+    }
+    await page.goto("/");
+    expect(await page.title(), "home <title>").toMatch(/Product Engineer/i);
+  });
 });
 
 test("view switch is reciprocal at 320px", async ({ page }) => {

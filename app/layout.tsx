@@ -39,7 +39,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tonypark.xyz";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Tony Park — AI × Web3 Product Engineer",
+    default: "Tony Park — Product Engineer",
     template: "%s — Tony Park",
   },
   description:
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Tony Park", url: "https://x.com/tonymfer" }],
   creator: "Tony Park",
   openGraph: {
-    title: "Tony Park — AI × Web3 Product Engineer",
+    title: "Tony Park — Product Engineer",
     description:
       "Selected products, demos, video clips, and postmortems from shipped Base/Farcaster, paid attention, and AI-agent product loops.",
     type: "website",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tony Park — AI × Web3 Product Engineer",
+    title: "Tony Park — Product Engineer",
     description:
       "HUNT / Mint Club, Beeper, TradeFish, far.cards, TapTato, and public proof from shipped product loops.",
     creator: "@tonymfer",
