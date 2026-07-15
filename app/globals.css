@@ -1,33 +1,41 @@
-/* Hallmark · pre-emit critique: P5 H5 E4 S5 R4 V5
- * macrostructure: Workbench · genre: editorial · design-system: DESIGN.md
- * motion: proof-deck · reveal-once · reading-progress
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R4 V5
+ * macrostructure: Workbench (locked) · genre: atmospheric · theme: Terminal Receipts (custom · dark phosphor)
+ * ground: CRT-black · type: mono-forward (IBM Plex Mono) · accent: phosphor-green + Base-blue
+ * texture: dot-matrix grid + CRT scanline + vignette · motion: reveal-once · reading-progress
  * contrast: reviewed · responsive: pass 320/375/414/768
  */
 @import "tailwindcss";
 
 :root {
-  --bg: #edf0e8;
-  --bg-2: #dfe5dc;
-  --ink: #11110f;
-  --muted: #565e55;
-  --faint: #858f84;
-  --line: rgba(17, 17, 15, 0.14);
-  --line-strong: rgba(17, 17, 15, 0.28);
-  --accent: #2858e8;
-  --clay: #b98f62;
-  --green: #3f6136;
-  --paper: rgba(248, 251, 245, 0.58);
+  /* Terminal Receipts — dark phosphor ground (the receipts machine, lit) */
+  --bg: #0c0e0b; /* CRT black, faint green cast */
+  --bg-2: #05070a; /* cool deep floor for the vertical wash */
+  --ink: #e9efe0; /* phosphor bone — warm off-white */
+  --muted: #99a48d; /* desaturated sage-grey — secondary */
+  --faint: #616b57; /* faint labels / serials / timestamps */
+  --line: rgba(233, 239, 224, 0.13); /* hairline on dark = light-alpha */
+  --line-strong: rgba(233, 239, 224, 0.26);
+  --accent: #4f80ff; /* Base blue, lifted for dark — links / interactive only */
+  --clay: #d2a878; /* amber terminal text — tertiary */
+  --green: #63e187; /* phosphor green — structural accent-of-record */
+  --phosphor: #8dff7a; /* bright phosphor for glow moments */
+  --paper: rgba(233, 239, 224, 0.045); /* raised-panel film on dark */
+  --panel: #13160f; /* solid raised panel */
+  --panel-2: #171b12; /* higher raised panel */
+  --panel-line: rgba(233, 239, 224, 0.1);
+  --rec: #ff5a3c; /* live / REC indicator red */
+  --scanline: rgba(0, 0, 0, 0.22); /* CRT scanline darkening */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --dur-micro: 120ms;
   --dur-short: 220ms;
   --dur-long: 420ms;
-  /* LCD pager face (HeroPager) */
+  /* LCD pager face (HeroPager) — the anchor object the whole ground extends */
   --lcd-lit: #d9ef92;
   --lcd-dim: #c2dc6d;
   --lcd-ink: #232d10;
-  --shell: #1d1e19;
+  --shell: #14150f; /* pager housing, sits on the new ground with a bezel */
 }
 
 * {
@@ -43,52 +51,51 @@ body {
   margin: 0;
   min-height: 100dvh;
   color: var(--ink);
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
   background:
     radial-gradient(
-      circle at 76% 10%,
-      rgba(40, 88, 232, 0.09),
-      transparent 27rem
+      circle at 50% -6%,
+      rgba(99, 225, 135, 0.06),
+      transparent 34rem
     ),
-    radial-gradient(circle at 8% 86%, rgba(63, 97, 54, 0.1), transparent 24rem),
+    radial-gradient(
+      circle at 88% 8%,
+      rgba(79, 128, 255, 0.05),
+      transparent 26rem
+    ),
     linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
   overflow-x: clip;
 }
+/* Dot-matrix phosphor grid + CRT scanlines — the terminal ground texture */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.07;
+  opacity: 0.85;
   background-image:
-    url("/archive-texture.png"),
     radial-gradient(
       circle at 1px 1px,
-      rgba(17, 17, 15, 0.2) 1px,
+      rgba(141, 255, 122, 0.05) 1px,
       transparent 0
     ),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E");
+    repeating-linear-gradient(0deg, var(--scanline) 0 1px, transparent 1px 3px);
   background-size:
-    520px 520px,
-    7px 7px,
-    180px 180px;
-  mix-blend-mode: multiply;
+    22px 22px,
+    100% 3px;
   z-index: 20;
 }
+/* CRT vignette — screen curvature darkening at the edges */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.32;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.18),
-    transparent 18%,
-    transparent 82%,
-    rgba(17, 17, 15, 0.035)
+  background: radial-gradient(
+    128% 108% at 50% 42%,
+    transparent 52%,
+    rgba(0, 0, 0, 0.55) 100%
   );
-  mix-blend-mode: soft-light;
   z-index: 21;
 }
 a {
@@ -265,7 +272,7 @@ button:focus-visible {
   justify-content: center;
   padding: 11px 14px;
   border: 1px solid var(--line-strong);
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(233, 239, 224, 0.08);
   color: var(--ink);
   font-family: var(--font-geist-mono), monospace;
   font-size: 12px;
@@ -282,7 +289,7 @@ button:focus-visible {
 }
 .hero-actions a:hover {
   transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.42);
+  background: rgba(233, 239, 224, 0.11);
   color: var(--accent);
 }
 .hero-actions a:first-child:hover {
@@ -300,7 +307,7 @@ button:focus-visible {
   min-height: 104px;
   padding: 13px;
   border: 1px solid var(--line-strong);
-  background: rgba(255, 255, 255, 0.24);
+  background: rgba(233, 239, 224, 0.05);
   box-shadow: 0 14px 38px rgba(40, 34, 25, 0.06);
 }
 .hero-proof strong {
@@ -490,7 +497,7 @@ button:focus-visible {
   position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(233, 239, 224, 0.045);
   box-shadow: 0 14px 38px rgba(40, 34, 25, 0.08);
 }
 .artifact-tile:first-child {
@@ -610,7 +617,7 @@ button:focus-visible {
   margin-bottom: 22px;
   padding: clamp(14px, 2vw, 22px);
   border: 1px solid var(--line-strong);
-  background: rgba(255, 255, 255, 0.24);
+  background: rgba(233, 239, 224, 0.05);
   box-shadow: 0 24px 70px rgba(40, 34, 25, 0.1);
 }
 .flagship-image {
@@ -712,7 +719,7 @@ button:focus-visible {
   inset: 0;
   z-index: -1;
   opacity: 0;
-  background: rgba(255, 255, 255, 0.34);
+  background: rgba(233, 239, 224, 0.1);
   transition: opacity 160ms ease;
 }
 .object-row:hover::after {
@@ -774,7 +781,7 @@ button:focus-visible {
   padding: 7px 10px;
   border: 1px solid var(--line);
   color: var(--ink);
-  background: rgba(255, 255, 255, 0.24);
+  background: rgba(233, 239, 224, 0.05);
   font-size: 11px;
 }
 .proof-line span {
@@ -822,7 +829,7 @@ button:focus-visible {
   color: var(--muted);
   font-size: 11px;
   text-transform: uppercase;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(233, 239, 224, 0.06);
 }
 
 .surface-intro {
@@ -1114,7 +1121,7 @@ button:focus-visible {
   gap: clamp(28px, 6vw, 84px);
   padding: clamp(18px, 3vw, 32px);
   border: 1px solid var(--line-strong);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(233, 239, 224, 0.045);
   box-shadow: 0 18px 54px rgba(40, 34, 25, 0.08);
 }
 .company-panel h2 {
@@ -1226,14 +1233,14 @@ button:focus-visible {
   flex-direction: column;
   padding: 12px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(233, 239, 224, 0.05);
   transition:
     transform 160ms ease,
     background 160ms ease;
 }
 .video-home-card:hover {
   transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.36);
+  background: rgba(233, 239, 224, 0.1);
 }
 .video-home-card img {
   width: 100%;
@@ -1350,7 +1357,7 @@ button:focus-visible {
   margin-top: 24px;
   padding: 12px 14px;
   border: 1px solid var(--line-strong);
-  background: rgba(255, 255, 255, 0.24);
+  background: rgba(233, 239, 224, 0.05);
   color: var(--ink);
   font-family: var(--font-geist-mono), monospace;
   font-size: 12px;
@@ -1361,7 +1368,7 @@ button:focus-visible {
 }
 .footer-cta:hover {
   transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.38);
+  background: rgba(233, 239, 224, 0.1);
 }
 .note-list {
   margin-top: 34px;
@@ -1441,7 +1448,7 @@ button:focus-visible {
   min-height: 128px;
   padding: 14px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(233, 239, 224, 0.05);
 }
 .about-grid span {
   display: block;
@@ -1555,7 +1562,7 @@ button:focus-visible {
 }
 .case-tags span {
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(233, 239, 224, 0.05);
   padding: 7px 10px;
   color: var(--muted);
   font-family: var(--font-geist-mono), monospace;
@@ -1597,7 +1604,7 @@ button:focus-visible {
 .metric-chip {
   padding: 12px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.24);
+  background: rgba(233, 239, 224, 0.05);
 }
 .metric-chip strong {
   display: block;
@@ -1745,7 +1752,7 @@ button:focus-visible {
   min-height: 132px;
   padding: 13px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(233, 239, 224, 0.05);
 }
 .frontend-craft-list strong {
   display: block;
@@ -1772,7 +1779,7 @@ button:focus-visible {
   min-height: 154px;
   padding: 16px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(233, 239, 224, 0.05);
 }
 .mechanic-card h3,
 .video-card h3 {
@@ -1873,7 +1880,7 @@ button:focus-visible {
   justify-content: space-between;
   padding: 12px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(233, 239, 224, 0.05);
 }
 .flow-step span,
 .partner-card span,
@@ -1905,7 +1912,7 @@ button:focus-visible {
 }
 .video-card:hover {
   transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.34);
+  background: rgba(233, 239, 224, 0.1);
 }
 .case-section {
   display: grid;
@@ -2027,7 +2034,7 @@ button:focus-visible {
 .ownership-cell {
   padding: 16px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(233, 239, 224, 0.05);
 }
 .ownership-cell.wide {
   grid-column: 1 / -1;
@@ -2081,7 +2088,7 @@ button:focus-visible {
   margin: 0;
   padding: 10px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(233, 239, 224, 0.05);
 }
 .proof-detail-media {
   position: relative;
@@ -2111,7 +2118,7 @@ button:focus-visible {
   flex-direction: column;
   padding: 12px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(233, 239, 224, 0.05);
   color: inherit;
   transition:
     transform 160ms ease,
@@ -2119,7 +2126,7 @@ button:focus-visible {
 }
 .subproject:hover {
   transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.36);
+  background: rgba(233, 239, 224, 0.1);
 }
 .subproject-media {
   position: relative;
@@ -2282,7 +2289,7 @@ button:focus-visible {
     align-items: center;
     justify-content: center;
     border: 1px solid rgba(17, 17, 15, 0.1);
-    background: rgba(255, 255, 255, 0.24);
+    background: rgba(233, 239, 224, 0.05);
     color: var(--ink);
     font-family: var(--font-geist-mono), monospace;
     font-size: 11px;
@@ -2442,7 +2449,7 @@ button:focus-visible {
     flex: 0 0 76%;
     scroll-snap-align: start;
     border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.24);
+    background: rgba(233, 239, 224, 0.05);
     padding: 16px;
     min-height: 102px;
   }
@@ -2585,7 +2592,7 @@ button:focus-visible {
     min-height: 104px;
     scroll-snap-align: start;
     border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(233, 239, 224, 0.045);
   }
   .flagship-object {
     grid-template-columns: 1fr;
@@ -2677,7 +2684,7 @@ button:focus-visible {
     min-height: 0;
     padding: 14px;
     border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.22);
+    background: rgba(233, 239, 224, 0.05);
     box-shadow: 0 14px 36px rgba(40, 34, 25, 0.08);
   }
   .object-row::after {
@@ -2829,7 +2836,7 @@ button:focus-visible {
     min-height: 116px;
     padding: 18px;
     border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.22);
+    background: rgba(233, 239, 224, 0.05);
   }
   .case-meta-card strong,
   .case-meta-card a {
@@ -3233,7 +3240,7 @@ button:focus-visible {
 
 /* Equal object grid — no crowned flagship */
 .object-grid .object-row[data-current="true"] {
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(233, 239, 224, 0.08);
 }
 .current-tag {
   position: absolute;
