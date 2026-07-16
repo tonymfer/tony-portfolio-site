@@ -1,4 +1,4 @@
-import { cases, type CaseStudy } from "./data";
+import { cases, pagerReceipts, type CaseStudy } from "./data";
 
 // Cross-view facts shared by the visual home (`/`), the motion deck, and the index (`/wiki`).
 // Route files must not re-declare primitives, surfaces, field entries, or deck annotations.
@@ -32,14 +32,6 @@ export type ProductSurface = {
   live: string;
 };
 
-export type ProofDeckCard = {
-  caseSlug: string;
-  label: string;
-  kind: string;
-  proof: string;
-  image?: string;
-};
-
 export function caseBySlug(slug: string): CaseStudy {
   const found = cases.find((item) => item.slug === slug);
   if (!found) throw new Error(`Unknown case slug: ${slug}`);
@@ -50,32 +42,37 @@ export const primitives: ProductPrimitive[] = [
   {
     id: "paid-attention",
     name: "Paid attention",
-    definition: "A receiver prices interruption; a sender pays for signal; ignored value can return instead of becoming notification residue.",
+    definition:
+      "A receiver prices interruption; a sender pays for signal; ignored value can return instead of becoming notification residue.",
     exampleCaseSlug: "beeper",
   },
   {
     id: "token-backed-markets",
     name: "Token-backed markets",
-    definition: "Bonding curves, backing assets, swaps, and token families expressed as inspectable product behavior.",
+    definition:
+      "Bonding curves, backing assets, swaps, and token families expressed as inspectable product behavior.",
     exampleCaseSlug: "mint-club",
   },
   {
     id: "builder-community-os",
     name: "Builder community OS",
-    definition: "Support, rewards, education, and public demo loops that help early builders move from idea to artifact.",
+    definition:
+      "Support, rewards, education, and public demo loops that help early builders move from idea to artifact.",
     exampleCaseSlug: "hunt-town",
   },
   {
     id: "agent-reputation",
     name: "Agent reputation",
-    definition: "AI market calls become timestamped records with outcomes and score movement, without custody or trade execution.",
+    definition:
+      "AI market calls become timestamped records with outcomes and score movement, without custody or trade execution.",
     exampleCaseSlug: "tradefish",
   },
   {
     id: "wallet-infrastructure",
     name: "Wallet infrastructure",
-    definition: "Accounts and payments become understandable when the interface turns them into playable or social actions.",
-    exampleCaseSlug: "taptato-base-world",
+    definition:
+      "Accounts and payments become understandable when the interface turns them into playable or social actions.",
+    exampleCaseSlug: "taptato",
   },
 ];
 
@@ -109,25 +106,12 @@ export const productSurfaces: ProductSurface[] = [
     live: "https://github.com/tonymfer/TradeFish",
   },
   {
-    caseSlug: "taptato-base-world",
+    caseSlug: "taptato",
     primitiveId: "wallet-infrastructure",
-    copy: "Account and payment primitives made tangible through a playable USDC loop and a community map people could immediately touch.",
+    copy: "Account and payment primitives made tangible through a playable USDC loop people could immediately touch — account abstraction hidden inside a game.",
     detail: "Prototype · wallet UX · public demo",
     live: "https://taptato.vercel.app/",
   },
-];
-
-export const proofDeck: ProofDeckCard[] = [
-  { caseSlug: "beeper", label: "Beep Works", kind: "paid attention", proof: "44.8K users" },
-  { caseSlug: "mint-club", label: "Mint Club", kind: "token UX", proof: "4+ company years" },
-  {
-    caseSlug: "hunt-town",
-    label: "EWHA-CHAIN",
-    kind: "builder education",
-    proof: "MiniKit workshop",
-    image: "/proof/ewhachain-session-portrait.jpg",
-  },
-  { caseSlug: "tradefish", label: "TradeFish", kind: "agent reputation", proof: "1st place" },
 ];
 
 // The public field log: sourced rooms and residencies. The home page's video receipts are a
@@ -176,16 +160,14 @@ export const resolvedSurfaces = productSurfaces.map((surface) => {
   };
 });
 
-export const resolvedProofDeck = proofDeck.map((card) => {
-  const study = caseBySlug(card.caseSlug);
-  return {
-    ...card,
-    image: card.image ?? study.image,
-    href: `/objects/${study.slug}`,
-  };
-});
-
 export const resolvedPrimitives = primitives.map((primitive) => ({
   ...primitive,
   example: caseBySlug(primitive.exampleCaseSlug).name,
+}));
+
+// The HeroPager feed lives in data.ts (single source of truth for case claims);
+// resolving it here throws at build if a receipt cites a case that no longer exists.
+export const resolvedPagerReceipts = pagerReceipts.map((receipt) => ({
+  ...receipt,
+  caseHref: `/objects/${caseBySlug(receipt.caseSlug).slug}`,
 }));
