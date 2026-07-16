@@ -1,12 +1,14 @@
 import Image from "next/image";
 import type { CaseStudy } from "../../data";
 
+// Hero strip carries only the metrics with a clean public/evidence-bundle
+// footing. On-chain, dashboard, and residency figures ship as "source pending"
+// on the proof board (data.ts) until each has a public receipt — R4 sign-off.
 const beeperMetrics = [
   ["44.8K", "total users"],
+  ["32.8K", "active users"],
   ["39.1%", "read rate"],
-  ["50.6%", "repeat senders"],
-  ["106K+", "check-ins"],
-  ["412K+", "Base txs"],
+  ["2.4K", "paid senders"],
 ];
 
 const beeperMechanic = [

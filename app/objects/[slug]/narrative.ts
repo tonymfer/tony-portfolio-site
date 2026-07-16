@@ -7,10 +7,11 @@ export const NARRATIVE_KEYS = ["Wall", "Fork", "Resolution", "Impact"] as const;
 export type NarrativeKey = (typeof NARRATIVE_KEYS)[number];
 
 // Display labels — the ONLY thing the U8 label A/B changes. Storage keys never move.
-// Default: metaphor set (option A). Plain set (option B) = Problem/Decision/Resolution/Impact.
+// U8 verdict (2026-07-16): plain set (option B) — clearest for the hiring-founder
+// reader. Storage keys stay the metaphor words so legacy fieldNote titles can't collide.
 export const NARRATIVE_LABELS: Record<NarrativeKey, string> = {
-  Wall: "Wall",
-  Fork: "Fork",
+  Wall: "Problem",
+  Fork: "Decision",
   Resolution: "Resolution",
   Impact: "Impact",
 };

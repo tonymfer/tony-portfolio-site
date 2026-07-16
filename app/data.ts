@@ -89,10 +89,23 @@ export const cases: CaseStudy[] = [
     proofPoints: [
       "44,850 total users and 32,793 active users in the Base Batches evidence bundle",
       "7,936 unique users and 5,675 transaction users in the last 28 days",
-      "2,400 unique paid-message senders; 1,215 repeat senders / 50.6% retention",
-      "106K+ battery check-ins and 39.1% read rate — nearly 2x email, 8x push",
-      "60+ Base mainnet contracts with 412K+ total transactions",
-      "BeeperX SDK/API with 2,400+ API keys issued",
+      "2,400 unique paid-message senders",
+      "39.1% read rate — nearly 2x email, 8x push",
+      // R4 sign-off (2026-07-16): these ship as source-pending until each has a
+      // public receipt — on-chain (contract addresses), dashboard, and residency.
+      {
+        text: "1,215 repeat senders / 50.6% repeat retention",
+        sourceNeeded: true,
+      },
+      { text: "106K+ battery check-ins", sourceNeeded: true },
+      {
+        text: "60+ Base mainnet contracts with 412K+ total transactions",
+        sourceNeeded: true,
+      },
+      {
+        text: "BeeperX SDK/API with 2,400+ API keys issued",
+        sourceNeeded: true,
+      },
       {
         text: "Live Beep Works website — retro CRT/pixel product surface",
         href: "https://beep.works/",
@@ -119,12 +132,12 @@ export const cases: CaseStudy[] = [
       {
         image: "/proof/beeper-battery.png",
         caption:
-          "What this proves: 106K+ battery check-ins is a recurring on-chain engagement loop, not a one-time install spike.",
+          "What this proves: battery check-ins are a recurring on-chain engagement loop, not a one-time install spike — the public count receipt is still pending.",
       },
       {
         image: "/proof/baseapac-residency.jpg",
         caption:
-          "What this proves: Base APAC / Founders Residency feature — external validation of the product and its traction.",
+          "What this proves: a public Base APAC feature covering the product and its traction — the Founders Residency invite itself ships as a receipt when public.",
       },
     ],
     ownership: {
@@ -176,7 +189,7 @@ export const cases: CaseStudy[] = [
       },
       {
         title: "Impact",
-        body: "44,850 total users and 106K+ battery check-ins, a 39.1% read rate — nearly 2x email — and 412K+ transactions across 60+ Base mainnet contracts. 2,400 paid-message senders held 50.6% repeat retention, BeeperX issued 2,400+ API keys, and the work drew external validation from the Base APAC Founders Residency and Base Batches 003.",
+        body: "44,850 total users, 32,793 of them active, and a 39.1% read rate — nearly 2x email. 2,400 people paid to send a message, which is the loop actually working: senders paying for signal, receivers earning for attention. The deeper figures — battery check-ins, total transactions across Base mainnet contracts, repeat-sender retention, BeeperX API keys, and the Base APAC residency track — are real but still moving from internal dashboards to public receipts, so they ship as source-pending until each carries a link.",
       },
     ],
     timeline: [
