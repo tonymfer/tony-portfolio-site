@@ -64,7 +64,7 @@ export default function WikiPortfolio() {
             Visual portfolio
           </a>
           <a href="/tony-resume.pdf">Résumé PDF</a>
-          <a href="mailto:hello@tony.works">Contact</a>
+          <a href="mailto:tony.base.eth@gmail.com">Contact</a>
         </nav>
       </header>
 
@@ -105,7 +105,7 @@ export default function WikiPortfolio() {
               </p>
               <div className="wiki-actions">
                 <a href="#work">Browse work ↓</a>
-                <a href="mailto:hello@tony.works">Email Tony ↗</a>
+                <a href="mailto:tony.base.eth@gmail.com">Email Tony ↗</a>
               </div>
             </div>
 
@@ -377,7 +377,7 @@ export default function WikiPortfolio() {
               live in one person.
             </p>
             <div>
-              <a href="mailto:hello@tony.works">hello@tony.works</a>
+              <a href="mailto:tony.base.eth@gmail.com">tony.base.eth@gmail.com</a>
               <a
                 href="https://github.com/tonymfer"
                 target="_blank"
