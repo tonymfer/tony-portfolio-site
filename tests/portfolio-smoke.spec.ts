@@ -9,6 +9,12 @@ import {
   resolvedSurfaces,
 } from "../app/content";
 import { cases } from "../app/data";
+import {
+  fieldSessions,
+  homeCases,
+  homeLedger,
+  homeRetro,
+} from "../app/home-content";
 
 const caseRoutes = [
   "/objects/beeper",
@@ -30,8 +36,8 @@ test("home returns successfully and exposes selected work", async ({
     page.getByText("Tony Park", { exact: true }).first(),
   ).toBeVisible();
   await expect(
-    page.getByRole("link", { name: "View selected work" }),
-  ).toHaveAttribute("href", "#objects");
+    page.getByRole("link", { name: "Selected work ↓" }),
+  ).toHaveAttribute("href", "#work");
 });
 
 test("wiki returns successfully and links home", async ({ page }) => {
@@ -153,11 +159,7 @@ test.describe("shared portfolio content", () => {
   });
 
   test("no route file re-declares shared content arrays", () => {
-    const routeFiles = [
-      "app/page.tsx",
-      "app/wiki/page.tsx",
-      "app/HomeMotion.tsx",
-    ];
+    const routeFiles = ["app/page.tsx", "app/wiki/page.tsx"];
     for (const file of routeFiles) {
       const source = readFileSync(resolve(process.cwd(), file), "utf8");
       expect(source, file).not.toMatch(
@@ -213,7 +215,7 @@ test("view switch is reciprocal at 320px", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 900 });
 
   await page.goto("/");
-  const toIndex = page.locator('.mobile-dock a[href="/wiki"]');
+  const toIndex = page.locator('.v4-nav a[href="/wiki"]');
   await expect(toIndex).toBeVisible();
   await toIndex.click();
   await page.waitForURL("**/wiki");
@@ -235,75 +237,82 @@ test("view switch is reciprocal at 320px", async ({ page }) => {
 });
 
 test.describe("home sections", () => {
-  test("hero pager renders as an interactive proof feed", async ({ page }) => {
-    await page.goto("/");
-    const pager = page.locator(".pager");
-    await expect(pager).toBeVisible();
-    await expect(pager).toHaveAttribute("role", "button");
-    await expect(pager).toHaveAttribute("tabindex", "0");
-    await expect(page.locator(".pager-screen li").first()).toBeVisible();
-    await expect(
-      page.locator(".pager-caption a[href='#ledger']"),
-    ).toBeVisible();
-  });
-
-  test("equal object grid lists every case with no crowned flagship", async ({
+  test("selected work renders every case with the shared schema", async ({
     page,
   }) => {
     await page.goto("/");
-    await expect(page.locator(".object-grid .object-row")).toHaveCount(
-      cases.length,
-    );
-    await expect(page.locator(".flagship-object")).toHaveCount(0);
-    await expect(page.locator(".object-row[data-current='true']")).toHaveCount(
-      1,
-    );
+    await expect(page.locator(".v4-case")).toHaveCount(homeCases.en.length);
+    const first = page.locator(".v4-case").first();
+    for (const label of ["Problem", "Owned", "Boundary", "Impact", "Learned"]) {
+      await expect(
+        first.locator(".v4-schema-label", { hasText: label }),
+        label,
+      ).toBeVisible();
+    }
   });
 
-  test("orbit, how-i-work, and hire modules render", async ({ page }) => {
+  test("postmortems and ledger render with linked receipts", async ({
+    page,
+  }) => {
     await page.goto("/");
-    await expect(page.locator("#orbit .orbit-node").first()).toBeVisible();
-    await expect(page.locator("#how .how-step")).toHaveCount(6);
+    await expect(page.locator(".v4-retro")).toHaveCount(homeRetro.en.length);
+    const rows = page.locator(".v4-ledger-row");
+    await expect(rows).toHaveCount(homeLedger.length);
+    const hrefs = await rows.evaluateAll((nodes) =>
+      nodes.map((node) => node.getAttribute("href")),
+    );
+    for (const href of hrefs) {
+      expect(href, `ledger link ${href}`).toMatch(/^https?:\/\//);
+    }
+  });
+
+  test("every field session links to a public receipt", async ({ page }) => {
+    await page.goto("/");
+    const links = page.locator(".v4-sessions a");
+    await expect(links).toHaveCount(fieldSessions.length);
+    const hrefs = await links.evaluateAll((nodes) =>
+      nodes.map((node) => node.getAttribute("href")),
+    );
+    for (const href of hrefs) {
+      expect(href, `field session ${href}`).toMatch(/^https?:\/\//);
+    }
+  });
+
+  test("hire module exposes the contact actions", async ({ page }) => {
+    await page.goto("/");
     const hire = page.locator("#hire");
     await expect(
-      hire.locator("a[href='mailto:hello@tony.works']"),
+      hire.locator("a[href='mailto:tony.base.eth@gmail.com']"),
     ).toBeVisible();
-    await expect(hire.locator("a[href='/tony-resume.pdf']")).toBeVisible();
+    await expect(
+      hire.locator("a[href='https://x.com/tonymfer']"),
+    ).toBeVisible();
+    await expect(
+      hire.locator("a[href='https://github.com/tonymfer']"),
+    ).toBeVisible();
   });
 
-  test("pager advances receipts on keyboard activation", async ({ page }) => {
-    // Under reduced motion the auto-cycle timer is disabled, so the only thing
-    // that moves the sliding window is the Enter/Space handler — a deterministic
-    // read of the F-006 keyboard affordance.
-    await page.emulateMedia({ reducedMotion: "reduce" });
+  test("attention receipt prints when the hire section scrolls into view", async ({
+    page,
+  }) => {
     await page.goto("/");
-    const lines = page.locator(".pager-screen ul li:not(.pager-typing)");
-    await expect(lines.first()).toBeVisible();
-    const before = await lines.allInnerTexts();
-    expect(before.length).toBeGreaterThan(1);
-    await page.locator(".pager").focus();
-    await page.keyboard.press("Enter");
-    const after = await lines.allInnerTexts();
-    expect(after, "window advanced by one").not.toEqual(before);
-    expect(after[0], "first line is the old second line").toBe(before[1]);
+    await expect(page.locator(".v4-receipt")).toHaveCount(0);
+    await page.locator(".v4-receipt-col").scrollIntoViewIfNeeded();
+    await expect(page.getByText("ATTENTION RECEIVED")).toBeVisible();
+    await expect(page.locator(".v4-receipt-line")).toHaveCount(6);
   });
 
-  test("every orbit map link resolves", async ({ page, request }) => {
+  test("language toggle swaps hero copy between EN and KR", async ({
+    page,
+  }) => {
     await page.goto("/");
-    const hrefs = await page
-      .locator("#orbit .orbit-node")
-      .evaluateAll((nodes) =>
-        nodes.map((node) => node.getAttribute("href")).filter(Boolean),
-      );
-    expect(hrefs.length, "orbit exposes navigable nodes").toBeGreaterThan(0);
-    for (const href of hrefs) {
-      if (href && href.startsWith("/")) {
-        const response = await request.get(href);
-        expect(response.status(), `orbit link ${href}`).toBe(200);
-      } else {
-        expect(href, `orbit link ${href}`).toMatch(/^https?:\/\//);
-      }
-    }
+    const heading = page.locator("h1");
+    await expect(heading).toContainText("I build products");
+    await page.locator(".v4-lang-toggle").click();
+    await expect(heading).toContainText("시장이 아직 플레이북을");
+    await expect(page.getByText("LIVE · 회사", { exact: true })).toBeVisible();
+    await page.locator(".v4-lang-toggle").click();
+    await expect(heading).toContainText("I build products");
   });
 });
 

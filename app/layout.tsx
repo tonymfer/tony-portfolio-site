@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import {
   Bricolage_Grotesque,
-  Doto,
   IBM_Plex_Mono,
+  IBM_Plex_Sans_KR,
   Instrument_Sans,
 } from "next/font/google";
 import "./globals.css";
@@ -17,7 +17,7 @@ const geistMono = IBM_Plex_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const displayFont = Bricolage_Grotesque({
@@ -26,12 +26,12 @@ const displayFont = Bricolage_Grotesque({
   display: "swap",
 });
 
-// LCD face for the HeroPager receipt screen.
-const lcdFont = Doto({
-  variable: "--font-lcd",
+// Korean text face for the home EN/KR toggle (Home v4).
+const krFont = IBM_Plex_Sans_KR({
+  variable: "--font-kr",
   subsets: ["latin"],
   display: "swap",
-  weight: ["500", "700", "900"],
+  weight: ["400", "500", "600"],
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tonypark.xyz";
@@ -87,7 +87,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${displayFont.variable} ${lcdFont.variable}`}
+        className={`${geistSans.variable} ${geistMono.variable} ${displayFont.variable} ${krFont.variable}`}
       >
         {children}
       </body>
