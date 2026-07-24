@@ -396,6 +396,11 @@
   margin: 0;
   font-size: 14px;
   line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+/* keep-all is a Korean typesetting rule; on EN it turns long unspaced tokens
+   into column-wide overflow (Beeper "compose→targets→…" at 390px). */
+:lang(ko) .v4-schema-row p {
   word-break: keep-all;
 }
 .v4-text-ink {

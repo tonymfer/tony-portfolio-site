@@ -25,6 +25,10 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
   const isBeeper = item.slug === "beeper";
   const showArc = isNarrativeArc(item.fieldNotes);
+  // Longest unbreakable word drives the .case-title container-query cap.
+  const titleChars = Math.max(
+    ...item.name.split(/\s+/).map((word) => word.length),
+  );
 
   return (
     <section className="case-page" ref={rootRef}>
@@ -60,7 +64,12 @@ export function CaseMotion({ item }: { item: CaseStudy }) {
               </a>
             )}
           </p>
-          <h1 className="case-title">{item.name}</h1>
+          <h1
+            className="case-title"
+            style={{ "--title-chars": titleChars } as React.CSSProperties}
+          >
+            {item.name}
+          </h1>
           <p className="case-subcopy">{item.desc}</p>
           <BeeperExtras item={item} slot="metrics" />
           {item.metricSource && (
