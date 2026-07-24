@@ -12,7 +12,7 @@
 
 ## Pending proof receipts (evidence rules: 링크 없으면 주장 안 함)
 
-- [ ] Brainlets 바이럴 트윗 링크 → blurb에 viral receipt 추가
+- [ ] Brainlets ownership/rights 충돌 해결 — EVIDENCE-MAP "removed until cleared" 기준으로 2026-07-24 사이트에서 제거함(케이스 proofPoint · subProject · orbit · proof index 006). 재추가 조건: 직접 소스/바이럴 트윗 링크 + 안전한 ownership 문구 확정 후 (Dixel 타임라인 링크도 동일 조건)
 - [ ] Beeper dashboard / contract addresses
 - [ ] Base Batches email + Founders Residency invite
 - [ ] mfer-token tweets

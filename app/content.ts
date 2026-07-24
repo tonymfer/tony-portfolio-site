@@ -1,4 +1,4 @@
-import { cases, pagerReceipts, type CaseStudy } from "./data";
+import { cases, type CaseStudy } from "./data";
 
 // Cross-view facts shared by the visual home (`/`), the motion deck, and the index (`/wiki`).
 // Route files must not re-declare primitives, surfaces, field entries, or deck annotations.
@@ -163,11 +163,4 @@ export const resolvedSurfaces = productSurfaces.map((surface) => {
 export const resolvedPrimitives = primitives.map((primitive) => ({
   ...primitive,
   example: caseBySlug(primitive.exampleCaseSlug).name,
-}));
-
-// The HeroPager feed lives in data.ts (single source of truth for case claims);
-// resolving it here throws at build if a receipt cites a case that no longer exists.
-export const resolvedPagerReceipts = pagerReceipts.map((receipt) => ({
-  ...receipt,
-  caseHref: `/objects/${caseBySlug(receipt.caseSlug).slug}`,
 }));
