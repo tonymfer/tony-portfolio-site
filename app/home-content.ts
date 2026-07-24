@@ -754,6 +754,11 @@ export const fieldSessions: FieldSession[] = [
     href: "https://x.com/tonymfer/status/1965330540338577440",
   },
   {
+    label: "MiniApps future session — Base Korea supported",
+    date: "Sep 2025",
+    href: "https://x.com/tonymfer/status/1965330533736755433",
+  },
+  {
     label: "Base APAC — Based Builders feature",
     date: "Jul 2026",
     href: "https://x.com/baseapac/status/2076637652107882803",

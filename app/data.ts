@@ -207,10 +207,31 @@ export const cases: CaseStudy[] = [
         note: "waitlist growth before closed beta",
       },
       {
+        date: "2025-12",
+        title: "Miniapp → physical direction",
+        href: "https://x.com/tonymfer/status/1999741868842820034",
+      },
+      {
+        date: "2025-12",
+        title: "Private sender access",
+        href: "https://x.com/tonymfer/status/2000173583713366437",
+      },
+      {
+        date: "2026-01",
+        title: "BEEP v2 mechanic",
+        href: "https://x.com/tonymfer/status/2009646339332919366",
+      },
+      {
         date: "2026-01",
         title: "top 5 miniapp signal",
         href: "https://x.com/beeponbase/status/2013170568611402151",
         note: "ranked near other leading Base miniapps without a token",
+      },
+      {
+        date: "2026-01",
+        title: "Battery signal launch",
+        href: "https://x.com/tonymfer/status/2015610355280642446",
+        note: "public launch post — the check-in count itself stays source-pending",
       },
       {
         date: "2026-01",
@@ -375,6 +396,18 @@ export const cases: CaseStudy[] = [
     ],
     timeline: [
       {
+        date: "2024-02",
+        title: "Mint Club V2 beta",
+        href: "https://x.com/tonymfer/status/1752969640878469434",
+        note: "public V2 beta launch post",
+      },
+      {
+        date: "2024-03",
+        title: "SDK positioning post",
+        href: "https://x.com/tonymfer/status/1773962518857486825",
+        note: "public SDK positioning post",
+      },
+      {
         date: "2024-05 → 2025-08",
         title: "mint.club-v2-sdk commits",
         href: "https://github.com/Steemhunt/mint.club-v2-sdk/commits?author=tonymfer",
@@ -387,8 +420,15 @@ export const cases: CaseStudy[] = [
         note: "education/demo surface",
       },
       {
+        date: "2024-07",
+        title: "Farcard cross-chain purchase",
+        href: "https://x.com/tonymfer/status/1817812618113151354",
+        note: "cross-chain purchase demo",
+      },
+      {
         date: "2024-08",
         title: "Cross-chain swap UX on Mint Club",
+        href: "https://x.com/tonymfer/status/1823638585255633040",
         note: "Base/mainnet/BNB/Arbitrum/Optimism/Degen/Blast/Zora bridge/swap/buy support",
       },
       {
@@ -539,6 +579,22 @@ export const cases: CaseStudy[] = [
     ],
     timeline: [
       {
+        date: "2022-11",
+        title: "Hunt Town relaunch",
+        href: "https://x.com/tonymfer/status/1597880340521316352",
+        note: "relaunch context",
+      },
+      {
+        date: "2023-06",
+        title: "ETHSeoul Hackpack",
+        href: "https://x.com/tonymfer/status/1664495726599221249",
+      },
+      {
+        date: "2023-09",
+        title: "Ideathon concept post",
+        href: "https://x.com/tonymfer/status/1702031470251098343",
+      },
+      {
         date: "2023-09",
         title: "Hunt Town Ideathon",
         href: "https://x.com/tonymfer/status/1702607526666359007",
@@ -583,6 +639,7 @@ export const cases: CaseStudy[] = [
       {
         date: "2024-09",
         title: "Warpcast Tools showcase in Hunt Town Discord",
+        href: "https://x.com/tonymfer/status/1831306138887102828",
         note: "community demo / Farcaster utility loop",
       },
       {
@@ -630,6 +687,7 @@ export const cases: CaseStudy[] = [
       {
         date: "2026-01",
         title: "Hunt Town live event promoted through Beeper",
+        href: "https://x.com/tonymfer/status/2011144428979900913",
         note: "Beeper sent event to 768 users who set Signal Token to $HUNT",
       },
     ],
@@ -663,6 +721,10 @@ export const cases: CaseStudy[] = [
       {
         text: "Solana Demo Day signal",
         href: "https://x.com/SuperteamMY/status/2058865116985327891",
+      },
+      {
+        text: "Coordination thesis post",
+        href: "https://x.com/tonymfer/status/2057711109965246916",
       },
       "Presented at Korea Base Hackathon and Solana Malaysia Demo Day",
       "No-custody positioning and reputation receipt model",
