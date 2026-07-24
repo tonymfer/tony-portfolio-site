@@ -18,6 +18,10 @@ const geistMono = IBM_Plex_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
+  // Google's latin subset has ↑/↓ but not →; without this fallback face
+  // (globals.css @font-face, unicode-range U+2192) the right arrow renders
+  // from the system monospace as a long arrow and breaks the mono rhythm.
+  fallback: ["IBM Plex Mono Arrows"],
 });
 
 const displayFont = Bricolage_Grotesque({

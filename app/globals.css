@@ -3598,3 +3598,23 @@ button:focus-visible {
     top: 30%;
   }
 }
+
+/* U+2192 fallback face: next/font's latin subset of IBM Plex Mono ships ↑/↓
+   but not →, so the right arrow fell through to IBM Plex Sans KR / the system
+   monospace as a wide arrow. Self-hosted complete Plex Mono, scoped to the one
+   codepoint; it only downloads when an → actually renders. Wired via next/font
+   `fallback` in layout.tsx. */
+@font-face {
+  font-family: "IBM Plex Mono Arrows";
+  src: url("/fonts/IBMPlexMono-Regular.woff2") format("woff2");
+  font-weight: 400 500;
+  font-display: swap;
+  unicode-range: U+2192;
+}
+@font-face {
+  font-family: "IBM Plex Mono Arrows";
+  src: url("/fonts/IBMPlexMono-Bold.woff2") format("woff2");
+  font-weight: 600 700;
+  font-display: swap;
+  unicode-range: U+2192;
+}
