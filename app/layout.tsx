@@ -18,12 +18,19 @@ const geistMono = IBM_Plex_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
+  // Google's latin subset has ↑/↓ but not →; without this fallback face
+  // (globals.css @font-face, unicode-range U+2192) the right arrow renders
+  // from the system monospace as a long arrow and breaks the mono rhythm.
+  fallback: ["IBM Plex Mono Arrows"],
 });
 
 const displayFont = Bricolage_Grotesque({
   variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
+  // The optical-size axis must stay variable: at 92px the display cut narrows
+  // the glyphs, and without it the hero wraps 4 lines → 5 (spec regression).
+  axes: ["opsz"],
 });
 
 // Korean text face for the home EN/KR toggle (Home v4).

@@ -12,11 +12,11 @@
 
 ## Pending proof receipts (evidence rules: 링크 없으면 주장 안 함)
 
-- [ ] Brainlets 바이럴 트윗 링크 → blurb에 viral receipt 추가
+- [ ] Brainlets ownership/rights 충돌 해결 — EVIDENCE-MAP "removed until cleared" 기준으로 2026-07-24 사이트에서 제거함(케이스 proofPoint · subProject · orbit · proof index 006). 재추가 조건: 직접 소스/바이럴 트윗 링크 + 안전한 ownership 문구 확정 후 (Dixel 타임라인 링크도 동일 조건)
 - [ ] Beeper dashboard / contract addresses
-- [ ] Base Batches email + Founders Residency invite
-- [ ] mfer-token tweets
+- [ ] Base Batches email + Founders Residency invite — 원본은 private(마스터 §19.1, 공개 불가); 공개 receipts(2049718062560182312, 2057749264412127621)는 이미 반영됨. 공개-safe 취지로 재정의 필요
+- [x] mfer-token tweets — 2026-07-24 해소: 1843847067837575181 · 1846169255483678765 · 1857278167649759548 모두 사이트 반영 (마스터 §6.11 대조)
 - [ ] Hunt Town fireside-chat links + Huntzy proof (Huntzy는 proof 오면 Orbit Map에도 추가)
 - [ ] TradeFish demo video
-- [ ] Base World grant proof
+- [ ] Base World grant proof — 사이트는 x.com/base/status/1840853298842386924 사용 중 (ID 날짜 2024-09-30, "wave 18, Oct 2024" 주장과 정합). 트윗 내용 검증 + 콘텐츠 마스터 역반영 필요
 - [ ] Jesse Pollak shoutout tweet

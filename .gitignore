@@ -36,3 +36,4 @@ case-*.png
 test-results/
 tsconfig.tsbuildinfo
 .gstack/
+.vercel

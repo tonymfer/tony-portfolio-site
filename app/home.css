@@ -396,6 +396,11 @@
   margin: 0;
   font-size: 14px;
   line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+/* keep-all is a Korean typesetting rule; on EN it turns long unspaced tokens
+   into column-wide overflow (Beeper "compose→targets→…" at 390px). */
+:lang(ko) .v4-schema-row p {
   word-break: keep-all;
 }
 .v4-text-ink {
@@ -483,7 +488,9 @@
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  white-space: nowrap;
+  /* wraps to two lines inside the 150px name column instead of colliding
+     with the body labels (EN P-02 chip) */
+  white-space: normal;
 }
 .v4-retro-body p {
   margin: 0;
@@ -649,7 +656,8 @@
 }
 .v4-ledger-note {
   margin: 18px 0 0;
-  color: var(--faint);
+  /* body-length note: --muted for AA (faint is 3.5:1 on this ground) */
+  color: var(--muted);
   font-size: 12px;
   line-height: 1.6;
 }
@@ -693,7 +701,8 @@
 .v4-hire-not {
   max-width: 58ch;
   margin: 14px 0 0;
-  color: var(--faint);
+  /* body-length note: --muted for AA (faint is 3.5:1 on this ground) */
+  color: var(--muted);
   font-size: 13px;
   line-height: 1.6;
 }

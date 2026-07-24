@@ -28,11 +28,6 @@ export type OrbitNode = {
 export type OrbitGroup = { anchor: OrbitNode; satellites: OrbitNode[] };
 export type OrbitEra = { era: string; span: string; groups: OrbitGroup[] };
 
-// Home hero receipt feed. Every value is a case claim, and each entry ties to a
-// caseSlug so the pager can't drift from the evidence map; content.ts resolves the
-// slugs and throws at build if one dangles (same guard as surfaces/deck).
-export type PagerReceipt = { value: string; label: string; caseSlug: string };
-
 export type CaseStudy = {
   slug: string;
   no: string;
@@ -77,7 +72,7 @@ export const cases: CaseStudy[] = [
     image: "/proof/beeper-hardware.jpg",
     desc: "A Base-native paid attention product where users set an inbox price, earn for engagement, and unread messages can refund the sender.",
     tags: ["Base", "Farcaster", "paid attention", "BeeperX", "hardware"],
-    proof: "44.8K users / 39.1% read rate / #3 mini app",
+    proof: "44.8K users / 39.1% read rate — Base Batches bundle",
     href: "https://beep.works",
     live: "https://beep.works",
     primitive:
@@ -212,10 +207,31 @@ export const cases: CaseStudy[] = [
         note: "waitlist growth before closed beta",
       },
       {
+        date: "2025-12",
+        title: "Miniapp → physical direction",
+        href: "https://x.com/tonymfer/status/1999741868842820034",
+      },
+      {
+        date: "2025-12",
+        title: "Private sender access",
+        href: "https://x.com/tonymfer/status/2000173583713366437",
+      },
+      {
+        date: "2026-01",
+        title: "BEEP v2 mechanic",
+        href: "https://x.com/tonymfer/status/2009646339332919366",
+      },
+      {
         date: "2026-01",
         title: "top 5 miniapp signal",
         href: "https://x.com/beeponbase/status/2013170568611402151",
         note: "ranked near other leading Base miniapps without a token",
+      },
+      {
+        date: "2026-01",
+        title: "Battery signal launch",
+        href: "https://x.com/tonymfer/status/2015610355280642446",
+        note: "public launch post — the check-in count itself stays source-pending",
       },
       {
         date: "2026-01",
@@ -261,7 +277,7 @@ export const cases: CaseStudy[] = [
     name: "Mint Club",
     object: "token product surfaces",
     role: "product + front-end / SDK + ecosystem UX",
-    year: "2022–2026",
+    year: "2024–2026",
     image: "/proof/mint-cbbtc.png",
     desc: "Token-backed asset and bonding-curve product work: launch flows, child-token discovery, staking/reward surfaces, cross-chain swap UX, Base/mfer views, SDK demos, and Farcaster-native product surfaces.",
     tags: [
@@ -278,7 +294,7 @@ export const cases: CaseStudy[] = [
     primitive:
       "Mint Club’s hard problem was making token-backed markets and bonding curves feel like usable product surfaces instead of raw crypto mechanics. My work sat where primitives became interfaces: launch, swap, discover, stake, reward, and teach.",
     artifact:
-      "Product/front-end surfaces and demos across Mint Club: token-backed asset pages, child/sibling token discovery, mfer/Base views, cross-chain swap UX, staking/reward pools, Mint Club SDK examples, Mintdrop, Brainlets, and Base/Farcaster surfaces including far.cards.",
+      "Product/front-end surfaces and demos across Mint Club: token-backed asset pages, child/sibling token discovery, mfer/Base views, cross-chain swap UX, staking/reward pools, Mint Club SDK examples, Mintdrop, and Base/Farcaster surfaces.",
     proofPoints: [
       {
         text: "BASE ERA in Mint Club — Base token featuring and child tokens backed by favorite Base tokens",
@@ -295,10 +311,6 @@ export const cases: CaseStudy[] = [
       {
         text: "Mintdrop metrics: $8K worth of child coins, 3,000 unique users, nearly 80,000 Base microtransactions",
         href: "https://x.com/tonymfer/status/1927199768100384856",
-      },
-      {
-        text: "Brainlets — hand-drawn $BRAINLET site on Degen L3, built on Mint Club assets, still live",
-        href: "https://www.brainlets.life/",
       },
       {
         text: "mint.club-v2-sdk commits by tonymfer",
@@ -325,8 +337,8 @@ export const cases: CaseStudy[] = [
       {
         name: "far.cards",
         blurb:
-          "Physical-social Farcaster cards — NFC identity objects you can hand someone at an event. A Farcaster-native IRL surface built in the Mint Club / onchain-social orbit.",
-        href: "https://x.com/tonymfer/status/2042628827059536214",
+          "Physical-social Farcaster cards — NFC identity objects you can hand someone at an event. Built by @undefined_mfer, designed by @animatedmfers, coordinated by @CryptoStatuette; my lane was product, events, and distribution.",
+        href: "https://x.com/tonymfer/status/1818977504167965126",
         image: "/proof/farcards-spread.png",
         tags: ["Farcaster", "NFC", "social object"],
       },
@@ -337,14 +349,6 @@ export const cases: CaseStudy[] = [
         href: "https://x.com/tonymfer/status/1927199768100384856",
         image: "/proof/mintdrop-metrics.png",
         tags: ["Base", "growth loop", "child tokens"],
-      },
-      {
-        name: "Brainlets",
-        blurb:
-          "Hand-drawn meme token site for $BRAINLET on Degen L3, built on Mint Club assets during the Degen Chain wave — an interactive 'cut to start' brainlet world where the website itself carries the token narrative. Still live.",
-        href: "https://www.brainlets.life/",
-        image: "/proof/brainlets-site.png",
-        tags: ["Degen L3", "token narrative", "interactive site"],
       },
     ],
     ownership: {
@@ -392,10 +396,16 @@ export const cases: CaseStudy[] = [
     ],
     timeline: [
       {
-        date: "2023",
-        title: "Dixel / early Steemhunt repo work",
-        href: "https://github.com/Steemhunt/dixel-v2-contract/commits?author=tonymfer",
-        note: "early public GitHub trail",
+        date: "2024-02",
+        title: "Mint Club V2 beta",
+        href: "https://x.com/tonymfer/status/1752969640878469434",
+        note: "public V2 beta launch post",
+      },
+      {
+        date: "2024-03",
+        title: "SDK positioning post",
+        href: "https://x.com/tonymfer/status/1773962518857486825",
+        note: "public SDK positioning post",
       },
       {
         date: "2024-05 → 2025-08",
@@ -410,8 +420,15 @@ export const cases: CaseStudy[] = [
         note: "education/demo surface",
       },
       {
+        date: "2024-07",
+        title: "Farcard cross-chain purchase",
+        href: "https://x.com/tonymfer/status/1817812618113151354",
+        note: "cross-chain purchase demo",
+      },
+      {
         date: "2024-08",
         title: "Cross-chain swap UX on Mint Club",
+        href: "https://x.com/tonymfer/status/1823638585255633040",
         note: "Base/mainnet/BNB/Arbitrum/Optimism/Degen/Blast/Zora bridge/swap/buy support",
       },
       {
@@ -562,6 +579,22 @@ export const cases: CaseStudy[] = [
     ],
     timeline: [
       {
+        date: "2022-11",
+        title: "Hunt Town relaunch",
+        href: "https://x.com/tonymfer/status/1597880340521316352",
+        note: "relaunch context",
+      },
+      {
+        date: "2023-06",
+        title: "ETHSeoul Hackpack",
+        href: "https://x.com/tonymfer/status/1664495726599221249",
+      },
+      {
+        date: "2023-09",
+        title: "Ideathon concept post",
+        href: "https://x.com/tonymfer/status/1702031470251098343",
+      },
+      {
         date: "2023-09",
         title: "Hunt Town Ideathon",
         href: "https://x.com/tonymfer/status/1702607526666359007",
@@ -606,6 +639,7 @@ export const cases: CaseStudy[] = [
       {
         date: "2024-09",
         title: "Warpcast Tools showcase in Hunt Town Discord",
+        href: "https://x.com/tonymfer/status/1831306138887102828",
         note: "community demo / Farcaster utility loop",
       },
       {
@@ -653,6 +687,7 @@ export const cases: CaseStudy[] = [
       {
         date: "2026-01",
         title: "Hunt Town live event promoted through Beeper",
+        href: "https://x.com/tonymfer/status/2011144428979900913",
         note: "Beeper sent event to 768 users who set Signal Token to $HUNT",
       },
     ],
@@ -677,7 +712,7 @@ export const cases: CaseStudy[] = [
     proofPoints: [
       {
         text: "1st place at Base Agent Hackathon",
-        href: "https://x.com/daehan_base/status/2048044505413399038",
+        href: "https://x.com/daehan_base/status/2048044510643724793",
       },
       {
         text: "Public GitHub repo",
@@ -686,6 +721,10 @@ export const cases: CaseStudy[] = [
       {
         text: "Solana Demo Day signal",
         href: "https://x.com/SuperteamMY/status/2058865116985327891",
+      },
+      {
+        text: "Coordination thesis post",
+        href: "https://x.com/tonymfer/status/2057711109965246916",
       },
       "Presented at Korea Base Hackathon and Solana Malaysia Demo Day",
       "No-custody positioning and reputation receipt model",
@@ -739,18 +778,18 @@ export const cases: CaseStudy[] = [
     name: "Base World",
     object: "community map",
     role: "prototype / demo builder",
-    year: "2025",
+    year: "2024",
     thread: { label: "built for Hunt Town", slug: "hunt-town" },
     image: "/proof/base-world-launch.jpg",
     desc: "A living map of the Base ecosystem, built for the Hunt Town community — membership turned into a visual, explorable surface people can point to and belong to.",
-    tags: ["Base", "community map", "grant", "ecosystem"],
-    proof: "Base grant / Jesse Pollak shoutout",
+    tags: ["Base", "community map", "ecosystem"],
+    proof: "launch video / public repo",
     href: "https://x.com/tonymfer/status/1808470847469785334",
     live: "https://github.com/tonymfer/base-world",
     primitive:
       "Ecosystem membership is usually an invisible list. Base World turns it into a spatial object: a map you can explore, point to, and feel part of.",
     artifact:
-      "A Base World community map that renders ecosystem membership as a visual surface, backed by a Base grant, a Jesse Pollak shoutout, a public repo, and launch media.",
+      "A Base World community map that renders ecosystem membership as a visual surface. Public launch videos and the repository verify the product; the reported Base grant and Jesse Pollak shoutout remain source-pending.",
     proofPoints: [
       {
         text: "Base World launch signal",
@@ -772,7 +811,7 @@ export const cases: CaseStudy[] = [
     ],
     ownership: {
       role: "Prototype / demo builder",
-      team: "Solo / small build.",
+      team: "Team split source-pending.",
       owned: [
         "Community map interface and interaction",
         "Base ecosystem visual surface",
@@ -780,11 +819,11 @@ export const cases: CaseStudy[] = [
       ],
       influenced: ["Base community discovery UX"],
       proof:
-        "Base grant + Jesse Pollak shoutout (proof pending) and the public base-world repo",
+        "Public launch videos and the base-world repo; grant/shoutout receipts pending",
     },
     right: [
       "Base World gives the ecosystem a spatial object people can point to.",
-      "It earned real validation: a Base grant and a Jesse Pollak shoutout.",
+      "Public launch videos and the repository verify the product.",
       "The map is more memorable than a directory or a dashboard.",
     ],
     wrong: [
@@ -828,7 +867,7 @@ export const cases: CaseStudy[] = [
     ],
     ownership: {
       role: "Prototype / demo builder",
-      team: "Solo build.",
+      team: "Team split source-pending.",
       owned: [
         "Playable USDC potato game",
         "Base Sub Accounts / zero-popup wallet flow",
@@ -855,8 +894,8 @@ export const archive = [
   ["016", "solana paid-agent skill", "agent rails", "2026", "public repo"],
   ["015", "room-reader", "AI rehearsal", "2026", "public repo"],
   ["014", "TapTato", "game / wallet", "2025", "public post"],
-  ["013", "Base World", "community map", "2025", "public repo"],
-  ["012", "far.cards", "physical social", "2025", "public post"],
+  ["013", "Base World", "community map", "2024", "public repo"],
+  ["012", "far.cards", "physical social", "2024", "public post"],
   ["011", "Mint Club Base era", "token UX", "2024–2025", "public posts"],
   ["010", "Mintdrop", "growth loop", "2025", "metric proof"],
   [
@@ -866,8 +905,7 @@ export const archive = [
     "2023–2025",
     "workshop proof",
   ],
-  ["006", "Brainlets", "token narrative site", "2024", "live site"],
-  ["005", "Beeper v1", "paid inbox", "2024", "public product"],
+  ["005", "Beeper v1", "paid inbox", "2025", "public product"],
 ];
 
 export const orbit: OrbitEra[] = [
@@ -894,12 +932,6 @@ export const orbit: OrbitEra[] = [
             href: "https://x.com/tonymfer/status/2042628827059536214",
             external: true,
           },
-          {
-            name: "Brainlets",
-            note: "token narrative site on Mint Club assets — Degen L3 wave",
-            href: "https://www.brainlets.life/",
-            external: true,
-          },
         ],
       },
       {
@@ -911,7 +943,7 @@ export const orbit: OrbitEra[] = [
         satellites: [
           {
             name: "Base World",
-            note: "community map built for Hunt Town — Base grant",
+            note: "community map built for Hunt Town — public launch video",
             href: "/objects/base-world",
           },
         ],
@@ -948,19 +980,4 @@ export const orbit: OrbitEra[] = [
       },
     ],
   },
-];
-
-// Structured source for the HeroPager receipt feed (U4 renders `${value} / ${label}`).
-// Every value traces to a case claim carried above; caseSlug is the provenance tie
-// content.ts validates at build. No claim here that isn't already sourced in a case.
-export const pagerReceipts: PagerReceipt[] = [
-  { value: "44,850 USERS", label: "BEEPER", caseSlug: "beeper" },
-  { value: "39.1% READ RATE", label: "2X EMAIL", caseSlug: "beeper" },
-  { value: "412K+ TXNS", label: "BASE MAINNET", caseSlug: "beeper" },
-  { value: "1ST", label: "BASE AGENT HACKATHON", caseSlug: "tradefish" },
-  { value: "SOLANA MY DEMO DAY", label: "TRADEFISH", caseSlug: "tradefish" },
-  { value: "$8K CHILD COINS", label: "MINTDROP", caseSlug: "mint-club" },
-  { value: "3,000+ MEMBERS", label: "HUNT TOWN", caseSlug: "hunt-town" },
-  { value: "106K+ CHECK-INS", label: "BEEPER", caseSlug: "beeper" },
-  { value: "4 YRS", label: "MINT CLUB SURFACES", caseSlug: "mint-club" },
 ];

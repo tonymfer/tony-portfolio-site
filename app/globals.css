@@ -1539,9 +1539,19 @@ button:focus-visible {
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
+.case-copy {
+  container-type: inline-size;
+}
 .case-title {
   margin: 18px 0 0;
-  font-size: clamp(4.4rem, 10.2vw, 11.2rem);
+  /* Capped by the longest word (--title-chars, set inline per case): a
+     one-word title like "TradeFish" scales down instead of running under
+     the sticky hero image. 0.58 ≈ average glyph advance in em at this
+     weight/tracking. */
+  font-size: min(
+    clamp(4.4rem, 10.2vw, 11.2rem),
+    calc(100cqw / (var(--title-chars, 6) * 0.58))
+  );
   line-height: 0.78;
   letter-spacing: -0.088em;
   font-weight: 790;
@@ -1589,7 +1599,9 @@ button:focus-visible {
 }
 .case-image-caption {
   padding: 12px 3px 0;
-  color: var(--green);
+  /* Dark ink, not --green: the caption sits on the cream polaroid frame
+     (#d7cfbf) where phosphor green reads at ~1.08:1. */
+  color: var(--lcd-ink);
   font-family: var(--font-geist-mono), monospace;
   font-size: 12px;
   text-transform: uppercase;
@@ -3585,4 +3597,24 @@ button:focus-visible {
   .video-card::before {
     top: 30%;
   }
+}
+
+/* U+2192 fallback face: next/font's latin subset of IBM Plex Mono ships ↑/↓
+   but not →, so the right arrow fell through to IBM Plex Sans KR / the system
+   monospace as a wide arrow. Self-hosted complete Plex Mono, scoped to the one
+   codepoint; it only downloads when an → actually renders. Wired via next/font
+   `fallback` in layout.tsx. */
+@font-face {
+  font-family: "IBM Plex Mono Arrows";
+  src: url("/fonts/IBMPlexMono-Regular.woff2") format("woff2");
+  font-weight: 400 500;
+  font-display: swap;
+  unicode-range: U+2192;
+}
+@font-face {
+  font-family: "IBM Plex Mono Arrows";
+  src: url("/fonts/IBMPlexMono-Bold.woff2") format("woff2");
+  font-weight: 600 700;
+  font-display: swap;
+  unicode-range: U+2192;
 }

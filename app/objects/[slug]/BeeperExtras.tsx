@@ -226,6 +226,10 @@ export function BeeperExtras({
           <div>
             <p className="case-kicker">Partner rail</p>
             <h2>Campaigns should move rank, not just impressions.</h2>
+            <p className="metric-source">
+              Rank jumps: internal partner archive — source pending (platform,
+              window, and attribution to be published).
+            </p>
           </div>
           <div className="partner-grid">
             {beeperPartners.map(([name, from, to]) => (

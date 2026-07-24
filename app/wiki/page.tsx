@@ -57,7 +57,7 @@ export default function WikiPortfolio() {
         <div className="wiki-issue">
           <span>Personal reference work</span>
           <span>Product Engineer</span>
-          <span>2021—2026</span>
+          <span>2022—2026</span>
         </div>
         <nav aria-label="Wiki utility navigation">
           <a className="wiki-view-switch" href="/">
@@ -131,10 +131,6 @@ export default function WikiPortfolio() {
                   <dd>Founding product engineering</dd>
                 </div>
                 <div>
-                  <dt>Base</dt>
-                  <dd>Seoul / global</dd>
-                </div>
-                <div>
                   <dt>Handles</dt>
                   <dd>@tonymfer · tony.base.eth</dd>
                 </div>
@@ -151,18 +147,16 @@ export default function WikiPortfolio() {
           <section className="wiki-section wiki-intro">
             <p>
               <strong>Tony Park</strong> builds product surfaces where the
-              behavior is still unfamiliar. His work spans four years across
-              HUNT, Mint Club, Hunt Town, and Steemhunt; Beeper's paid-attention
-              system; Base and Farcaster products; and AI-agent reputation
-              experiments.
+              behavior is still unfamiliar. His work spans HUNT, Mint Club, Hunt
+              Town, and Steemhunt; Beeper's paid-attention system; Base and
+              Farcaster products; and AI-agent reputation experiments.
             </p>
             <p>
               The recurring job is translation: turn a primitive into an
               interface, make the constraint visible, ship the useful version,
               and attach public proof. Beeper reached{" "}
-              <strong>44.8K users</strong> and{" "}
-              <strong>412K+ Base transactions</strong>; TradeFish placed first
-              in the Base Agent Hackathon.{" "}
+              <strong>44.8K users</strong> in the Base Batches 003 evidence
+              bundle; TradeFish placed first in the Base Agent Hackathon.{" "}
               <Citation href="/objects/beeper">1</Citation>{" "}
               <Citation href="/objects/tradefish">2</Citation>
             </p>
@@ -249,7 +243,7 @@ export default function WikiPortfolio() {
             </div>
             <div className="wiki-company-grid">
               <div className="wiki-company-lede">
-                <strong>Oct 2021—Feb 2026</strong>
+                <strong>Oct 2022—Feb 2026</strong>
                 <p>
                   Long-running product work across token-backed assets, bonding
                   curves, swaps, discovery, community tooling, builder support,
@@ -258,7 +252,7 @@ export default function WikiPortfolio() {
               </div>
               <ol>
                 <li>
-                  <span>2021—24</span>
+                  <span>2022—24</span>
                   <strong>Company surfaces</strong>
                   <p>
                     Made token and reward mechanics usable in live product
@@ -377,7 +371,9 @@ export default function WikiPortfolio() {
               live in one person.
             </p>
             <div>
-              <a href="mailto:tony.base.eth@gmail.com">tony.base.eth@gmail.com</a>
+              <a href="mailto:tony.base.eth@gmail.com">
+                tony.base.eth@gmail.com
+              </a>
               <a
                 href="https://github.com/tonymfer"
                 target="_blank"

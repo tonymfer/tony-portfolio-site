@@ -210,12 +210,12 @@ export const homeCases: Record<Lang, HomeCase[]> = {
           href: "https://x.com/SuperteamMY/status/2054545718271213820",
         },
         {
-          label: "Survival engine — 1,054 tests passing",
-          href: "https://github.com/tradefish-fun/tradefish-survival-engine",
+          label: "Public repo — legacy prototype",
+          href: "https://github.com/tonymfer/TradeFish",
         },
         {
-          label: "Operator dashboard repo",
-          href: "https://github.com/tradefish-fun/tradefish-dashboard",
+          label: "Coordination thesis post",
+          href: "https://x.com/tonymfer/status/2057711109965246916",
         },
       ],
       learned:
@@ -225,11 +225,11 @@ export const homeCases: Record<Lang, HomeCase[]> = {
       no: "04",
       name: "Hunt Town",
       image: "/proof/yonsei-workshop.jpg",
-      status: "COMPANY · 4 YRS",
+      status: "COMPANY · 3+ YRS",
       tone: "live",
       kind: "builder adoption as a product loop",
       role: "community product + launch loops",
-      period: "joined Oct 2022 → now",
+      period: "joined Oct 2022 → Feb 2026",
       problem:
         "A product existing doesn't make builders use it. The real loop is idea → setup → reward → showcase → feedback — and someone has to run it.",
       owned:
@@ -427,12 +427,12 @@ export const homeCases: Record<Lang, HomeCase[]> = {
           href: "https://x.com/SuperteamMY/status/2054545718271213820",
         },
         {
-          label: "서바이벌 엔진 — 테스트 1,054개 통과",
-          href: "https://github.com/tradefish-fun/tradefish-survival-engine",
+          label: "공개 리포 — 레거시 프로토타입",
+          href: "https://github.com/tonymfer/TradeFish",
         },
         {
-          label: "오퍼레이터 대시보드",
-          href: "https://github.com/tradefish-fun/tradefish-dashboard",
+          label: "코디네이션 논지 공개 포스트",
+          href: "https://x.com/tonymfer/status/2057711109965246916",
         },
       ],
       learned:
@@ -442,11 +442,11 @@ export const homeCases: Record<Lang, HomeCase[]> = {
       no: "04",
       name: "Hunt Town",
       image: "/proof/yonsei-workshop.jpg",
-      status: "회사 · 4년",
+      status: "회사 · 3년+",
       tone: "live",
       kind: "빌더 채택을 제품 루프로",
       role: "커뮤니티 프로덕트 + 런칭 루프",
-      period: "2022년 10월 합류 → 현재",
+      period: "2022년 10월 합류 → 2026년 2월",
       problem:
         "제품이 존재한다고 빌더가 쓰지는 않습니다. 진짜 루프는 아이디어 → 셋업 → 리워드 → 쇼케이스 → 피드백 — 누군가 이걸 돌려야 합니다.",
       owned:
@@ -704,7 +704,7 @@ export const homeLedger: LedgerRow[] = [
     name: "PerSecond",
     type: "payment streams",
     year: "2023",
-    status: "2ND · APTOS SEOUL",
+    status: "2ND · SOURCE PENDING",
     tone: "green",
     href: "https://github.com/ggomaeng/persecond",
   },
@@ -730,10 +730,10 @@ export const homeLedger: LedgerRow[] = [
     no: "01",
     name: "HUNT / Steemhunt",
     type: "company spine",
-    year: "2021→26",
+    year: "2022→26",
     status: "CASE 01·04",
     tone: "green",
-    href: "https://x.com/tonymfer",
+    href: "https://github.com/Steemhunt/mint.club-v2-sdk/commits?author=tonymfer",
   },
 ];
 
@@ -752,6 +752,11 @@ export const fieldSessions: FieldSession[] = [
     label: "EWHA-CHAIN × Dreamplus — Mint Club SDK session",
     date: "Sep 2025",
     href: "https://x.com/tonymfer/status/1965330540338577440",
+  },
+  {
+    label: "MiniApps future session — Base Korea supported",
+    date: "Sep 2025",
+    href: "https://x.com/tonymfer/status/1965330533736755433",
   },
   {
     label: "Base APAC — Based Builders feature",
